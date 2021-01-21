@@ -27,7 +27,6 @@ class ProfileHeaderView: UIView {
         statusLabel.textColor = .gray
         statusLabel.text = "Waiting for something"
 
-        
         fullNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         fullNameLabel.textColor = .black
         fullNameLabel.text = "new name"

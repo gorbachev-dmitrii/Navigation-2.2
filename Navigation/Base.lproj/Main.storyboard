@@ -118,26 +118,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ru-89-vrk">
-                                <rect key="frame" x="171" y="433" width="72" height="30"/>
-                                <state key="normal" title="Open post"/>
-                                <connections>
-                                    <segue destination="Gpo-I4-SnC" kind="show" identifier="post" id="2l2-zd-PhO"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="geR-9R-95z">
+                                <rect key="frame" x="184" y="413" width="46" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLg-pg-daa">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="Gpo-I4-SnC" kind="show" id="58n-BR-0Br"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ih-A9-H2k">
+                                        <rect key="frame" x="0.0" y="40" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="Gpo-I4-SnC" kind="show" id="bcq-yB-dnz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rDk-lR-Mb7"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
-                            <constraint firstItem="9ru-89-vrk" firstAttribute="centerX" secondItem="hnQ-fB-PJI" secondAttribute="centerX" id="ojZ-LA-9mf"/>
-                            <constraint firstItem="9ru-89-vrk" firstAttribute="centerY" secondItem="hnQ-fB-PJI" secondAttribute="centerY" id="z24-rS-igo"/>
+                            <constraint firstItem="geR-9R-95z" firstAttribute="centerX" secondItem="hnQ-fB-PJI" secondAttribute="centerX" id="Ugn-9Y-L28"/>
+                            <constraint firstItem="geR-9R-95z" firstAttribute="centerY" secondItem="hnQ-fB-PJI" secondAttribute="centerY" id="ZZW-E7-0ZD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="CTA-33-ygc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zo3-uO-y7P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="743" y="-541"/>
+            <point key="canvasLocation" x="742.02898550724649" y="-541.07142857142856"/>
         </scene>
         <!--Post-->
         <scene sceneID="9oM-mS-hYy">
@@ -227,6 +239,9 @@
             <point key="canvasLocation" x="-142.02898550724638" y="196.875"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bcq-yB-dnz"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
