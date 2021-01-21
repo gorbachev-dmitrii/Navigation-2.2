@@ -10,56 +10,46 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let userImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "userImage.png")
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-        return imageView
-    }()
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusTextField: UITextField!
+    @IBOutlet weak var setStatusButton: UIButton!
     
-    let statusLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.layer.backgroundColor = UIColor.white.cgColor
-        label.textColor = .black
-        label.text = ""
-        label.layer.cornerRadius = 12
-        label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor.black.cgColor
-        return label
-    }()
-    let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
-        label.text = "new name"
-        return label
-    }()
-    
-    lazy var statusInput: UITextField = {
-       let textInput = UITextField()
-        textInput.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        textInput.placeholder = "Waiting for something..."
-        textInput.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        return textInput
-    }()
-    
-    
-    lazy var showStatusButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        return button
-    }()
+    override func layoutSubviews() {
+        avatarImageView.image = UIImage(named: "userImage.png")
+        avatarImageView.layer.borderWidth = 3
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        statusLabel.textColor = .gray
+        statusLabel.text = "Waiting for something"
+
+        
+        fullNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        fullNameLabel.textColor = .black
+        fullNameLabel.text = "new name"
+        
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        statusTextField.placeholder = "Waiting for something..."
+        statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        statusTextField.textColor = .black
+        statusTextField.layer.cornerRadius = 12
+        statusTextField.layer.borderWidth = 1
+        statusTextField.layer.borderColor = UIColor.black.cgColor
+        
+        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        setStatusButton.setTitle("Set status", for: .normal)
+        setStatusButton.setTitleColor(.white, for: .normal)
+        setStatusButton.backgroundColor = .systemBlue
+        setStatusButton.layer.cornerRadius = 4
+        setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        setStatusButton.layer.shadowRadius = 4
+        setStatusButton.layer.shadowColor = UIColor.black.cgColor
+        setStatusButton.layer.shadowOpacity = 0.7
+    }
     
     @objc func buttonPressed() {
         statusLabel.text = statusText
@@ -68,7 +58,7 @@ class ProfileHeaderView: UIView {
     private var statusText: String = ""
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        if let temp = statusInput.text {
+        if let temp = statusTextField.text {
             statusText = temp
         }
     }
