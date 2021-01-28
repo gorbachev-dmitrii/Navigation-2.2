@@ -31,15 +31,12 @@ class ProfileHeaderView: UIView {
         fullNameLabel.textColor = .black
         fullNameLabel.text = "new name"
         
-        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        statusTextField.placeholder = "Waiting for something..."
         statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         statusTextField.textColor = .black
         statusTextField.layer.cornerRadius = 12
         statusTextField.layer.borderWidth = 1
         statusTextField.layer.borderColor = UIColor.black.cgColor
         
-        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         setStatusButton.setTitle("Set status", for: .normal)
         setStatusButton.setTitleColor(.white, for: .normal)
         setStatusButton.backgroundColor = .systemBlue
@@ -50,15 +47,9 @@ class ProfileHeaderView: UIView {
         setStatusButton.layer.shadowOpacity = 0.7
     }
     
-    @objc func buttonPressed() {
-        statusLabel.text = statusText
-    }
     
-    private var statusText: String = ""
     
-    @objc func statusTextChanged(_ textField: UITextField) {
-        if let temp = statusTextField.text {
-            statusText = temp
-        }
-    }
+    
+    
+
 }

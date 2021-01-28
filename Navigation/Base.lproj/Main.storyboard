@@ -28,7 +28,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQU-Ea-b7L">
-                                        <rect key="frame" x="157" y="27" width="42" height="21"/>
+                                        <rect key="frame" x="157" y="27" width="241" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                                         <state key="normal" title="Button"/>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJI-Yp-SpW">
-                                        <rect key="frame" x="157" y="101" width="32" height="40"/>
+                                        <rect key="frame" x="157" y="101" width="241" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="BAx-aq-Zcp"/>
                                         </constraints>
@@ -49,7 +49,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdG-lq-XJa">
-                                        <rect key="frame" x="157" y="68" width="42" height="21"/>
+                                        <rect key="frame" x="157" y="68" width="241" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -59,11 +59,14 @@
                                 <constraints>
                                     <constraint firstItem="uaa-ad-J1g" firstAttribute="leading" secondItem="Hdd-Z3-TE4" secondAttribute="leading" constant="16" id="2GR-5E-8uR"/>
                                     <constraint firstAttribute="height" constant="220" id="5g7-FB-4Cq"/>
+                                    <constraint firstAttribute="trailing" secondItem="LJI-Yp-SpW" secondAttribute="trailing" constant="16" id="6Sf-AM-loR"/>
                                     <constraint firstItem="nRn-9K-juc" firstAttribute="top" secondItem="Hdd-Z3-TE4" secondAttribute="top" constant="16" id="9Ei-CI-qhn"/>
                                     <constraint firstAttribute="trailing" secondItem="uaa-ad-J1g" secondAttribute="trailing" constant="16" id="Aos-5P-WZk"/>
                                     <constraint firstItem="nRn-9K-juc" firstAttribute="leading" secondItem="Hdd-Z3-TE4" secondAttribute="leading" constant="16" id="IWy-E6-PF8"/>
                                     <constraint firstItem="uaa-ad-J1g" firstAttribute="top" secondItem="LJI-Yp-SpW" secondAttribute="bottom" constant="16" id="Mos-fh-KJT"/>
                                     <constraint firstItem="yQU-Ea-b7L" firstAttribute="top" secondItem="Hdd-Z3-TE4" secondAttribute="top" constant="27" id="ScB-g3-Im0"/>
+                                    <constraint firstAttribute="trailing" secondItem="WdG-lq-XJa" secondAttribute="trailing" constant="16" id="XCm-Wj-idr"/>
+                                    <constraint firstAttribute="trailing" secondItem="yQU-Ea-b7L" secondAttribute="trailing" constant="16" id="YEy-qK-Hvm"/>
                                     <constraint firstItem="yQU-Ea-b7L" firstAttribute="leading" secondItem="nRn-9K-juc" secondAttribute="trailing" constant="16" id="Zle-ux-3so"/>
                                     <constraint firstItem="LJI-Yp-SpW" firstAttribute="top" secondItem="WdG-lq-XJa" secondAttribute="bottom" constant="12" id="fmv-qo-RMi"/>
                                     <constraint firstItem="LJI-Yp-SpW" firstAttribute="leading" secondItem="nRn-9K-juc" secondAttribute="trailing" constant="16" id="iKr-a7-DuL"/>
@@ -88,6 +91,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="TPi-FS-zh0"/>
+                    <connections>
+                        <outlet property="profileHeaderView" destination="Hdd-Z3-TE4" id="JhE-mG-bpE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZwS-K6-ZGq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
