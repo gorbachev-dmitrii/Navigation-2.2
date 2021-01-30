@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(newButton)
         profileHeaderView.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        
         NSLayoutConstraint.activate([
             newButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             newButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
