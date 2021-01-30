@@ -15,7 +15,7 @@ class LogInView: UIView {
 //        cv.translatesAutoresizingMaskIntoConstraints = false
 //        return cv
 //    }()
-//    
+//
 //    var scrollView: UIScrollView = {
 //        let sv = UIScrollView()
 //        sv.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class LogInView: UIView {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         // не пойму, почему cornerRadius не работает(
-        //button.layer.masksToBounds = true
+        button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false

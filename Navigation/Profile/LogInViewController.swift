@@ -42,23 +42,23 @@ class LogInViewController: UIViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             // logo
-            logInView.logoView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 120),
-            logInView.logoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            logInView.logoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
+            logInView.logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logInView.logoView.widthAnchor.constraint(equalToConstant: 100),
             logInView.logoView.heightAnchor.constraint(equalToConstant: 100),
             // loginInput
-            logInView.loginInput.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            logInView.loginInput.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            logInView.loginInput.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            logInView.loginInput.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             logInView.loginInput.topAnchor.constraint(equalTo: logInView.logoView.bottomAnchor, constant: 120),
             logInView.loginInput.heightAnchor.constraint(equalToConstant: 50),
             //passwordInput
-            logInView.passwordInput.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            logInView.passwordInput.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            logInView.passwordInput.trailingAnchor.constraint(equalTo: logInView.loginInput.trailingAnchor),
+            logInView.passwordInput.leadingAnchor.constraint(equalTo: logInView.loginInput.leadingAnchor),
             logInView.passwordInput.heightAnchor.constraint(equalToConstant: 50),
-            logInView.passwordInput.topAnchor.constraint(equalTo: logInView.loginInput.bottomAnchor, constant: 0),
+            logInView.passwordInput.topAnchor.constraint(equalTo: logInView.loginInput.bottomAnchor),
             // button
-            logInView.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            logInView.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            logInView.logInButton.trailingAnchor.constraint(equalTo: logInView.loginInput.trailingAnchor),
+            logInView.logInButton.leadingAnchor.constraint(equalTo: logInView.loginInput.leadingAnchor),
             logInView.logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInView.logInButton.topAnchor.constraint(equalTo: logInView.passwordInput.bottomAnchor, constant: 16)
         ])
