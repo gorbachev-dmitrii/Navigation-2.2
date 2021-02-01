@@ -33,7 +33,6 @@ class LogInView: UIView {
     let logInButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        // не пойму, почему cornerRadius не работает(
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
