@@ -10,18 +10,6 @@ import UIKit
 
 class LogInView: UIView {
     
-//    let containerView: UIView = {
-//        let cv = UIView()
-//        cv.translatesAutoresizingMaskIntoConstraints = false
-//        return cv
-//    }()
-//
-//    var scrollView: UIScrollView = {
-//        let sv = UIScrollView()
-//        sv.translatesAutoresizingMaskIntoConstraints = false
-//        return sv
-//    }()
-    
     let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
