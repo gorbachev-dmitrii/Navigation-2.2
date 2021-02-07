@@ -70,9 +70,10 @@ class LogInViewController: UIViewController {
         //let profileVC = ProfileViewController()
         //navigationController?.pushViewController(profileVC, animated: true)
         //navigationController?.present(profileVC, animated: true, completion: nil)
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let controller = story.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
-        self.present(controller, animated: true, completion: nil)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyBoard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+        navigationController?.pushViewController(controller, animated: true)
+        
     }
     
     // MARK: Constraints
@@ -117,4 +118,13 @@ class LogInViewController: UIViewController {
             logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 24)
         ])
     }
+}
+
+extension UIView {
+    func roundCorners(cornerRadius: Double) {
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+            self.clipsToBounds = true
+            self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
 }

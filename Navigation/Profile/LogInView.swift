@@ -20,6 +20,7 @@ class LogInView: UIView {
     let loginInput: UITextField = {
         let input = UITextField()
         input.placeholder = "Email or phone"
+        input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
@@ -27,6 +28,7 @@ class LogInView: UIView {
         let input = UITextField()
         input.placeholder = "Password"
         input.isSecureTextEntry = true
+        input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         return input
     }()
     
