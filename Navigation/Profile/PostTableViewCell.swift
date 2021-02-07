@@ -14,6 +14,10 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
+            if let likes = post?.likes, let views = post?.views {
+                likesLabel.text = "Likes: " + String(likes)
+                viewsLabel.text = "Views: " + String(views)
+            }
         }
     }
     
@@ -67,7 +71,6 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(viewsLabel)
         contentView.addSubview(likesLabel)
         setupConstraints()
-
     }
     
     required init?(coder: NSCoder) {
@@ -87,9 +90,17 @@ class PostTableViewCell: UITableViewCell {
             cellImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             
             descriptionLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: 16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
+            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
     

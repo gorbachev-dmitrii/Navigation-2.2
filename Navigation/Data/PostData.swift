@@ -16,7 +16,7 @@ struct PostData {
     var views: Int
 }
 
-var posts = [PostData(author: "author 1", description: "desc 1", image: "", likes: 5, views: 5),
-             PostData(author: "author 2", description: "desc 2", image: "", likes: 5, views: 5),
-             PostData(author: "author 3", description: "desc 3", image: "", likes: 5, views: 5),
-             PostData(author: "author 4", description: "desc 4", image: "", likes: 5, views: 5)]
+var posts = [PostData(author: "author 1", description: "desc 1", image: "", likes: 45, views: 230),
+             PostData(author: "author 2", description: "desc 2", image: "", likes: 31, views: 181),
+             PostData(author: "author 3", description: "desc 3", image: "", likes: 58, views: 227),
+             PostData(author: "author 4", description: "desc 4", image: "", likes: 46, views: 312)]
