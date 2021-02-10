@@ -14,9 +14,10 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
-            if let likes = post?.likes, let views = post?.views {
+            if let likes = post?.likes, let views = post?.views, let imageStr = post?.image {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
+                imageView?.image = UIImage(named: imageStr)
             }
         }
     }
@@ -65,11 +66,10 @@ class PostTableViewCell: UITableViewCell {
      
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(cellImageView)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(viewsLabel)
-        contentView.addSubview(likesLabel)
+        
+        [titleLabel, cellImageView, descriptionLabel, viewsLabel, likesLabel].forEach({
+            contentView.addSubview($0)
+        })
         setupConstraints()
     }
     
@@ -84,10 +84,17 @@ class PostTableViewCell: UITableViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: cellImageView.topAnchor, constant: -12),
             
+            cellImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             cellImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             cellImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -16),
             cellImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
             cellImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            
+            
+//            cellImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+//            cellImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            
             
             descriptionLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: 16),
             descriptionLabel.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
