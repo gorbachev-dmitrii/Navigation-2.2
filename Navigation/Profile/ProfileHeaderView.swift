@@ -65,14 +65,4 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         return button
     }()
-    
-//    override func layoutSubviews() {
-//
-//    }
-    
-    
-    
-    
-    
-
 }

@@ -66,12 +66,8 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileViewController() {
-        // почему-то ни push, ни present не работают, ругается на unexpected nil в ProfileViewController, не понимаю, почему( нагуглил другой способ решения, через StoryBoard ID
-        //let profileVC = ProfileViewController()
-        //navigationController?.pushViewController(profileVC, animated: true)
-        //navigationController?.present(profileVC, animated: true, completion: nil)
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let controller = story.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(identifier: "ProfileViewController")
         navigationController?.pushViewController(controller, animated: true)
     }
     
