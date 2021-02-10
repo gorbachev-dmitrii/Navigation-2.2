@@ -70,10 +70,9 @@ class LogInViewController: UIViewController {
         //let profileVC = ProfileViewController()
         //navigationController?.pushViewController(profileVC, animated: true)
         //navigationController?.present(profileVC, animated: true, completion: nil)
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyBoard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let controller = story.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
         navigationController?.pushViewController(controller, animated: true)
-        
     }
     
     // MARK: Constraints
