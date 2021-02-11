@@ -15,8 +15,6 @@ class ProfileHeaderView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "userImage.png")
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
         return imageView
     }()
@@ -42,8 +40,7 @@ class ProfileHeaderView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.placeholder = "Set status"
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
+        textField.placeholder = "Set your status..."
         textField.textColor = .black
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
@@ -65,4 +62,9 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         return button
     }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+    }
 }

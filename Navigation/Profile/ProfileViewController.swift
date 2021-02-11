@@ -78,7 +78,7 @@ class ProfileViewController: UIViewController {
 
             profileHeader.setStatusButton.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor, constant: 16),
             profileHeader.setStatusButton.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor, constant: -16),
-            profileHeader.setStatusButton.topAnchor.constraint(equalTo: profileHeader.statusTextField.bottomAnchor, constant: 16),
+            profileHeader.setStatusButton.bottomAnchor.constraint(equalTo: profileHeader.bottomAnchor, constant: -16),
             profileHeader.setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }

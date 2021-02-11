@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
             if let likes = post?.likes, let views = post?.views, let imageStr = post?.image {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
-                imageView?.image = UIImage(named: imageStr)
+                cellImageView.image = UIImage(named: imageStr)
             }
         }
     }
@@ -90,11 +90,6 @@ class PostTableViewCell: UITableViewCell {
             cellImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -16),
             cellImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
             cellImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            
-            
-//            cellImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-//            cellImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            
             
             descriptionLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: 16),
             descriptionLabel.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
