@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.delegate = self
         return tableView
     }()
@@ -35,6 +36,10 @@ class ProfileViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = true
+    }
     
     @objc func buttonPressed() {
         if let inputText = profileHeader.statusLabel.text {
@@ -86,7 +91,12 @@ class ProfileViewController: UIViewController {
 // MARK: UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 220
+        if section == 0 {
+            return 0
+        } else {
+            return 220
+        }
+        
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .zero
@@ -95,14 +105,45 @@ extension ProfileViewController: UITableViewDelegate {
 // MARK: UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        if section == 0 {
+            return 0
+        } else {
+            return posts.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.post = posts[indexPath.row]
-        return cell
+        if indexPath.row == 0 {
+            let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
+            return cell
+        } else {
+            let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            cell.post = posts[indexPath.row]
+            return cell
+        }
+
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let vc = PhotosViewController()
+            //let nav = UINavigationController(rootViewController: vc)
+            //self.present(nav, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
+            print("cell in section 1 clicked")
+        } else {
+            print("cell in section 2 clicked")
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return profileHeader
+        if section == 0 {
+            return nil
+        } else {
+            return profileHeader
+        }
     }
 }
