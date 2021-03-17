@@ -47,6 +47,7 @@ class PhotosTableViewCell: UITableViewCell {
         let array = [firstImage, secondImage, thirdImage, fourthImage]
         for (index, image) in array.enumerated() {
             image.clipsToBounds = true
+            image.contentMode = .scaleAspectFill
             image.translatesAutoresizingMaskIntoConstraints = false
             image.layer.cornerRadius = 6
             image.image = UIImage(named: String(index + 1))
