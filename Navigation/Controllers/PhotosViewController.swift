@@ -9,6 +9,7 @@
 import UIKit
 
 class PhotosViewController: UIViewController {
+    var images = [UIImage]()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -18,18 +19,22 @@ class PhotosViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+            PhotosCollectionViewCell.self,
+            forCellWithReuseIdentifier: String(describing: PhotosCollectionViewCell.self))
         return collection
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.backgroundColor = .white
+        navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
         setupConstraints()
+        // наверно странно я массив наполняю?
+        for i in 0...19 {
+            images.append(UIImage(named: String(i+1))!)
+        }
     }
     
     func setupConstraints() {
@@ -44,12 +49,12 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
-        cell.backgroundColor = .blue
+        let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
+        cell.imageView.image = images[indexPath.item]
         return cell
     }
 
@@ -58,5 +63,19 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // первое *2 - отступ слева и справа для секции, второе *2 - два отступа между cell
+        let width: CGFloat = (collectionView.bounds.width - 8 * 2 * 2) / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
     }
 }

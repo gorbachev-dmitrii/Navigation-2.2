@@ -19,15 +19,22 @@ class PhotosTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let arrowImage: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(systemName: "arrow.forward")
+        iv.tintColor = .black
+        return iv
+    }()
+    
     private let firstImage = UIImageView()
     private let secondImage = UIImageView()
     private let thirdImage = UIImageView()
     private let fourthImage = UIImageView()
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubviews(views: [firstImage, secondImage, thirdImage, fourthImage, titleLabel])
+        contentView.addSubviews(views: [firstImage, secondImage, thirdImage, fourthImage, titleLabel, arrowImage])
         setupConstraints()
         setupUIImage()
     }
@@ -40,7 +47,6 @@ class PhotosTableViewCell: UITableViewCell {
         let array = [firstImage, secondImage, thirdImage, fourthImage]
         for (index, image) in array.enumerated() {
             image.clipsToBounds = true
-            //image.contentMode = .scaleAspectFit
             image.translatesAutoresizingMaskIntoConstraints = false
             image.layer.cornerRadius = 6
             image.image = UIImage(named: String(index + 1))
@@ -51,11 +57,13 @@ class PhotosTableViewCell: UITableViewCell {
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            titleLabel.bottomAnchor.constraint(equalTo: firstImage.topAnchor, constant: -12),
+            
+            arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            arrowImage.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             
             firstImage.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             firstImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            firstImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -12),
+            firstImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             firstImage.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48) / 4),
             firstImage.heightAnchor.constraint(equalTo: firstImage.widthAnchor),
             

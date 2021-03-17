@@ -114,25 +114,21 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
+            cell.selectionStyle = .default
             return cell
         } else {
             let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.post = posts[indexPath.row]
+            cell.selectionStyle = .none
             return cell
         }
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let vc = PhotosViewController()
-            //let nav = UINavigationController(rootViewController: vc)
-            //self.present(nav, animated: true, completion: nil)
-            navigationController?.pushViewController(vc, animated: true)
-            print("cell in section 1 clicked")
-        } else {
-            print("cell in section 2 clicked")
-        }
+        guard indexPath.row == 0 else { return }
+        let vc = PhotosViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
