@@ -9,6 +9,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
     
@@ -21,24 +22,26 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         return tableView
     }()
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         view.addSubview(tableView)
         
-        profileHeader.addSubview(profileHeader.avatarImageView)
-        profileHeader.addSubview(profileHeader.fullNameLabel)
-        profileHeader.addSubview(profileHeader.statusLabel)
-        profileHeader.addSubview(profileHeader.statusTextField)
-        profileHeader.addSubview(profileHeader.setStatusButton)
         setupConstraints()
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.navigationBar.isHidden = true
+    }
+    // MARK: Actions
+    
+    @objc func tap() {
+        print("alalalla")
     }
     
     @objc func buttonPressed() {
@@ -62,29 +65,6 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
-            profileHeader.avatarImageView.topAnchor.constraint(equalTo: profileHeader.topAnchor, constant: 16),
-            profileHeader.avatarImageView.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor, constant: 16),
-            profileHeader.avatarImageView.widthAnchor.constraint(equalToConstant: 125),
-            profileHeader.avatarImageView.heightAnchor.constraint(equalToConstant: 125),
-
-            profileHeader.fullNameLabel.topAnchor.constraint(equalTo: profileHeader.topAnchor, constant: 16),
-            profileHeader.fullNameLabel.leadingAnchor.constraint(equalTo: profileHeader.avatarImageView.trailingAnchor, constant: 16),
-            profileHeader.fullNameLabel.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor, constant: -16),
-
-            profileHeader.statusLabel.topAnchor.constraint(equalTo: profileHeader.fullNameLabel.bottomAnchor, constant: 16),
-            profileHeader.statusLabel.leadingAnchor.constraint(equalTo: profileHeader.fullNameLabel.leadingAnchor),
-            profileHeader.statusLabel.trailingAnchor.constraint(equalTo: profileHeader.fullNameLabel.trailingAnchor),
-
-            profileHeader.statusTextField.topAnchor.constraint(equalTo: profileHeader.statusLabel.bottomAnchor, constant: 16),
-            profileHeader.statusTextField.leadingAnchor.constraint(equalTo: profileHeader.statusLabel.leadingAnchor, constant: 1),
-            profileHeader.statusTextField.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor, constant: -15),
-            profileHeader.statusTextField.heightAnchor.constraint(equalToConstant: 40),
-
-            profileHeader.setStatusButton.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor, constant: 16),
-            profileHeader.setStatusButton.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor, constant: -16),
-            profileHeader.setStatusButton.bottomAnchor.constraint(equalTo: profileHeader.bottomAnchor, constant: -16),
-            profileHeader.setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
