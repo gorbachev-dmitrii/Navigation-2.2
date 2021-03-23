@@ -79,14 +79,13 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
             avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 125),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 125),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
 
             fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),

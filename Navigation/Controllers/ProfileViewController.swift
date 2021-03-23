@@ -13,6 +13,22 @@ class ProfileViewController: UIViewController {
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
     
+    private let blurView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private let cancelButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+        btn.alpha = 0
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,10 +41,14 @@ class ProfileViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
+        
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         view.addSubview(tableView)
-        
+        view.addSubview(blurView)
+        blurView.addSubview(cancelButton)
         setupConstraints()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
@@ -40,8 +60,40 @@ class ProfileViewController: UIViewController {
     }
     // MARK: Actions
     
+    @objc func cancelPressed() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.cancelButton.alpha = 0
+            // вычитал про такой возврат состояния, если был сделан transform, но как вернуть позицию по x и y?..
+            self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
+        }, completion: {_ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.blurView.alpha = 0
+            })
+        })
+    }
+    
     @objc func tap() {
-        print("alalalla")
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            //вот так пытаюсь вынести во фронт avatarImageView
+            self.view.superview?.bringSubviewToFront(self.profileHeader.avatarImageView)
+            
+            self.blurView.alpha = 0.75
+            
+            self.profileHeader.avatarImageView.frame = CGRect(
+                x: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2),
+                y: (self.view.frame.height / 2) - (self.profileHeader.avatarImageView.frame.height / 2),
+                width: self.profileHeader.avatarImageView.frame.width, height: self.profileHeader.avatarImageView.frame.height)
+            
+            // увеличиваем размер в (ширина view / ширина avatarImageView) раз
+            let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
+            self.profileHeader.avatarImageView.transform = self.profileHeader.avatarImageView.transform.scaledBy(x: x, y: x)
+
+        }, completion: {_ in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.cancelButton.alpha = 1
+            })
+        })
     }
     
     @objc func buttonPressed() {
@@ -65,6 +117,14 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            blurView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            cancelButton.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -10),
+            cancelButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10)
         ])
     }
 }
