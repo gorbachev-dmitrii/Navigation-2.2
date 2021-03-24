@@ -46,10 +46,12 @@ class ProfileViewController: UIViewController {
         
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        profileHeader.addSubview(blurView)
         view.addSubview(tableView)
-        view.addSubview(blurView)
+        
         blurView.addSubview(cancelButton)
         setupConstraints()
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
     }
@@ -73,22 +75,21 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func tap() {
+        //вот так пытаюсь вынести во фронт avatarImageView
+        self.profileHeader.bringSubviewToFront(self.profileHeader.avatarImageView)
+        
         UIView.animate(withDuration: 0.5, animations: {
-            
-            //вот так пытаюсь вынести во фронт avatarImageView
-            self.view.superview?.bringSubviewToFront(self.profileHeader.avatarImageView)
-            
             self.blurView.alpha = 0.75
-            
+            // смещаем frame по x и y
             self.profileHeader.avatarImageView.frame = CGRect(
                 x: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2),
                 y: (self.view.frame.height / 2) - (self.profileHeader.avatarImageView.frame.height / 2),
                 width: self.profileHeader.avatarImageView.frame.width, height: self.profileHeader.avatarImageView.frame.height)
-            
+   
             // увеличиваем размер в (ширина view / ширина avatarImageView) раз
             let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
             self.profileHeader.avatarImageView.transform = self.profileHeader.avatarImageView.transform.scaledBy(x: x, y: x)
-
+            
         }, completion: {_ in
             UIView.animate(withDuration: 0.3, animations: {
                 self.cancelButton.alpha = 1
@@ -118,13 +119,12 @@ class ProfileViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            blurView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            blurView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            blurView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            blurView.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor),
+            blurView.heightAnchor.constraint(equalToConstant: view.frame.height),
             
             cancelButton.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -10),
-            cancelButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10)
+            cancelButton.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 10)
         ])
     }
 }
