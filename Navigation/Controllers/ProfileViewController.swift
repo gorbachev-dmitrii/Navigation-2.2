@@ -47,11 +47,10 @@ class ProfileViewController: UIViewController {
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeader.addSubview(blurView)
-        view.addSubview(tableView)
-        
         blurView.addSubview(cancelButton)
+        profileHeader.bringSubviewToFront(profileHeader.avatarImageView)
+        view.addSubview(tableView)
         setupConstraints()
-        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
     }
@@ -75,9 +74,6 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func tap() {
-        //вот так пытаюсь вынести во фронт avatarImageView
-        self.profileHeader.bringSubviewToFront(self.profileHeader.avatarImageView)
-        
         UIView.animate(withDuration: 0.5, animations: {
             self.blurView.alpha = 0.75
             // смещаем frame по x и y
