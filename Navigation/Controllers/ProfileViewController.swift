@@ -47,9 +47,9 @@ class ProfileViewController: UIViewController {
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeader.addSubview(blurView)
-        blurView.addSubview(cancelButton)
-        profileHeader.bringSubviewToFront(profileHeader.avatarImageView)
         view.addSubview(tableView)
+        profileHeader.bringSubviewToFront(profileHeader.avatarImageView)
+        blurView.addSubview(cancelButton)
         setupConstraints()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
@@ -85,6 +85,7 @@ class ProfileViewController: UIViewController {
             // увеличиваем размер в (ширина view / ширина avatarImageView) раз
             let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
             self.profileHeader.avatarImageView.transform = self.profileHeader.avatarImageView.transform.scaledBy(x: x, y: x)
+            self.profileHeader.avatarImageView.layer.cornerRadius = 0
             
         }, completion: {_ in
             UIView.animate(withDuration: 0.3, animations: {
