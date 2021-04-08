@@ -64,7 +64,6 @@ class ProfileViewController: UIViewController {
     @objc func cancelPressed() {
         UIView.animate(withDuration: 0.3, animations: {
             self.cancelButton.alpha = 0
-            // вычитал про такой возврат состояния, если был сделан transform, но как вернуть позицию по x и y?..
             self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
         }, completion: {_ in
             UIView.animate(withDuration: 0.5, animations: {
@@ -74,25 +73,25 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func tap() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurView.alpha = 0.75
-            // смещаем frame по x и y
-            self.profileHeader.avatarImageView.frame = CGRect(
-                x: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2),
-                y: (self.view.frame.height / 2) - (self.profileHeader.avatarImageView.frame.height / 2),
-                width: self.profileHeader.avatarImageView.frame.width, height: self.profileHeader.avatarImageView.frame.height)
-   
-            // увеличиваем размер в (ширина view / ширина avatarImageView) раз
-            let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
-            self.profileHeader.avatarImageView.transform = self.profileHeader.avatarImageView.transform.scaledBy(x: x, y: x)
-            self.profileHeader.avatarImageView.layer.cornerRadius = 0
-            
-        }, completion: {_ in
-            UIView.animate(withDuration: 0.3, animations: {
-                self.cancelButton.alpha = 1
-            })
-        })
-    }
+        UIView.animateKeyframes(withDuration: 0.5,
+                                delay: 0,
+                                options: [],
+                                animations: {
+                                    self.blurView.alpha = 0.75
+                                    // смещаем frame по x и y
+                                    let positionTransform = CGAffineTransform(translationX: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2) - 16,y: (self.view.frame.height / 2) - self.profileHeader.avatarImageView.frame.height)
+                                    let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
+                                    let sizeTransform = CGAffineTransform(scaleX: x, y: x)
+                                    let transform = sizeTransform.concatenating(positionTransform)
+                                    self.profileHeader.avatarImageView.transform = transform
+                                    print(self.profileHeader.avatarImageView.frame.origin.x)
+                                },
+                                completion: {_ in
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        self.cancelButton.alpha = 1
+                                    })
+                                })
+        }
     
     @objc func buttonPressed() {
         if let inputText = profileHeader.statusLabel.text {
