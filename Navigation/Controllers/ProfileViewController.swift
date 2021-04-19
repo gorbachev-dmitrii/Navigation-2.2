@@ -73,25 +73,24 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func tap() {
-        UIView.animateKeyframes(withDuration: 0.5,
+        UIView.animateKeyframes(withDuration: 0.8,
                                 delay: 0,
                                 options: [],
                                 animations: {
-                                    self.blurView.alpha = 0.75
-                                    // смещаем frame по x и y
-                                    let positionTransform = CGAffineTransform(translationX: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2) - 16,y: (self.view.frame.height / 2) - self.profileHeader.avatarImageView.frame.height)
-                                    let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
-                                    let sizeTransform = CGAffineTransform(scaleX: x, y: x)
-                                    let transform = sizeTransform.concatenating(positionTransform)
-                                    self.profileHeader.avatarImageView.transform = transform
-                                    print(self.profileHeader.avatarImageView.frame.origin.x)
-                                },
-                                completion: {_ in
-                                    UIView.animate(withDuration: 0.3, animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
+                                        self.blurView.alpha = 0.75
+                                        // смещаем frame по x и y
+                                        let positionTransform = CGAffineTransform(translationX: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2) - 16,y: (self.view.frame.height / 2) - self.profileHeader.avatarImageView.frame.height)
+                                        let x = self.view.frame.width / self.profileHeader.avatarImageView.frame.width
+                                        let sizeTransform = CGAffineTransform(scaleX: x, y: x)
+                                        let transform = sizeTransform.concatenating(positionTransform)
+                                        self.profileHeader.avatarImageView.transform = transform
+                                    })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1, animations: {
                                         self.cancelButton.alpha = 1
                                     })
-                                })
-        }
+                                },
+                                completion: nil)}
     
     @objc func buttonPressed() {
         if let inputText = profileHeader.statusLabel.text {
