@@ -42,8 +42,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
-        
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeader.addSubview(blurView)
@@ -51,6 +49,7 @@ class ProfileViewController: UIViewController {
         profileHeader.bringSubviewToFront(profileHeader.avatarImageView)
         blurView.addSubview(cancelButton)
         setupConstraints()
+        cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
     }
@@ -60,16 +59,21 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     // MARK: Actions
-    
     @objc func cancelPressed() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.cancelButton.alpha = 0
-            self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
-        }, completion: {_ in
-            UIView.animate(withDuration: 0.5, animations: {
-                self.blurView.alpha = 0
-            })
-        })
+        
+        UIView.animateKeyframes(withDuration: 0.8,
+                                delay: 0,
+                                options: [],
+                                animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3 / 0.8, animations: {
+                                        self.cancelButton.alpha = 0
+                                        self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
+                                    })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5 / 0.8, animations: {
+                                        self.blurView.alpha = 0
+                                    })
+                                },
+                                completion: nil)
     }
     
     @objc func tap() {
@@ -77,7 +81,7 @@ class ProfileViewController: UIViewController {
                                 delay: 0,
                                 options: [],
                                 animations: {
-                                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5 / 0.8, animations: {
                                         self.blurView.alpha = 0.75
                                         // смещаем frame по x и y
                                         let positionTransform = CGAffineTransform(translationX: (self.view.frame.width / 2) - (self.profileHeader.avatarImageView.frame.width / 2) - 16,y: (self.view.frame.height / 2) - self.profileHeader.avatarImageView.frame.height)
@@ -86,7 +90,7 @@ class ProfileViewController: UIViewController {
                                         let transform = sizeTransform.concatenating(positionTransform)
                                         self.profileHeader.avatarImageView.transform = transform
                                     })
-                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1, animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3 / 0.8, animations: {
                                         self.cancelButton.alpha = 1
                                     })
                                 },
@@ -157,7 +161,6 @@ extension ProfileViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
-
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
