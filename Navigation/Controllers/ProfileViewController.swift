@@ -67,10 +67,10 @@ class ProfileViewController: UIViewController {
                                 animations: {
                                     UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3 / 0.8, animations: {
                                         self.cancelButton.alpha = 0
-                                        self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
                                     })
-                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5 / 0.8, animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5 / 0.8, relativeDuration: 0.5 / 0.8, animations: {
                                         self.blurView.alpha = 0
+                                        self.profileHeader.avatarImageView.transform = CGAffineTransform.identity
                                     })
                                 },
                                 completion: nil)
@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController {
                                         let transform = sizeTransform.concatenating(positionTransform)
                                         self.profileHeader.avatarImageView.transform = transform
                                     })
-                                    UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3 / 0.8, animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5 / 0.8, relativeDuration: 0.3 / 0.8, animations: {
                                         self.cancelButton.alpha = 1
                                     })
                                 },
