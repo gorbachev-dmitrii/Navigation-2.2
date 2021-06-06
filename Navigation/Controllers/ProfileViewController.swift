@@ -43,6 +43,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if DEBUG
+            print("Debug")
+            view.backgroundColor = .red
+        #elseif RELEASE
+            print("Release")
+            view.backgroundColor = .green
+        #endif
+        
         profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeader.addSubview(blurView)
