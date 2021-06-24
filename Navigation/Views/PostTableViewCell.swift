@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -18,7 +18,10 @@ class PostTableViewCell: UITableViewCell {
             if let likes = post?.likes, let views = post?.views, let imageStr = post?.image {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
-                cellImageView.image = UIImage(named: imageStr)
+                guard let source = UIImage(named: imageStr) else { return }
+                ImageProcessor().processImage(sourceImage: source, filter: .noir) { (image) in
+                    cellImageView.image = image
+                }
             }
         }
     }
@@ -70,7 +73,7 @@ class PostTableViewCell: UITableViewCell {
         
         [titleLabel, cellImageView, descriptionLabel, viewsLabel, likesLabel].forEach({
             contentView.addSubview($0)
-        })
+        })        
         setupConstraints()
     }
     
