@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
+    let userService: UserService
     
     private let blurView: UIView = {
         let view = UIView()
@@ -39,15 +40,28 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         return tableView
     }()
+        
     // MARK: Lifecycle
+    
+    init(userService: UserService, username: String) {
+        self.userService = userService
+        profileHeader.fullNameLabel.text = userService.getUser(username: username).name
+        profileHeader.statusLabel.text = userService.getUser(username: username).status
+        profileHeader.avatarImageView.image = UIImage(named: userService.getUser(username: username).avatar)
+        print(userService.getUser(username: username).name)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         #if DEBUG
-            print("Debug")
             view.backgroundColor = .red
         #elseif RELEASE
-            print("Release")
             view.backgroundColor = .green
         #endif
         
@@ -59,7 +73,7 @@ class ProfileViewController: UIViewController {
         blurView.addSubview(cancelButton)
         setupConstraints()
         cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         profileHeader.avatarImageView.addGestureRecognizer(tapRecognizer)
     }
     
@@ -85,7 +99,7 @@ class ProfileViewController: UIViewController {
                                 completion: nil)
     }
     
-    @objc func tap() {
+    @objc func imageViewTapped() {
         UIView.animateKeyframes(withDuration: 0.8,
                                 delay: 0,
                                 options: [],
