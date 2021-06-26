@@ -14,9 +14,10 @@ class ProfileHeaderView: UIView {
     let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "userImage.png")
         imageView.layer.borderWidth = 3
         imageView.isUserInteractionEnabled = true
+        imageView.layer.masksToBounds = false
+        imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
         return imageView
     }()
@@ -26,7 +27,6 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.text = "new name"
         return label
     }()
     
@@ -35,7 +35,6 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.text = "Waiting for something"
         return label
     }()
     let statusTextField: UITextField = {

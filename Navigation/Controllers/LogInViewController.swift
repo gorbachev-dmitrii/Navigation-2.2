@@ -11,7 +11,7 @@ import UIKit
 class LogInViewController: UIViewController {
     
     let logInView = LogInView()
-   
+    
     private let containerView: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -66,9 +66,17 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(identifier: "ProfileViewController")
-        navigationController?.pushViewController(controller, animated: true)
+        #if DEBUG
+        let testUser = TestUserService()
+        let vc = ProfileViewController(userService: testUser, username: logInView.loginInput.text!)
+        navigationController?.pushViewController(vc, animated: true)
+        #elseif RELEASE
+        let currentUser = CurrentUserService()
+        let vc = ProfileViewController(userService: currentUser, username: logInView.loginInput.text!)
+        navigationController?.pushViewController(vc, animated: true)
+        #endif
+        
+
     }
     
     // MARK: Constraints
