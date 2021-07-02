@@ -10,9 +10,10 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    //MARK: Properties
     let logInView = LogInView()
     weak var inspectorDelegate: LoginViewControllerDelegate?
-    
+
     private let containerView: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +24,7 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -120,6 +121,8 @@ class LogInViewController: UIViewController {
         ])
     }
 }
+
+// MARK: LoginViewControllerDelegate
 
 protocol LoginViewControllerDelegate: AnyObject {
     func checkInputData(login: String, password: String) -> String

@@ -26,6 +26,7 @@
 		C3B65B2226853D0C0058268C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B192685379C0058268C /* PostData.swift */; };
 		C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B40268A7DD20058268C /* LoginChecker.swift */; };
 		C3B65B44268B30230058268C /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B43268B30230058268C /* LoginInspector.swift */; };
+		C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B46268FB7600058268C /* LoginFactory.swift */; };
 		C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C4D25C3551900B8A89D /* LogInViewController.swift */; };
 		C3C92C5125C5DBAE00B8A89D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5025C5DBAE00B8A89D /* LogInView.swift */; };
 		C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */; };
@@ -81,6 +82,7 @@
 		C3B65B192685379C0058268C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		C3B65B40268A7DD20058268C /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
 		C3B65B43268B30230058268C /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		C3B65B46268FB7600058268C /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		C3C92C4D25C3551900B8A89D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		C3C92C5025C5DBAE00B8A89D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
+				C3B65B46268FB7600058268C /* LoginFactory.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */,
 				C3F4434625B32622000FBEDA /* ProfileViewController.swift in Sources */,
+				C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */,
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */,
