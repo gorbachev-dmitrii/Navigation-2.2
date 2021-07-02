@@ -11,7 +11,8 @@ import UIKit
 class LogInViewController: UIViewController {
     
     let logInView = LogInView()
-   
+    weak var inspectorDelegate: LoginViewControllerDelegate?
+    
     private let containerView: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +70,11 @@ class LogInViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(identifier: "ProfileViewController")
         navigationController?.pushViewController(controller, animated: true)
+        
+        if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
+            print(delegate.checkInputData(login: login, password: password))
+        }
+        
     }
     
     // MARK: Constraints
@@ -115,3 +121,6 @@ class LogInViewController: UIViewController {
     }
 }
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func checkInputData(login: String, password: String) -> String
+}

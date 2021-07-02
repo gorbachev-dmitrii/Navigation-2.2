@@ -25,6 +25,7 @@
 		C3B65B112685377D0058268C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3B65B2226853D0C0058268C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B192685379C0058268C /* PostData.swift */; };
 		C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B40268A7DD20058268C /* LoginChecker.swift */; };
+		C3B65B44268B30230058268C /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B43268B30230058268C /* LoginInspector.swift */; };
 		C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C4D25C3551900B8A89D /* LogInViewController.swift */; };
 		C3C92C5125C5DBAE00B8A89D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5025C5DBAE00B8A89D /* LogInView.swift */; };
 		C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */; };
@@ -79,6 +80,7 @@
 		C3B65B0C2685377D0058268C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3B65B192685379C0058268C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		C3B65B40268A7DD20058268C /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
+		C3B65B43268B30230058268C /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		C3C92C4D25C3551900B8A89D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		C3C92C5025C5DBAE00B8A89D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
+				C3B65B43268B30230058268C /* LoginInspector.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
+				C3B65B44268B30230058268C /* LoginInspector.swift in Sources */,
 				C3F4434325B325F7000FBEDA /* ProfileHeaderView.swift in Sources */,
 				C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */,
 				C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */,

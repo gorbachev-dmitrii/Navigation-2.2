@@ -16,14 +16,14 @@ class LoginChecker {
         
     }
     
-    private let login = "Dima"
-    private let password = "123456"
+    private let login = "dima"
+    private let password = "1234"
     
-    func check(log: String, pass: String) {
-        if log == login && pass == password {
-            print("Success")
+    func check(log: String, pass: String) -> String {
+        if log.hash == login.hash && pass.hash == password.hash {
+            return "Success"
         } else {
-            print("Fail")
+            return "Fail"
         }
     }
 }
