@@ -10,8 +10,14 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    //MARK: Properties
     let logInView = LogInView()
+<<<<<<< HEAD
     
+=======
+    weak var inspectorDelegate: LoginViewControllerDelegate?
+
+>>>>>>> feature/structPatterns/impl
     private let containerView: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +28,7 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -66,6 +72,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileViewController() {
+<<<<<<< HEAD
         #if DEBUG
         let testUser = TestUserService()
         let vc = ProfileViewController(userService: testUser, username: logInView.loginInput.text!)
@@ -77,6 +84,16 @@ class LogInViewController: UIViewController {
         #endif
         
 
+=======
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(identifier: "ProfileViewController")
+        navigationController?.pushViewController(controller, animated: true)
+        
+        if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
+            print(delegate.checkInputData(login: login, password: password))
+        }
+        
+>>>>>>> feature/structPatterns/impl
     }
     
     // MARK: Constraints
@@ -123,3 +140,8 @@ class LogInViewController: UIViewController {
     }
 }
 
+// MARK: LoginViewControllerDelegate
+
+protocol LoginViewControllerDelegate: AnyObject {
+    func checkInputData(login: String, password: String) -> String
+}
