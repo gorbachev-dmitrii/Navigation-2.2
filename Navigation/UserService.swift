@@ -19,7 +19,7 @@ class CurrentUserService: UserService {
         if username == currentUser.name {
             return currentUser
         } else {
-            return User(name: "error", avatar: "", status: "error")
+            return User(name: "error", avatar: "error.jpg", status: "error")
         }
     }
 }
@@ -31,7 +31,7 @@ class TestUserService: UserService {
         if username == testUser.name {
             return testUser
         } else {
-            return User(name: "error", avatar: "", status: "error")
+            return User(name: "error", avatar: "error.jpg", status: "error")
         }
     }
 }
