@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
     var images = [UIImage]()
+    let facade = ImagePublisherFacade()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,10 +34,20 @@ class PhotosViewController: UIViewController {
         navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
         setupConstraints()
-        // наверно странно я массив наполняю?
-        for i in 0...19 {
-            images.append(UIImage(named: String(i+1))!)
-        }
+        // подписываем себя на изменения
+        facade.subscribe(self)
+        // добавляем изображения по таймеру
+        facade.addImagesWithTimer(time: 5, repeat: 10)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        facade.removeSubscription(for: self)
     }
     
     func setupConstraints() {
@@ -44,6 +57,13 @@ class PhotosViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        self.images = images
+        collectionView.reloadData()
     }
 }
 
