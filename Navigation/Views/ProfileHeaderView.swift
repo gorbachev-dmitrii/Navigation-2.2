@@ -50,11 +50,11 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
-    let setStatusButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+    private lazy var setStatusButton: MyButton = {
+        let button = MyButton(title: "Set your status", titleColor: .white) {
+            print("button pressed")
+            self.changeText()
+        }
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -63,6 +63,10 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         return button
     }()
+    
+    func changeText() {
+        statusLabel.text = statusTextField.text
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

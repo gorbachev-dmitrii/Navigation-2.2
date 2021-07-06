@@ -32,7 +32,10 @@ class LogInView: UIView {
         return input
     }()
     
-    let logInButton: UIButton = {
+    private lazy var logInButton: UIButton = {
+//        let button = MyButton(title: "Login", titleColor: .white) {
+//            self.loginTapped()
+//        }
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
@@ -41,6 +44,18 @@ class LogInView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+//    func loginTapped() {
+//        #if DEBUG
+//        let testUser = TestUserService()
+//        let vc = ProfileViewController(userService: testUser, username: loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #elseif RELEASE
+//        let currentUser = CurrentUserService()
+//        let vc = ProfileViewController(userService: currentUser, username: loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #endif
+//    }
     
     func setupTextField(textFields: [UITextField]) {
         for textField in textFields {

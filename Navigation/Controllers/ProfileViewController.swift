@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController {
             view.backgroundColor = .green
         #endif
         
-        profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        //profileHeader.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeader.addSubview(blurView)
         view.addSubview(tableView)
@@ -119,14 +119,14 @@ class ProfileViewController: UIViewController {
                                 },
                                 completion: nil)}
     
-    @objc func buttonPressed() {
-        if let inputText = profileHeader.statusLabel.text {
-            statusText = inputText
-        } else {
-            print("empty input")
-        }
-        print(profileHeader.statusLabel.text ?? "status is empty")
-    }
+//    @objc func buttonPressed() {
+//        if let inputText = profileHeader.statusLabel.text {
+//            statusText = inputText
+//        } else {
+//            print("empty input")
+//        }
+//        print(profileHeader.statusLabel.text ?? "status is empty")
+//    }
 
     @objc func statusTextChanged(_ textField: UITextField) {
         if let temp = profileHeader.statusTextField.text {
