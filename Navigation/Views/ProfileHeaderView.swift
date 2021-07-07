@@ -52,7 +52,6 @@ class ProfileHeaderView: UIView {
     
     private lazy var setStatusButton: MyButton = {
         let button = MyButton(title: "Set your status", titleColor: .white) {
-            print("button pressed")
             self.changeText()
         }
         button.backgroundColor = .systemBlue

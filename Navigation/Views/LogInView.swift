@@ -38,7 +38,6 @@ class LogInView: UIView {
         let button = MyButton(title: "Login", titleColor: .white) {
             self.loginTapped()
         }
-//        let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
@@ -70,7 +69,6 @@ class LogInView: UIView {
             textField.tintColor = .blue
             textField.autocapitalizationType = .none
             textField.backgroundColor = .systemGray6
-            textField.translatesAutoresizingMaskIntoConstraints = false
         }
     }
 }
