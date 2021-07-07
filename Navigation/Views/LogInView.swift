@@ -10,6 +10,8 @@ import UIKit
 
 class LogInView: UIView {
     
+    var onLoginTap: (() -> Void)?
+    
     let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -32,11 +34,11 @@ class LogInView: UIView {
         return input
     }()
     
-    private lazy var logInButton: UIButton = {
-//        let button = MyButton(title: "Login", titleColor: .white) {
-//            self.loginTapped()
-//        }
-        let button = UIButton()
+     lazy var logInButton: MyButton = {
+        let button = MyButton(title: "Login", titleColor: .white) {
+            self.loginTapped()
+        }
+//        let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
@@ -45,7 +47,8 @@ class LogInView: UIView {
         return button
     }()
     
-//    func loginTapped() {
+    func loginTapped() {
+        onLoginTap?()
 //        #if DEBUG
 //        let testUser = TestUserService()
 //        let vc = ProfileViewController(userService: testUser, username: loginInput.text!)
@@ -55,7 +58,7 @@ class LogInView: UIView {
 //        let vc = ProfileViewController(userService: currentUser, username: loginInput.text!)
 //        navigationController?.pushViewController(vc, animated: true)
 //        #endif
-//    }
+    }
     
     func setupTextField(textFields: [UITextField]) {
         for textField in textFields {

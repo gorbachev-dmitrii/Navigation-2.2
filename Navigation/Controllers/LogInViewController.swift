@@ -38,8 +38,21 @@ class LogInViewController: UIViewController {
             logInView.addSubview($0)
         })
         logInView.setupTextField(textFields: [logInView.loginInput, logInView.passwordInput])
-        logInView.logInButton.addTarget(self, action: #selector(toProfileViewController), for: .touchUpInside)
         setupConstraints()
+        logInView.onLoginTap = { [weak self] in
+            #if DEBUG
+            let testUser = TestUserService()
+            let vc = ProfileViewController(userService: testUser, username: (self?.logInView.loginInput.text!)!)
+            self?.navigationController?.pushViewController(vc, animated: true)
+            #elseif RELEASE
+            let currentUser = CurrentUserService()
+            let vc = ProfileViewController(userService: currentUser, username: logInView.loginInput.text!)
+            self?.navigationController?.pushViewController(vc, animated: true)
+            #endif
+            if let login = self!.logInView.loginInput.text, let password = self!.logInView.passwordInput.text, let delegate = self!.inspectorDelegate {
+                print(delegate.checkInputData(login: login, password: password))
+            }
+        }
     }
     
     // MARK: Keyboard observers
@@ -69,20 +82,20 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileViewController() {
-
-        #if DEBUG
-        let testUser = TestUserService()
-        let vc = ProfileViewController(userService: testUser, username: logInView.loginInput.text!)
-        navigationController?.pushViewController(vc, animated: true)
-        #elseif RELEASE
-        let currentUser = CurrentUserService()
-        let vc = ProfileViewController(userService: currentUser, username: logInView.loginInput.text!)
-        navigationController?.pushViewController(vc, animated: true)
-        #endif
-        
-        if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
-            print(delegate.checkInputData(login: login, password: password))
-        }
+//
+//        #if DEBUG
+//        let testUser = TestUserService()
+//        let vc = ProfileViewController(userService: testUser, username: logInView.loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #elseif RELEASE
+//        let currentUser = CurrentUserService()
+//        let vc = ProfileViewController(userService: currentUser, username: logInView.loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #endif
+//
+//        if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
+//            print(delegate.checkInputData(login: login, password: password))
+//        }
     
     }
     
