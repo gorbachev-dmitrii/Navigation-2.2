@@ -143,12 +143,12 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				C35A0A6326014C5D00F0BB15 /* Controllers */,
 				C35A0A6126014C3600F0BB15 /* Views */,
 				C35A0A5725FD687A00F0BB15 /* Extensions */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				060782B7250CE27700A87020 /* Main.storyboard */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,

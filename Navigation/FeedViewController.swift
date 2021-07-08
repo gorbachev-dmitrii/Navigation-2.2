@@ -14,6 +14,15 @@ final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
     
+    private lazy var stackView: UIStackView = {
+       let stackView = UIStackView(arrangedSubviews: [button1, button2])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var button: MyButton = {
         let button = MyButton(title: "button", titleColor: .white) {
             print("click")
@@ -22,9 +31,24 @@ final class FeedViewController: UIViewController {
         return button
     }()
     
+    private lazy var button1: MyButton = {
+        let button = MyButton(title: "Button", titleColor: .systemBlue) {
+            self.moveToPostVC()
+        }
+        return button
+    }()
+    
+    private lazy var button2: MyButton = {
+        let button = MyButton(title: "Button", titleColor: .systemBlue) {
+            self.moveToPostVC()
+        }
+        return button
+    }()
+    
     private lazy var textField: UITextField = {
        let field = UITextField()
     }()
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -40,6 +64,7 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         print(type(of: self), #function)
         view.addSubview(button)
+        view.addSubview(stackView)
         setupConstraints()
     }
     
@@ -89,5 +114,14 @@ final class FeedViewController: UIViewController {
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
         }
+        stackView.snp.makeConstraints { (make) in
+            make.leading.top.equalTo(70)
+        }
+    }
+    
+    private func moveToPostVC() {
+        let vc = PostViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        vc.post = post
     }
 }
