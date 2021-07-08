@@ -83,7 +83,7 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupSnapConstraints() {
-        avatarImageView.snp.makeConstraints { make in
+        avatarImageView.snp.makeConstraints { (make) in
             make.leading.top.equalTo(16)
             make.width.equalTo(125)
             make.height.equalTo(avatarImageView.snp.width)

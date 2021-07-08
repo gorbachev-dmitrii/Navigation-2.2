@@ -8,10 +8,23 @@
 
 import UIKit
 import StorageService
+import SnapKit
 
 final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
+    
+    private lazy var button: MyButton = {
+        let button = MyButton(title: "button", titleColor: .white) {
+            print("click")
+        }
+        button.backgroundColor = .black
+        return button
+    }()
+    
+    private lazy var textField: UITextField = {
+       let field = UITextField()
+    }()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -26,6 +39,8 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
+        view.addSubview(button)
+        setupConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,5 +81,13 @@ final class FeedViewController: UIViewController {
             return
         }
         postViewController.post = post
+    }
+    
+    func setupConstraints() {
+        button.snp.makeConstraints { (make) in
+            make.bottom.equalTo(-60)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+        }
     }
 }

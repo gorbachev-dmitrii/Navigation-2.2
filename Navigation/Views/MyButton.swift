@@ -14,19 +14,19 @@ class MyButton: UIButton {
     var onTap: (() -> Void)?
     
     init(title:String, titleColor: UIColor, onTap: (() -> Void)?) {
-        self.onTap = onTap
         super.init(frame: .zero)
+        self.onTap = onTap
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
-        addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func btnTapped() {
+    @objc private func buttonTapped() {
         onTap?()
     }
     
