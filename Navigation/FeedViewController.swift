@@ -115,7 +115,8 @@ final class FeedViewController: UIViewController {
             make.trailing.equalTo(-16)
         }
         stackView.snp.makeConstraints { (make) in
-            make.leading.top.equalTo(70)
+            make.centerX.equalTo(view.center.x)
+            make.centerY.equalTo(view.center.y)
         }
     }
     
