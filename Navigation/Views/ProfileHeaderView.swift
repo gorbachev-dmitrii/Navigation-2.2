@@ -65,6 +65,7 @@ class ProfileHeaderView: UIView {
     
     func changeText() {
         statusLabel.text = statusTextField.text
+        statusTextField.text = ""
     }
     
     override func layoutSubviews() {

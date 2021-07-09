@@ -15,7 +15,7 @@ final class FeedViewController: UIViewController {
     let post: Post = Post(title: "Пост")
     
     private lazy var stackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [button1, button2])
+        let stackView = UIStackView(arrangedSubviews: [button1, button2])
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
@@ -25,7 +25,7 @@ final class FeedViewController: UIViewController {
     
     private lazy var button: MyButton = {
         let button = MyButton(title: "button", titleColor: .white) {
-            print("click")
+            self.sendWord()
         }
         button.backgroundColor = .black
         return button
@@ -45,15 +45,32 @@ final class FeedViewController: UIViewController {
         return button
     }()
     
-    private lazy var textField: UITextField = {
-       let field = UITextField()
+    private lazy var textField: MyTextField = {
+        let field = MyTextField(placeholder: "input", textColor: .blue, bckgColor: .white) { (text) in
+            print(text)
+        }
+        return field
     }()
     
+    private let label: UILabel = {
+       let label = UILabel()
+        label.backgroundColor = .brown
+        label.text = "Some text"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    //private var model: MyModel
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         print(type(of: self), #function)
     }
+    
+    //    init(model: MyModel) {
+    //        self.model = model
+    //        super.init(nibName: nil, bundle: ni)
+    //    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -65,6 +82,8 @@ final class FeedViewController: UIViewController {
         print(type(of: self), #function)
         view.addSubview(button)
         view.addSubview(stackView)
+        view.addSubview(textField)
+        view.addSubview(label)
         setupConstraints()
     }
     
@@ -114,9 +133,20 @@ final class FeedViewController: UIViewController {
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
         }
+        textField.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.bottom.equalTo(button.snp.top).inset(-50)
+        }
         stackView.snp.makeConstraints { (make) in
             make.centerX.equalTo(view.center.x)
             make.centerY.equalTo(view.center.y)
+        }
+        
+        label.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.top.equalTo(100)
         }
     }
     
@@ -124,5 +154,13 @@ final class FeedViewController: UIViewController {
         let vc = PostViewController()
         navigationController?.pushViewController(vc, animated: true)
         vc.post = post
+    }
+    
+    private func sendWord() {
+        if let text = textField.text {
+            print("send to model - \(text)")
+        } else {
+            print("value is nil")
+        }
     }
 }
