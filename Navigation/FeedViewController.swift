@@ -13,7 +13,7 @@ import SnapKit
 final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
-    var model = MyModel()
+    var model: MyModel
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [button1, button2])
@@ -61,13 +61,13 @@ final class FeedViewController: UIViewController {
         return label
     }()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
+    init(model: MyModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print(type(of: self), #function)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(label)
         setupConstraints()
-        view.backgroundColor = .green
+        view.backgroundColor = .cyan
     }
     
     override func viewWillAppear(_ animated: Bool) {
