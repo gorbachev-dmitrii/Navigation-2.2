@@ -13,6 +13,7 @@ import SnapKit
 final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
+    var model: MyModel?
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [button1, button2])
@@ -59,8 +60,6 @@ final class FeedViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    //private var model: MyModel
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -158,6 +157,7 @@ final class FeedViewController: UIViewController {
     
     private func sendWord() {
         if let text = textField.text {
+            model?.check(word: text)
             print("send to model - \(text)")
         } else {
             print("value is nil")

@@ -9,9 +9,9 @@
 import Foundation
 
 class MyModel {
-    var password: String = "пароль"
+    var password: String = "Qwer"
     
     func check(word: String) {
-        word == password ? "Success" : "Fail"
+        word == password ? print("Success") : print("Fail")
     }
 }
