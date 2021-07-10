@@ -35,6 +35,7 @@
 		C3C92C5125C5DBAE00B8A89D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5025C5DBAE00B8A89D /* LogInView.swift */; };
 		C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */; };
 		C3CE4795269796110000BCC5 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE4794269796110000BCC5 /* Model.swift */; };
+		C3CE47992699EA6B0000BCC5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE47982699EA6B0000BCC5 /* TabBarController.swift */; };
 		C3F4434325B325F7000FBEDA /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */; };
 		C3F4434625B32622000FBEDA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4434525B32622000FBEDA /* ProfileViewController.swift */; };
 		FD1459D0338E724015907796 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */; };
@@ -96,6 +97,7 @@
 		C3C92C5025C5DBAE00B8A89D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		C3CE4794269796110000BCC5 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C3CE47982699EA6B0000BCC5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C3F4434525B32622000FBEDA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEDB073AD0218CB66D8DBC51 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
 				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
+				C3CE47982699EA6B0000BCC5 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
+				C3CE47992699EA6B0000BCC5 /* TabBarController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				C3B65B37268799640058268C /* UserService.swift in Sources */,
 				C3B65B532693A7050058268C /* MyButton.swift in Sources */,

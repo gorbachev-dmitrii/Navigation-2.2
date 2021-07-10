@@ -13,7 +13,7 @@ import SnapKit
 final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
-    var model: MyModel?
+    var model = MyModel()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [button1, button2])
@@ -65,12 +65,6 @@ final class FeedViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         print(type(of: self), #function)
     }
-    
-    //    init(model: MyModel) {
-    //        self.model = model
-    //        super.init(nibName: nil, bundle: ni)
-    //    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         print(type(of: self), #function)
@@ -84,6 +78,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(label)
         setupConstraints()
+        view.backgroundColor = .green
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,8 +152,11 @@ final class FeedViewController: UIViewController {
     
     private func sendWord() {
         if let text = textField.text {
-            model?.check(word: text)
-            print("send to model - \(text)")
+            if model.check(word: text) {
+                label.backgroundColor = .green
+            } else {
+                label.backgroundColor = .red
+            }
         } else {
             print("value is nil")
         }
