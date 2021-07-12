@@ -10,6 +10,8 @@ import Foundation
 
 class MyModel {
     
+    var response: (() -> Void)?
+    
     var password: String = "Qwer"
     
     func check(word: String) -> Bool {

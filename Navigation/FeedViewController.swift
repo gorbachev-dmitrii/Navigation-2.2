@@ -24,7 +24,7 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var button: MyButton = {
+    private lazy var sendWordButton: MyButton = {
         let button = MyButton(title: "button", titleColor: .white) {
             self.sendWord()
         }
@@ -73,7 +73,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
-        view.addSubview(button)
+        view.addSubview(sendWordButton)
         view.addSubview(stackView)
         view.addSubview(textField)
         view.addSubview(label)
@@ -122,7 +122,7 @@ final class FeedViewController: UIViewController {
     }
     
     func setupConstraints() {
-        button.snp.makeConstraints { (make) in
+        sendWordButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(-60)
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
@@ -130,7 +130,7 @@ final class FeedViewController: UIViewController {
         textField.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
-            make.bottom.equalTo(button.snp.top).inset(-50)
+            make.bottom.equalTo(sendWordButton.snp.top).inset(-50)
         }
         stackView.snp.makeConstraints { (make) in
             make.centerX.equalTo(view.center.x)
