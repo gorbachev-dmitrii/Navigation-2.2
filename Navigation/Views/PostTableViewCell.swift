@@ -16,13 +16,9 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
-            if let likes = post?.likes, let views = post?.views, let imageStr = post?.image {
+            if let likes = post?.likes, let views = post?.views {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
-                guard let source = UIImage(named: imageStr) else { return }
-                ImageProcessor().processImage(sourceImage: source, filter: .noir) { (image) in
-                    cellImageView.image = image
-                }
             }
         }
     }
@@ -80,6 +76,14 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func makeFilter() {
+        guard let imageName = post?.image else { return }
+        guard let source = UIImage(named: imageName) else { return }
+        ImageProcessor().processImage(sourceImage: source, filter: .noir) { (image) in
+            cellImageView.image = image
+        }
     }
     
     func setupConstraints() {
