@@ -12,6 +12,7 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     var images = [UIImage]()
+    var noirImages = [UIImage]()
     let facade = ImagePublisherFacade()
     
     private lazy var collectionView: UICollectionView = {
@@ -37,17 +38,41 @@ class PhotosViewController: UIViewController {
         // подписываем себя на изменения
         facade.subscribe(self)
         // добавляем изображения по таймеру
-        facade.addImagesWithTimer(time: 5, repeat: 10)
+        //facade.addImagesWithTimer(time: 5, repeat: 10)
+        for i in 1...20 {
+            images.append(UIImage(named: "\(i)")!)
+        }
+        qosBackground()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         facade.removeSubscription(for: self)
+    }
+    
+    func qosBackground() {
+        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .background) { (newImages) in
+            for image in newImages {
+                self.noirImages.append(UIImage(cgImage: image!))
+            }
+        }
+        collectionView.reloadData()
+    }
+    
+    func qosUserInitiated() {
+        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .userInitiated) { (images) in
+
+        }
+    }
+    
+    func qosUserInteractive() {
+        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .userInteractive) { (images) in
+
+        }
     }
     
     func setupConstraints() {
@@ -69,12 +94,12 @@ extension PhotosViewController: ImageLibrarySubscriber {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return noirImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.imageView.image = images[indexPath.item]
+        cell.imageView.image = noirImages[indexPath.item]
         return cell
     }
 
