@@ -14,7 +14,8 @@ class MyModel {
     
     var password: String = "Qwer"
     
-    func check(word: String) -> Bool {
+    func check(word: String, closure: @escaping () -> Void) -> Bool {
+        response = closure
         return word == password
     }
 }

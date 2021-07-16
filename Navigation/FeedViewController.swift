@@ -152,11 +152,13 @@ final class FeedViewController: UIViewController {
     
     private func sendWord() {
         if let text = textField.text {
-            if model.check(word: text) {
-                label.backgroundColor = .green
-            } else {
-                label.backgroundColor = .red
-            }
+            model.check(word: text, closure: <#T##() -> Void#>)
+            
+//            if model.check(word: text) {
+//                label.backgroundColor = .green
+//            } else {
+//                label.backgroundColor = .red
+//            }
         } else {
             print("value is nil")
         }
