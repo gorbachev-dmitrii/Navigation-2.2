@@ -10,6 +10,8 @@ import UIKit
 
 class LogInView: UIView {
     
+    var onLoginTap: (() -> Void)?
+    
     let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -32,8 +34,10 @@ class LogInView: UIView {
         return input
     }()
     
-    let logInButton: UIButton = {
-        let button = UIButton()
+     lazy var logInButton: MyButton = {
+        let button = MyButton(title: "Login", titleColor: .white) {
+            self.loginTapped()
+        }
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
@@ -41,6 +45,19 @@ class LogInView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    func loginTapped() {
+        onLoginTap?()
+//        #if DEBUG
+//        let testUser = TestUserService()
+//        let vc = ProfileViewController(userService: testUser, username: loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #elseif RELEASE
+//        let currentUser = CurrentUserService()
+//        let vc = ProfileViewController(userService: currentUser, username: loginInput.text!)
+//        navigationController?.pushViewController(vc, animated: true)
+//        #endif
+    }
     
     func setupTextField(textFields: [UITextField]) {
         for textField in textFields {
@@ -52,7 +69,6 @@ class LogInView: UIView {
             textField.tintColor = .blue
             textField.autocapitalizationType = .none
             textField.backgroundColor = .systemGray6
-            textField.translatesAutoresizingMaskIntoConstraints = false
         }
     }
 }

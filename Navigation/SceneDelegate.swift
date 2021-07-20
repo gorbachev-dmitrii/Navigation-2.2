@@ -12,15 +12,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private let loginFactory = MyLoginFactory()
+    private let myModel = MyModel()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
         
-        if let tabController = window?.rootViewController as? UITabBarController, let loginNavigation = tabController.viewControllers?.last as? UINavigationController, let loginController = loginNavigation.viewControllers.first as? LogInViewController {
+        let tabBarController = TabBarController()
+        window?.rootViewController = tabBarController
+        
+        window?.makeKeyAndVisible()
+
+        
+        if let tabController = window?.rootViewController as? UITabBarController,
+           let loginNavigation = tabController.viewControllers?.last as? UINavigationController,
+           let loginController = loginNavigation.viewControllers.first as? LogInViewController,
+           let feedNavigation = tabController.viewControllers?.first as? UINavigationController,
+           let feedController = feedNavigation.viewControllers.first as? FeedViewController   {
             loginController.inspectorDelegate = loginFactory.createInspector()
+            feedController.model = myModel
                 }
     }
 
