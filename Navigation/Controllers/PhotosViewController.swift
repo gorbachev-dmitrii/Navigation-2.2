@@ -12,8 +12,8 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     var images = [UIImage]()
-    var noirImages = [UIImage]()
     let facade = ImagePublisherFacade()
+    let imgProcessor = ImageProcessor()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -42,7 +42,6 @@ class PhotosViewController: UIViewController {
         for i in 1...20 {
             images.append(UIImage(named: "\(i)")!)
         }
-        qosBackground()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,27 +51,6 @@ class PhotosViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         facade.removeSubscription(for: self)
-    }
-    
-    func qosBackground() {
-        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .background) { (newImages) in
-            for image in newImages {
-                self.noirImages.append(UIImage(cgImage: image!))
-            }
-        }
-        collectionView.reloadData()
-    }
-    
-    func qosUserInitiated() {
-        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .userInitiated) { (images) in
-
-        }
-    }
-    
-    func qosUserInteractive() {
-        ImageProcessor().processImagesOnThread(sourceImages: images, filter: .noir, qos: .userInteractive) { (images) in
-
-        }
     }
     
     func setupConstraints() {
@@ -94,15 +72,27 @@ extension PhotosViewController: ImageLibrarySubscriber {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return noirImages.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.imageView.image = noirImages[indexPath.item]
+        // userInteractive + .noir = 24,8
+        // userInteractive + .fade = 22,1
+        // background + .fade = 35,8
+        // background + .colorInvert = 39,8
+        // default + .colorInvert = 25
+        // default + .chrome = 25,7
+        // userInitiated + .posterize = 26,9
+        // userInitiated + .tonal = 25,2
+        
+        imgProcessor.processImagesOnThread(sourceImages: images, filter: .tonal, qos: .userInitiated) { filteredImages in
+            DispatchQueue.main.async {
+                cell.imageView.image = UIImage(cgImage: filteredImages[indexPath.row]!)
+            }
+        }
         return cell
     }
-
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
@@ -119,7 +109,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
