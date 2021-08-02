@@ -91,9 +91,9 @@ class LogInViewController: UIViewController {
         NSLayoutConstraint.activate([
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             // container
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -125,7 +125,7 @@ class LogInViewController: UIViewController {
             logInView.logInButton.leadingAnchor.constraint(equalTo: logInView.loginInput.leadingAnchor),
             logInView.logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInView.logInButton.topAnchor.constraint(equalTo: logInView.passwordInput.bottomAnchor, constant: 16),
-            logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 24)
+            logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: -16)
         ])
     }
 }

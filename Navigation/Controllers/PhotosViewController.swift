@@ -14,6 +14,7 @@ class PhotosViewController: UIViewController {
     var images = [UIImage]()
     let facade = ImagePublisherFacade()
     let imgProcessor = ImageProcessor()
+    var newImages = [UIImage]()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -46,6 +47,29 @@ class PhotosViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        let activityView = UIActivityIndicatorView(style: .large)
+        activityView.center = self.view.center
+        view.addSubview(activityView)
+        activityView.startAnimating()
+        
+        // userInteractive + .noir = 2,52
+        // userInteractive + .fade = 2,39
+        // background + .fade = 2,79
+        // background + .colorInvert = 2,86
+        // default + .colorInvert = 2,56
+        // default + .chrome = 2,49
+        // userInitiated + .posterize = 2,35
+        // userInitiated + .tonal = 2,46
+        
+        imgProcessor.processImagesOnThread(sourceImages: images, filter: .chrome, qos: .default) { filteredImages in
+            for image in filteredImages {
+                self.newImages.append(UIImage(cgImage: image!))
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                activityView.stopAnimating()
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,25 +96,12 @@ extension PhotosViewController: ImageLibrarySubscriber {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return newImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        // userInteractive + .noir = 24,8
-        // userInteractive + .fade = 22,1
-        // background + .fade = 35,8
-        // background + .colorInvert = 39,8
-        // default + .colorInvert = 25
-        // default + .chrome = 25,7
-        // userInitiated + .posterize = 26,9
-        // userInitiated + .tonal = 25,2
-        
-        imgProcessor.processImagesOnThread(sourceImages: images, filter: .tonal, qos: .userInitiated) { filteredImages in
-            DispatchQueue.main.async {
-                cell.imageView.image = UIImage(cgImage: filteredImages[indexPath.row]!)
-            }
-        }
+        cell.imageView.image = newImages[indexPath.row]
         return cell
     }
 }
