@@ -12,10 +12,15 @@ class MyModel {
     
     var response: (() -> Void)?
     
-    var password: String = "Qwer"
+    private static var password: String = "Qwer"
     
-    func check(word: String, closure: @escaping () -> Void) -> Bool {
-        response = closure
-        return word == password
+    var checker: ((_ word: String) -> Bool) = { word in
+        let result = word == password
+        return result
     }
+    
+//    func check(word: String, closure: @escaping () -> Void) -> Bool {
+//        response = closure
+//        return word == password
+//    }
 }
