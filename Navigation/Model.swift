@@ -10,17 +10,10 @@ import Foundation
 
 class MyModel {
     
-    var response: (() -> Void)?
-    
     private static var password: String = "Qwer"
     
     var checker: ((_ word: String) -> Bool) = { word in
         let result = word == password
         return result
     }
-    
-//    func check(word: String, closure: @escaping () -> Void) -> Bool {
-//        response = closure
-//        return word == password
-//    }
 }
