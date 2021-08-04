@@ -14,7 +14,15 @@ class LogInViewController: UIViewController {
     let logInView = LogInView()
     
     weak var inspectorDelegate: LoginViewControllerDelegate?
-
+    
+    private let generatePassword: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .red
+        button.setTitle("Generate", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     private let containerView: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -33,12 +41,14 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
         containerView.addSubview(logInView)
+        view.addSubview(generatePassword)
         logInView.translatesAutoresizingMaskIntoConstraints = false
         [logInView.logoView, logInView.logInButton, logInView.loginInput, logInView.passwordInput].forEach({
             logInView.addSubview($0)
         })
         logInView.setupTextField(textFields: [logInView.loginInput, logInView.passwordInput])
         logInView.logInButton.addTarget(self, action: #selector(toProfileViewController), for: .touchUpInside)
+        generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
         setupConstraints()
     }
     
@@ -54,7 +64,7 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     // MARK: Keyboard actions
     @objc fileprivate func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -62,14 +72,18 @@ class LogInViewController: UIViewController {
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         }
     }
-
+    
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
+    @objc func onGenerateTap() {
+        print("hi")
+    }
+    
     @objc func toProfileViewController() {
-
+        
         #if DEBUG
         let testUser = TestUserService()
         let vc = ProfileViewController(userService: testUser, username: logInView.loginInput.text!)
@@ -83,7 +97,7 @@ class LogInViewController: UIViewController {
         if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
             print(delegate.checkInputData(login: login, password: password))
         }
-    
+        
     }
     
     // MARK: Constraints
@@ -91,9 +105,9 @@ class LogInViewController: UIViewController {
         NSLayoutConstraint.activate([
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             // container
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -125,7 +139,15 @@ class LogInViewController: UIViewController {
             logInView.logInButton.leadingAnchor.constraint(equalTo: logInView.loginInput.leadingAnchor),
             logInView.logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInView.logInButton.topAnchor.constraint(equalTo: logInView.passwordInput.bottomAnchor, constant: 16),
-            logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 24)
+            logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: -16),
+            
+//            generatePassword.leadingAnchor.constraint(equalTo: logInView.logInButton.leadingAnchor),
+//            generatePassword.trailingAnchor.constraint(equalTo: logInView.logInButton.trailingAnchor),
+//            generatePassword.topAnchor.constraint(equalTo: logInView.logInButton.bottomAnchor, constant: +16),
+//            generatePassword.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+            
+            generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
 }

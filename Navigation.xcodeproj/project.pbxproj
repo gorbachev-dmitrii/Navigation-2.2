@@ -20,13 +20,13 @@
 		C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */; };
 		C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */; };
 		C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */; };
+		C3A694CF26BB2E7E00EAAFBA /* BrutForcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */; };
 		C3B65B0D2685377D0058268C /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B65B0B2685377D0058268C /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3B65B102685377D0058268C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; };
 		C3B65B112685377D0058268C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3B65B30268759320058268C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B192685379C0058268C /* PostData.swift */; };
 		C3B65B34268759E70058268C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B33268759E70058268C /* User.swift */; };
 		C3B65B37268799640058268C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B36268799640058268C /* UserService.swift */; };
-		C3B65B2226853D0C0058268C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B192685379C0058268C /* PostData.swift */; };
 		C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B40268A7DD20058268C /* LoginChecker.swift */; };
 		C3B65B44268B30230058268C /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B43268B30230058268C /* LoginInspector.swift */; };
 		C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B46268FB7600058268C /* LoginFactory.swift */; };
@@ -79,6 +79,7 @@
 		C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrutForcer.swift; sourceTree = "<group>"; };
 		C3B65B092685377D0058268C /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B65B0B2685377D0058268C /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C3B65B0C2685377D0058268C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,18 +146,16 @@
 				C35A0A5725FD687A00F0BB15 /* Extensions */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				060782B7250CE27700A87020 /* Main.storyboard */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
-				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
-				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3B65B33268759E70058268C /* User.swift */,
 				C3B65B36268799640058268C /* UserService.swift */,
 				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				C3B65B46268FB7600058268C /* LoginFactory.swift */,
+				C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -193,6 +192,9 @@
 		C35A0A6326014C5D00F0BB15 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				060782B5250CE27700A87020 /* FeedViewController.swift */,
+				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
+				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
 				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
@@ -387,6 +389,7 @@
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
+				C3A694CF26BB2E7E00EAAFBA /* BrutForcer.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				C3B65B37268799640058268C /* UserService.swift in Sources */,
 				C3B65B44268B30230058268C /* LoginInspector.swift in Sources */,
