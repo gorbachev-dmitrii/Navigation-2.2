@@ -80,6 +80,19 @@ class LogInViewController: UIViewController {
     
     @objc func onGenerateTap() {
         print("hi")
+        showActivityIndicatory()
+    }
+    
+    func showActivityIndicatory() {
+        let container: UIView = UIView()
+        container.frame = CGRect(x: 100, y: 100, width: 80, height: 80) // Set X and Y whatever you want
+        container.backgroundColor = .clear
+        let activityView = UIActivityIndicatorView(style: .medium)
+        //activityView.center = self.view.center
+
+        container.addSubview(activityView)
+        self.view.addSubview(container)
+        activityView.startAnimating()
     }
     
     @objc func toProfileViewController() {
