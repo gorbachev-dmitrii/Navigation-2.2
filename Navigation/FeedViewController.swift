@@ -54,8 +54,9 @@ final class FeedViewController: UIViewController {
     }()
     
     private let label: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.backgroundColor = .brown
+        label.text = "Some text"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,7 +78,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(label)
         setupConstraints()
-        view.backgroundColor = .green
+        view.backgroundColor = .cyan
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +123,7 @@ final class FeedViewController: UIViewController {
     
     func setupConstraints() {
         sendWordButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(-60)
+            make.bottom.equalTo(-100)
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
         }
@@ -150,14 +151,17 @@ final class FeedViewController: UIViewController {
     }
     
     private func sendWord() {
-        if let text = textField.text {
-            if model.checker(text) {
-                label.backgroundColor = .green
-            } else {
-                label.backgroundColor = .red
+        
+        if let text = textField.text, !text.isEmpty {
+            model.checkWord(word: text) { result in
+                if result {
+                    self.label.backgroundColor = .green
+                } else {
+                    self.label.backgroundColor = .red
+                }
             }
         } else {
-            print("value is nil")
+            print("value is nil or empty")
         }
     }
 }

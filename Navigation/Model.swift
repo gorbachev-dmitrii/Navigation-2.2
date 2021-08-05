@@ -12,8 +12,8 @@ class MyModel {
     
     private static var password: String = "Qwer"
     
-    var checker: ((_ word: String) -> Bool) = { word in
-        let result = word == password
-        return result
+    func checkWord(word: String, completion: @escaping (Bool) -> ()) {
+        completion(word == MyModel.password)
     }
+    
 }
