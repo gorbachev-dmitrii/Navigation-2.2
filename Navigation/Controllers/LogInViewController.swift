@@ -33,6 +33,13 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    private let container: UIView = {
+       let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +49,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(containerView)
         containerView.addSubview(logInView)
         view.addSubview(generatePassword)
+        view.addSubview(container)
         logInView.translatesAutoresizingMaskIntoConstraints = false
         [logInView.logoView, logInView.logInButton, logInView.loginInput, logInView.passwordInput].forEach({
             logInView.addSubview($0)
@@ -79,20 +87,20 @@ class LogInViewController: UIViewController {
     }
     
     @objc func onGenerateTap() {
-        print("hi")
-        showActivityIndicatory()
-    }
-    
-    func showActivityIndicatory() {
-        let container: UIView = UIView()
-        container.frame = CGRect(x: 100, y: 100, width: 80, height: 80) // Set X and Y whatever you want
-        container.backgroundColor = .clear
         let activityView = UIActivityIndicatorView(style: .medium)
-        //activityView.center = self.view.center
-
         container.addSubview(activityView)
-        self.view.addSubview(container)
         activityView.startAnimating()
+        let brut = BrutForcer()
+        let queue = OperationQueue()
+        queue.addOperation {
+            let pass = brut.bruteForce(passwordToUnlock: "abc1")
+            OperationQueue.main.addOperation {
+                activityView.stopAnimating()
+                activityView.hidesWhenStopped = true
+                self.logInView.passwordInput.isSecureTextEntry = false
+                self.logInView.passwordInput.text = pass
+            }
+        }
     }
     
     @objc func toProfileViewController() {
@@ -107,10 +115,11 @@ class LogInViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
         #endif
         
-        if let login = logInView.loginInput.text, let password = logInView.passwordInput.text, let delegate = inspectorDelegate {
+        if let login = logInView.loginInput.text,
+           let password = logInView.passwordInput.text,
+           let delegate = inspectorDelegate {
             print(delegate.checkInputData(login: login, password: password))
         }
-        
     }
     
     // MARK: Constraints
@@ -138,8 +147,8 @@ class LogInViewController: UIViewController {
             logInView.logoView.widthAnchor.constraint(equalToConstant: 100),
             logInView.logoView.heightAnchor.constraint(equalToConstant: 100),
             // loginInput
-            logInView.loginInput.trailingAnchor.constraint(equalTo: logInView.trailingAnchor, constant: -16),
-            logInView.loginInput.leadingAnchor.constraint(equalTo: logInView.leadingAnchor, constant: 16),
+            logInView.loginInput.trailingAnchor.constraint(equalTo: logInView.trailingAnchor, constant: -25),
+            logInView.loginInput.leadingAnchor.constraint(equalTo: logInView.leadingAnchor, constant: 25),
             logInView.loginInput.topAnchor.constraint(equalTo: logInView.logoView.bottomAnchor, constant: 120),
             logInView.loginInput.heightAnchor.constraint(equalToConstant: 50),
             // passwordInput
@@ -154,13 +163,13 @@ class LogInViewController: UIViewController {
             logInView.logInButton.topAnchor.constraint(equalTo: logInView.passwordInput.bottomAnchor, constant: 16),
             logInView.logInButton.bottomAnchor.constraint(equalTo: logInView.bottomAnchor, constant: -16),
             
-//            generatePassword.leadingAnchor.constraint(equalTo: logInView.logInButton.leadingAnchor),
-//            generatePassword.trailingAnchor.constraint(equalTo: logInView.logInButton.trailingAnchor),
-//            generatePassword.topAnchor.constraint(equalTo: logInView.logInButton.bottomAnchor, constant: +16),
-//            generatePassword.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
-            
             generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            
+            container.leadingAnchor.constraint(equalTo: logInView.passwordInput.trailingAnchor),
+            container.topAnchor.constraint(equalTo: logInView.passwordInput.topAnchor),
+            container.bottomAnchor.constraint(equalTo: logInView.passwordInput.bottomAnchor),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
