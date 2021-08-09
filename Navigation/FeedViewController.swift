@@ -8,24 +8,77 @@
 
 import UIKit
 import StorageService
+import SnapKit
 
 final class FeedViewController: UIViewController {
     
     let post: Post = Post(title: "Пост")
+    var model: MyModel
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [button1, button2])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var sendWordButton: MyButton = {
+        let button = MyButton(title: "button", titleColor: .white) {
+            self.sendWord()
+        }
+        button.backgroundColor = .black
+        return button
+    }()
+    
+    private lazy var button1: MyButton = {
+        let button = MyButton(title: "Button", titleColor: .systemBlue) {
+            self.moveToPostVC()
+        }
+        return button
+    }()
+    
+    private lazy var button2: MyButton = {
+        let button = MyButton(title: "Button", titleColor: .systemBlue) {
+            self.moveToPostVC()
+        }
+        return button
+    }()
+    
+    private lazy var textField: MyTextField = {
+        let field = MyTextField(placeholder: "input", textColor: .blue, bckgColor: .white) { (text) in
+            print(text)
+        }
+        return field
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .brown
+        label.text = "Some text"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    init(model: MyModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print(type(of: self), #function)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
+        view.addSubview(sendWordButton)
+        view.addSubview(stackView)
+        view.addSubview(textField)
+        view.addSubview(label)
+        setupConstraints()
+        view.backgroundColor = .cyan
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,5 +119,49 @@ final class FeedViewController: UIViewController {
             return
         }
         postViewController.post = post
+    }
+    
+    func setupConstraints() {
+        sendWordButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(-100)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+        }
+        textField.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.bottom.equalTo(sendWordButton.snp.top).inset(-50)
+        }
+        stackView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.center.x)
+            make.centerY.equalTo(view.center.y)
+        }
+        
+        label.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.top.equalTo(100)
+        }
+    }
+    
+    private func moveToPostVC() {
+        let vc = PostViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        vc.post = post
+    }
+    
+    private func sendWord() {
+        
+        if let text = textField.text, !text.isEmpty {
+            model.checkWord(word: text) { result in
+                if result {
+                    self.label.backgroundColor = .green
+                } else {
+                    self.label.backgroundColor = .red
+                }
+            }
+        } else {
+            print("value is nil or empty")
+        }
     }
 }

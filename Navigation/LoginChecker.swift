@@ -16,7 +16,7 @@ class LoginChecker {
         
     }
     
-    private let login = "dima"
+    private let login = "test"
     private let password = "1234"
     
     func check(log: String, pass: String) -> String {
