@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
     }()
     
     private let container: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -91,9 +91,11 @@ class LogInViewController: UIViewController {
         container.addSubview(activityView)
         activityView.startAnimating()
         let brut = BrutForcer()
+        let randowPassword = self.generatePass(length: 4)
+        print(randowPassword)
         let queue = OperationQueue()
         queue.addOperation {
-            let pass = brut.bruteForce(passwordToUnlock: "abc1")
+            let pass = brut.bruteForce(passwordToUnlock: randowPassword)
             OperationQueue.main.addOperation {
                 activityView.stopAnimating()
                 activityView.hidesWhenStopped = true
@@ -101,6 +103,13 @@ class LogInViewController: UIViewController {
                 self.logInView.passwordInput.text = pass
             }
         }
+    }
+    
+    private func generatePass(length: Int) -> String {
+        let string = String((0..<length).map{ _ in
+            String().printable.randomElement()!
+        })
+        return string
     }
     
     @objc func toProfileViewController() {
@@ -128,8 +137,8 @@ class LogInViewController: UIViewController {
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             // container
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),

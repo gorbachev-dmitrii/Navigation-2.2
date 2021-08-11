@@ -9,6 +9,7 @@
 import Foundation
 
 class BrutForcer {
+    
     func bruteForce(passwordToUnlock: String) -> String {
         let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0)
         }
@@ -17,7 +18,6 @@ class BrutForcer {
         while password != passwordToUnlock {
             password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
         }
-        print(password)
         return password
     }
     
@@ -32,7 +32,6 @@ class BrutForcer {
     
     private func generateBruteForce(_ string: String, fromArray array: [String]) -> String {
         var str: String = string
-        
         if str.count <= 0 {
             str.append(characterAt(index: 0, array))
         }
@@ -44,24 +43,7 @@ class BrutForcer {
                 str = String(generateBruteForce(String(str.dropLast()), fromArray: array)) + String(str.last!)
             }
         }
-        
         return str
-    }
-    
-}
-
-extension String {
-    var digits:      String { return "0123456789" }
-    var lowercase:   String { return "abcdefghijklmnopqrstuvwxyz" }
-    var uppercase:   String { return "ABCDEFGHIJKLMNOPQRSTUVWXYZ" }
-    var punctuation: String { return "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" }
-    var letters:     String { return lowercase + uppercase }
-    var printable:   String { return digits + letters + punctuation }
-    
-    mutating func replace(at index: Int, with character: Character) {
-        var stringArray = Array(self)
-        stringArray[index] = character
-        self = String(stringArray)
     }
 }
 
