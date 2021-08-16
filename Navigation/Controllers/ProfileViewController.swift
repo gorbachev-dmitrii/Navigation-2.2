@@ -172,6 +172,7 @@ extension ProfileViewController: UITableViewDataSource {
             let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.post = posts[indexPath.row]
             cell.selectionStyle = .none
+            cell.makeFilter()
             return cell
         }
     }

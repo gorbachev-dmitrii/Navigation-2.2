@@ -13,6 +13,8 @@ class PhotosViewController: UIViewController {
     
     var images = [UIImage]()
     let facade = ImagePublisherFacade()
+    let imgProcessor = ImageProcessor()
+    var newImages = [UIImage]()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,12 +39,37 @@ class PhotosViewController: UIViewController {
         // подписываем себя на изменения
         facade.subscribe(self)
         // добавляем изображения по таймеру
-        facade.addImagesWithTimer(time: 5, repeat: 10)
+        //facade.addImagesWithTimer(time: 5, repeat: 10)
+        for i in 1...20 {
+            images.append(UIImage(named: "\(i)")!)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        let activityView = UIActivityIndicatorView(style: .large)
+        activityView.center = self.view.center
+        view.addSubview(activityView)
+        activityView.startAnimating()
         
+        // userInteractive + .noir = 2,52
+        // userInteractive + .fade = 2,39
+        // background + .fade = 2,79
+        // background + .colorInvert = 2,86
+        // default + .colorInvert = 2,56
+        // default + .chrome = 2,49
+        // userInitiated + .posterize = 2,35
+        // userInitiated + .tonal = 2,46
+        
+        imgProcessor.processImagesOnThread(sourceImages: images, filter: .chrome, qos: .default) { filteredImages in
+            for image in filteredImages {
+                self.newImages.append(UIImage(cgImage: image!))
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                activityView.stopAnimating()
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -69,15 +96,14 @@ extension PhotosViewController: ImageLibrarySubscriber {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return newImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.imageView.image = images[indexPath.item]
+        cell.imageView.image = newImages[indexPath.row]
         return cell
     }
-
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
@@ -94,7 +120,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
