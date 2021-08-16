@@ -15,12 +15,14 @@
 		060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782BC250CE27A00A87020 /* LaunchScreen.storyboard */; };
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
+		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C349F283267E27EA002E64E5 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C349F282267E27EA002E64E5 /* iOSIntPackage */; };
 		C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */; };
 		C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */; };
 		C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */; };
 		C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */; };
 		C381F57726973F7700E24790 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381F57626973F7700E24790 /* MyTextField.swift */; };
+		C3A694CF26BB2E7E00EAAFBA /* BrutForcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */; };
 		C3B65B0D2685377D0058268C /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B65B0B2685377D0058268C /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3B65B102685377D0058268C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; };
 		C3B65B112685377D0058268C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -78,11 +80,13 @@
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
 		C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Support Functions.swift"; sourceTree = "<group>"; };
 		C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		C381F57626973F7700E24790 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrutForcer.swift; sourceTree = "<group>"; };
 		C3B65B092685377D0058268C /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B65B0B2685377D0058268C /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C3B65B0C2685377D0058268C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,14 +161,13 @@
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
-				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
-				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3B65B33268759E70058268C /* User.swift */,
 				C3B65B36268799640058268C /* UserService.swift */,
 				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				C3B65B46268FB7600058268C /* LoginFactory.swift */,
 				C3CE4794269796110000BCC5 /* Model.swift */,
+				C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */,
+				C32CA0D326C476E900DCBAAE /* String + Chars.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +207,9 @@
 		C35A0A6326014C5D00F0BB15 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				060782B5250CE27700A87020 /* FeedViewController.swift */,
+				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
+				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
 				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
@@ -399,6 +406,7 @@
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
 				C3CE47992699EA6B0000BCC5 /* TabBarController.swift in Sources */,
+				C3A694CF26BB2E7E00EAAFBA /* BrutForcer.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				C3B65B37268799640058268C /* UserService.swift in Sources */,
 				C3B65B532693A7050058268C /* MyButton.swift in Sources */,
@@ -415,6 +423,7 @@
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
+				C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */,
 				C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
