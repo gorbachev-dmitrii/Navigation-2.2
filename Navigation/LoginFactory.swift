@@ -17,7 +17,6 @@ class MyLoginFactory: LoginFactory {
     let inspector = LoginInspector()
     
     func createInspector() -> LoginInspector {
-        print("created")
         return inspector
     }
 }
