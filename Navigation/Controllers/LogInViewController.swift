@@ -80,14 +80,7 @@ class LogInViewController: UIViewController {
         setupTextField(textFields: [loginInput, passwordInput])
         view.addSubview(generatePassword)
         view.addSubview(container)
-        //        logInView.translatesAutoresizingMaskIntoConstraints = false
-        //        [logInView.logoView, logInView.logInButton, logInView.loginInput, logInView.passwordInput].forEach({
-        //            logInView.addSubview($0)
-        //        })
-        //        logInView.setupTextField(textFields: [logInView.loginInput, logInView.passwordInput])
-        //        logInView.logInButton.addTarget(self, action: #selector(toProfileViewController), for: .touchUpInside)
         generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
-        
         setupConstraints()
     }
     
@@ -116,7 +109,7 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-    
+    // MARK: Support Functions
     func setupTextField(textFields: [UITextField]) {
         for textField in textFields {
             textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -170,58 +163,55 @@ class LogInViewController: UIViewController {
         })
         return string
     }
-
-// MARK: Constraints
-func setupConstraints() {
-    NSLayoutConstraint.activate([
-        // scrollView
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        // container
-        containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-        containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-        containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-        containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-        containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        // logo
-        logoView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 120),
-        logoView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-        logoView.widthAnchor.constraint(equalToConstant: 100),
-        logoView.heightAnchor.constraint(equalToConstant: 100),
-        // loginInput
-        
-        loginInput.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-        loginInput.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-        loginInput.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 120),
-        loginInput.heightAnchor.constraint(equalToConstant: 50),
-        // passwordInput
-        passwordInput.trailingAnchor.constraint(equalTo: loginInput.trailingAnchor),
-        passwordInput.leadingAnchor.constraint(equalTo: loginInput.leadingAnchor),
-        passwordInput.heightAnchor.constraint(equalToConstant: 50),
-        passwordInput.topAnchor.constraint(equalTo: loginInput.bottomAnchor),
-        // button
-        loginButton.trailingAnchor.constraint(equalTo: loginInput.trailingAnchor),
-        loginButton.leadingAnchor.constraint(equalTo: loginInput.leadingAnchor),
-        loginButton.heightAnchor.constraint(equalToConstant: 50),
-        loginButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 16),
-        loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-        
-        generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-        
-        container.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
-        container.topAnchor.constraint(equalTo: passwordInput.topAnchor),
-        container.bottomAnchor.constraint(equalTo: passwordInput.bottomAnchor),
-        container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-    ])
-}
-
+    
+    // MARK: Constraints
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            // scrollView
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            // container
+            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            // logo
+            logoView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 120),
+            logoView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            logoView.widthAnchor.constraint(equalToConstant: 100),
+            logoView.heightAnchor.constraint(equalToConstant: 100),
+            // loginInput
+            loginInput.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            loginInput.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            loginInput.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 120),
+            loginInput.heightAnchor.constraint(equalToConstant: 50),
+            // passwordInput
+            passwordInput.trailingAnchor.constraint(equalTo: loginInput.trailingAnchor),
+            passwordInput.leadingAnchor.constraint(equalTo: loginInput.leadingAnchor),
+            passwordInput.heightAnchor.constraint(equalToConstant: 50),
+            passwordInput.topAnchor.constraint(equalTo: loginInput.bottomAnchor),
+            // button
+            loginButton.trailingAnchor.constraint(equalTo: loginInput.trailingAnchor),
+            loginButton.leadingAnchor.constraint(equalTo: loginInput.leadingAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            loginButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 16),
+            loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            
+            generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            
+            container.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
+            container.topAnchor.constraint(equalTo: passwordInput.topAnchor),
+            container.bottomAnchor.constraint(equalTo: passwordInput.bottomAnchor),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+    }
 }
 
 // MARK: LoginViewControllerDelegate
-
 protocol LoginViewControllerDelegate: AnyObject {
     func checkInputData(login: String, password: String) -> String
 }

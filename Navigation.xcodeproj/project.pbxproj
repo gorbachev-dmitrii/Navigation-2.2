@@ -34,7 +34,6 @@
 		C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B46268FB7600058268C /* LoginFactory.swift */; };
 		C3B65B532693A7050058268C /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B522693A7050058268C /* MyButton.swift */; };
 		C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C4D25C3551900B8A89D /* LogInViewController.swift */; };
-		C3C92C5125C5DBAE00B8A89D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5025C5DBAE00B8A89D /* LogInView.swift */; };
 		C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */; };
 		C3CE4795269796110000BCC5 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE4794269796110000BCC5 /* Model.swift */; };
 		C3CE47992699EA6B0000BCC5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE47982699EA6B0000BCC5 /* TabBarController.swift */; };
@@ -98,7 +97,6 @@
 		C3B65B46268FB7600058268C /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		C3B65B522693A7050058268C /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C3C92C4D25C3551900B8A89D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		C3C92C5025C5DBAE00B8A89D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		C3CE4794269796110000BCC5 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C3CE47982699EA6B0000BCC5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */,
-				C3C92C5025C5DBAE00B8A89D /* LogInView.swift */,
 				C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */,
 				C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */,
 				C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */,
@@ -399,7 +396,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C92C5125C5DBAE00B8A89D /* LogInView.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
