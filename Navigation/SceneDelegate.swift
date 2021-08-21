@@ -35,6 +35,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             loginController.inspectorDelegate = loginFactory.createInspector()
             feedController.model = myModel
                 }
+        
+        
+        let url = URL(string: "https://swapi.dev/api/people/8")
+        NetworkManager.getData(url: url!) { resp in
+            print(resp)
+        }
+        //NetworkManager.getData2(url: url!)
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
