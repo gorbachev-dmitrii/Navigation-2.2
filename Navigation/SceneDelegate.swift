@@ -36,10 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             feedController.model = myModel
         }
         
-        var rem = 60
+        let interval = 10
         let timer = Timer(timeInterval: 10, repeats: true) { (_) in
-            print("some work")
-            let alert = UIAlertController(title: "Таймер", message:"Данные обновятся через \(rem) секунд", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Таймер", message:"Данные обновятся через \(interval) секунд", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
