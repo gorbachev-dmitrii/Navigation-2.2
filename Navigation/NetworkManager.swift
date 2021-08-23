@@ -12,7 +12,21 @@ struct NetworkManager {
     
     private static var session = URLSession.shared
     
-    static func getData(url: URL, completion: @escaping (String?) -> Void) {
+    static func fetchData(config: AppConfiguration) {
+        switch config {
+        case .first(let url): self.dataTask(url: url) { (string) in
+            print(string!)
+        }
+        case .second(let url): self.dataTask(url: url) { (string) in
+            print(string!)
+        }
+        case .third(let url): self.dataTask(url: url) { (string) in
+            print(string!)
+        }
+        }
+    }
+    
+    static func dataTask(url: URL, completion: @escaping (String?) -> Void) {
         let task = session.dataTask(with: url) { (data, responce, error) in
             guard error == nil else {
                 print(error.debugDescription)
@@ -24,33 +38,15 @@ struct NetworkManager {
             if let data = data {
                 completion(String(data: data, encoding: .utf8))
             }
-            
         }
         task.resume()
     }
     
-    static func getData2(url: URL) {
-        let task = session.dataTask(with: url) { (data, responce, error) in
-            guard error == nil else {
-                print(error.debugDescription)
-                return
-            }
-            guard let httpResp = responce as? HTTPURLResponse, httpResp.statusCode == 200 else { return }
-            print(httpResp.statusCode)
-            //print(httpResp.allHeaderFields as! [String: Any])
-            if let data = data {
-                print(data)
-            }
-            
-        }
-        task.resume()
-    }
-
 }
 
 
 enum AppConfiguration {
-    case first(String)
-    case second(String)
-    case third(String)
+    case first(URL)
+    case second(URL)
+    case third(URL)
 }
