@@ -20,7 +20,6 @@ final class FeedViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -57,7 +56,6 @@ final class FeedViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .brown
         label.text = "Some text"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -73,10 +71,8 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
-        view.addSubview(sendWordButton)
-        view.addSubview(stackView)
-        view.addSubview(textField)
-        view.addSubview(label)
+        view.addSubviews(views: [sendWordButton, stackView, textField, label])
+        view.disableAutoresizingMask(views: [sendWordButton, stackView, textField, label])
         setupConstraints()
         view.backgroundColor = .cyan
     }
@@ -121,7 +117,7 @@ final class FeedViewController: UIViewController {
         postViewController.post = post
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         sendWordButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(-100)
             make.leading.equalTo(16)

@@ -68,18 +68,21 @@ class LogInViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let activityView: UIActivityIndicatorView = {
+        let activityView = UIActivityIndicatorView()
+        return activityView
+    }()
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
-        view.addSubview(scrollView)
+        view.addSubviews(views: [scrollView, generatePassword, activityView])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
-        view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput])
+        view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
-        view.addSubview(generatePassword)
-        view.addSubview(container)
         generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
         setupConstraints()
     }
@@ -139,18 +142,15 @@ class LogInViewController: UIViewController {
     }
     
     @objc func onGenerateTap() {
-        let activityView = UIActivityIndicatorView(style: .medium)
-        container.addSubview(activityView)
         activityView.startAnimating()
         let brut = BrutForcer()
         let randowPassword = generatePass(length: 4)
         print(randowPassword)
         let queue = OperationQueue()
         queue.addOperation {
-            let pass = brut.bruteForce(passwordToUnlock: randowPassword)
+            let pass = brut.bruteForce(passwordToUnlock: "abc")
             OperationQueue.main.addOperation {
-                activityView.stopAnimating()
-                activityView.hidesWhenStopped = true
+                self.activityView.stopAnimating()
                 self.passwordInput.isSecureTextEntry = false
                 self.passwordInput.text = pass
             }
@@ -203,10 +203,9 @@ class LogInViewController: UIViewController {
             generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
-            container.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
-            container.topAnchor.constraint(equalTo: passwordInput.topAnchor),
-            container.bottomAnchor.constraint(equalTo: passwordInput.bottomAnchor),
-            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            activityView.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
+            activityView.topAnchor.constraint(equalTo: passwordInput.topAnchor)
+            
         ])
     }
 }
