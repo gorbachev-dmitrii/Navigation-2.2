@@ -8,7 +8,13 @@
 
 import UIKit
 
-class MainCoordinator {
+protocol Coordinator: AnyObject {
+    var coordinators: [Coordinator] { get set }
+}
+
+class MainCoordinator: Coordinator {
+    
+    var coordinators: [Coordinator] = []
     let tabBarController: TabBarController
     let model = MyModel()
     
@@ -19,6 +25,7 @@ class MainCoordinator {
         feed.start()
         login.start()
         tabBarController.viewControllers = [feed.navigationController, login.navigationController]
+        coordinators.append(feed)
     }
     
     private func configureFeed() -> FeedCoordinator {

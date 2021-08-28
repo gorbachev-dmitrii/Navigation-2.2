@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import StorageService
 
-final class FeedCoordinator {
+final class FeedCoordinator: Coordinator {
     
+    let post: Post = Post(title: "Пост")
+    var coordinators: [Coordinator] = []
     let navigationController: UINavigationController
     private let model: MyModel
     
@@ -21,5 +24,14 @@ final class FeedCoordinator {
     func start() {
         let feedController = FeedViewController(model: model)
         navigationController.pushViewController(feedController, animated: true)
+        feedController.onShowNext = { [weak self] in
+            self?.goNext()
+        }
+    }
+    
+    private func goNext() {
+        let vc = PostViewController()
+        navigationController.pushViewController(vc, animated: true)
+        vc.post = post
     }
 }
