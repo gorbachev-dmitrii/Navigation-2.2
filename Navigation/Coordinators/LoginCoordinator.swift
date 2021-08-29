@@ -8,8 +8,10 @@
 
 import UIKit
 
-final class LoginCoordinator {
+final class LoginCoordinator: Coordinator {
     let navigationController: UINavigationController
+    var coordinators: [Coordinator] = []
+    private var login: String?
     
     init(navigation: UINavigationController) {
         self.navigationController = navigation
@@ -18,5 +20,15 @@ final class LoginCoordinator {
     func start() {
         let loginController = LogInViewController()
         navigationController.pushViewController(loginController, animated: true)
+        loginController.onShowNext = { [weak self] in
+            self?.login = $0
+            self?.goNext()
+        }
+    }
+    
+    private func goNext() {
+        let testUser = TestUserService()
+        let vc = ProfileViewController(userService: testUser, username: login!)
+        navigationController.pushViewController(vc, animated: true)
     }
 }

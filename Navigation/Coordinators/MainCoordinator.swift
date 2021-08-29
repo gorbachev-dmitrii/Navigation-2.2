@@ -26,6 +26,7 @@ class MainCoordinator: Coordinator {
         login.start()
         tabBarController.viewControllers = [feed.navigationController, login.navigationController]
         coordinators.append(feed)
+        coordinators.append(login)
     }
     
     private func configureFeed() -> FeedCoordinator {
