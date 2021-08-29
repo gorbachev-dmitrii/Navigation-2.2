@@ -29,7 +29,8 @@ struct NetworkManager {
     static func dataTask(url: URL, completion: @escaping (String?) -> Void) {
         let task = session.dataTask(with: url) { (data, responce, error) in
             guard error == nil else {
-                print(error.debugDescription)
+                // код ошибки - 1009
+                print(error!.localizedDescription)
                 return
             }
             guard let httpResp = responce as? HTTPURLResponse, httpResp.statusCode == 200 else { return }
