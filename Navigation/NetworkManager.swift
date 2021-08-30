@@ -15,18 +15,18 @@ struct NetworkManager {
     static func fetchData(config: AppConfiguration) {
         switch config {
         case .first(let url): self.dataTask(url: url) { (string) in
-            print(string!)
+            print(string)
         }
         case .second(let url): self.dataTask(url: url) { (string) in
-            print(string!)
+            print(string)
         }
         case .third(let url): self.dataTask(url: url) { (string) in
-            print(string!)
+            print(string)
         }
         }
     }
     
-    static func dataTask(url: URL, completion: @escaping (String?) -> Void) {
+    static func dataTask(url: URL, completion: @escaping (String) -> Void) {
         let task = session.dataTask(with: url) { (data, responce, error) in
             guard error == nil else {
                 // код ошибки - 1009
@@ -37,7 +37,9 @@ struct NetworkManager {
             print(httpResp.statusCode)
             print(httpResp.allHeaderFields as! [String: Any])
             if let data = data {
-                completion(String(data: data, encoding: .utf8))
+                if let temp = String(data: data, encoding: .utf8) {
+                completion(temp)
+                }
             }
         }
         task.resume()
