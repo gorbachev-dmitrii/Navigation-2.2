@@ -13,19 +13,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private let loginFactory = MyLoginFactory()
     private let myModel = MyModel()
-
+    private var appConfig: AppConfiguration?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
         let tabBarController = TabBarController()
         window?.rootViewController = tabBarController
-        
         window?.makeKeyAndVisible()
-
         
         if let tabController = window?.rootViewController as? UITabBarController,
            let loginNavigation = tabController.viewControllers?.last as? UINavigationController,
@@ -35,8 +32,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             loginController.inspectorDelegate = loginFactory.createInspector()
             feedController.model = myModel
                 }
+        
+        NetworkManager.fetchData(config: randomConfig())
+        
     }
 
+    private func randomConfig() -> AppConfiguration {
+        let randomInt = Int.random(in: 1...3)
+        switch randomInt {
+        case 1: appConfig = .first(URL(string: "https://swapi.dev/api/people/8")!)
+        case 2: appConfig = .second(URL(string: "https://swapi.dev/api/starships/3")!)
+        case 3: appConfig = .third(URL(string: "https://swapi.dev/api/planets/5")!)
+        default:
+            print("not found")
+        }
+        return appConfig!
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
