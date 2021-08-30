@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import SnapKit
 
 class InfoViewController: UIViewController {
-
+    
+    private lazy var taskTitle: UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.text = "Some text"
+        lbl.textColor = .green
+        lbl.textAlignment = .center
+        lbl.numberOfLines = 0
+        return lbl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        view.addSubview(taskTitle)
+        setupConstraints()
     }
     
     @IBAction func showAlert(_ sender: Any) {
@@ -27,5 +39,14 @@ class InfoViewController: UIViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func setupConstraints() {
+        taskTitle.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.centerX.equalTo(view.center)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(16)
+        }
     }
 }
