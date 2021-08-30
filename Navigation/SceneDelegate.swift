@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             feedController.model = myModel
                 }
         
-        NetworkManager.fetchData(config: randomConfig())
+        //NetworkManager.fetchData(config: randomConfig())
         
     }
 

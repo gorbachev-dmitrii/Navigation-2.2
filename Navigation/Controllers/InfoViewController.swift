@@ -26,6 +26,12 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(taskTitle)
         setupConstraints()
+
+        NetworkManager.getTask(url: URL(string: Constants.taskUrl)!) { string in
+            DispatchQueue.main.async {
+                self.taskTitle.text = string
+            }
+        }
     }
     
     @IBAction func showAlert(_ sender: Any) {

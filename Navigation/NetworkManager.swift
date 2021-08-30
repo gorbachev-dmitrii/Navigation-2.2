@@ -44,7 +44,30 @@ struct NetworkManager {
         }
         task.resume()
     }
-    
+    static func getTask(url: URL, completion: @escaping (String) -> Void) {
+        let task = session.dataTask(with: url) { (data, responce, error) in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            guard let httpResp = responce as? HTTPURLResponse, httpResp.statusCode == 200 else { return }
+            if let data = data {
+                do {
+                    let jsonDict: Dictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Dictionary<String, Any>
+                    let task = Task(
+                        userId: jsonDict["userId"] as! Int,
+                        id: jsonDict["id"] as! Int,
+                        title: jsonDict["title"] as! String,
+                        isCompleted: jsonDict["completed"] as! Bool
+                    )
+                    completion(task.title)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        task.resume()
+    }
 }
 
 

@@ -18,6 +18,7 @@
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B3E26CC599D00CFD40F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */; };
 		C33B2B6126DD712A00CFD40F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B6026DD712A00CFD40F /* Task.swift */; };
+		C33B2B6526DD7C6200CFD40F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B6426DD7C6200CFD40F /* Constants.swift */; };
 		C349F283267E27EA002E64E5 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C349F282267E27EA002E64E5 /* iOSIntPackage */; };
 		C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */; };
 		C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */; };
@@ -84,6 +85,7 @@
 		C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C33B2B6026DD712A00CFD40F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		C33B2B6426DD7C6200CFD40F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Support Functions.swift"; sourceTree = "<group>"; };
 		C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */,
 				C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */,
 				C33B2B6026DD712A00CFD40F /* Task.swift */,
+				C33B2B6426DD7C6200CFD40F /* Constants.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				C33B2B3E26CC599D00CFD40F /* NetworkManager.swift in Sources */,
 				C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */,
 				C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */,
+				C33B2B6526DD7C6200CFD40F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
