@@ -25,3 +25,11 @@ struct Planet: Decodable {
         case population, residents, films, created, edited, url
     }
 }
+
+struct Resident: Decodable {
+    let name: String
+
+    enum CodingKeys: String, CodingKey {
+        case name
+    }
+}

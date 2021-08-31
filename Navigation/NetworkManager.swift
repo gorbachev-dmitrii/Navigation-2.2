@@ -65,13 +65,28 @@ struct NetworkManager {
         task.resume()
     }
     
-    static func getPlanet(url: URL, completion: @escaping (String, String) -> Void) {
+    static func getPlanet(url: URL, firstClosure: @escaping (String, String) -> Void, secondClosure: @escaping (Resident) -> Void) {
         let task = session.dataTask(with: url) { (data, responce, error) in
             successQuery(error: error, resp: responce)
             if let data = data {
                 do {
                     if let object = try? JSONDecoder().decode(Planet.self, from: data) {
-                        completion(object.name, object.orbitalPeriod)
+                        firstClosure(object.name, object.orbitalPeriod)
+                        
+                        for resident in object.residents {
+                            let task = session.dataTask(with: URL(string: resident)!) { (data, responce, error) in
+                                successQuery(error: error, resp: responce)
+                                if let data = data {
+                                    do {
+                                        if let object = try? JSONDecoder().decode(Resident.self, from: data) {
+                                            secondClosure(object)
+                                        }
+                                    }
+                                }
+                            }
+                            task.resume()
+                        }
+                        
                     }
                 }
             }
@@ -88,8 +103,22 @@ struct NetworkManager {
     }
     
     // MARK: Эксперименты
+    // думал сделать один метод на запрос, передавать в него номер кейса (1 - запросить task, 2 - запросить планету и тд ) и уже в switch перебирать. Насколько это хорошая идея?
+    static func basicTask(url: URL, param: Int, completion: @escaping (String) -> Void) {
+        let task = session.dataTask(with: url) { (data, responce, error) in
+//            switch param {
+//            case 1: self.forJson(error: data, resp: responce, data: data) { (string) in
+//                completion(string)
+//            }
+//            case 2: successQuery(error: error, resp: responce)
+//            default:
+//                print("unknown case")
+//            }
+        }
+        task.resume()
+    }
     
-    
+    //
     static func jsonDecoder(error: Error?, resp: URLResponse?, data: Data?, completion: @escaping (String) -> Void) {
         guard error == nil else {
             print(error.debugDescription)
@@ -104,22 +133,8 @@ struct NetworkManager {
             }
         }
     }
-
-    
-    static func basicTask(url: URL, param: Int, completion: @escaping (String) -> Void) {
-        let task = session.dataTask(with: url) { (data, responce, error) in
-//            switch param {
-//            case 1: self.forJson(error: data, resp: responce, data: data) { (string) in
-//                completion(string)
-//            }
-//            case 2: successQuery(error: error, resp: responce)
-//            default:
-//                print("unknown case")
-//            }
-        }
-        task.resume()
-    }
 }
+    
 
 
 enum AppConfiguration {
