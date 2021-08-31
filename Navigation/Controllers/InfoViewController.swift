@@ -12,39 +12,42 @@ import SnapKit
 class InfoViewController: UIViewController {
     
     private lazy var taskTitle: UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "Some text"
-        lbl.textColor = .green
-        lbl.textAlignment = .center
-        lbl.numberOfLines = 0
-        return lbl
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Some text"
+        label.textColor = .green
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var planetInfo: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Some text 2"
+        label.textColor = .red
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(taskTitle)
+        view.addSubview(planetInfo)
         setupConstraints()
 
-        NetworkManager.getTask(url: URL(string: Constants.taskUrl)!) { string in
+//        NetworkManager.getTask(url: URL(string: Constants.taskUrl)!) { string in
+//            DispatchQueue.main.async {
+//                self.taskTitle.text = string
+//            }
+//        }
+        
+        NetworkManager.getPlanet(url: URL(string: Constants.planetUrl)!) { (name, period) in
             DispatchQueue.main.async {
-                self.taskTitle.text = string
+                self.planetInfo.text = "orbital period of \(name) is \(period)"
             }
         }
-    }
-    
-    @IBAction func showAlert(_ sender: Any) {
-        let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
-            print("Отмена")
-        }
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            print("Удалить")
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        self.present(alertController, animated: true, completion: nil)
     }
     
     private func setupConstraints() {
@@ -53,6 +56,13 @@ class InfoViewController: UIViewController {
             make.trailing.equalTo(-16)
             make.centerX.equalTo(view.center)
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(16)
+        }
+        
+        planetInfo.snp.makeConstraints { (make) in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.centerX.equalTo(view.center)
+            make.top.equalTo(taskTitle.snp.bottom).offset(20)
         }
     }
 }

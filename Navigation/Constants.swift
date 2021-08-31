@@ -10,5 +10,5 @@ import Foundation
 
 enum Constants {
     static let taskUrl = "https://jsonplaceholder.typicode.com/todos/23"
-    static let planetUrl = ""
+    static let planetUrl = "https://swapi.dev/api/planets/1"
 }
