@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
-    let userService: UserService
+    //let userService: UserService
     
     private let blurView: UIView = {
         let view = UIView()
@@ -40,15 +40,21 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         return tableView
     }()
-        
+    
+    var profileViewModel: ProfileViewModel
     // MARK: Lifecycle
     
-    init(userService: UserService, username: String) {
-        self.userService = userService
-        profileHeader.fullNameLabel.text = userService.getUser(username: username).name
-        profileHeader.statusLabel.text = userService.getUser(username: username).status
-        profileHeader.avatarImageView.image = UIImage(named: userService.getUser(username: username).avatar)
-        print(userService.getUser(username: username).name)
+    //    init(viewModel: ProfileViewModel, userService: UserService, username: String) {
+    //        self.userService = userService
+    //        profileHeader.fullNameLabel.text = userService.getUser(username: username).name
+    //        profileHeader.statusLabel.text = userService.getUser(username: username).status
+    //        profileHeader.avatarImageView.image = UIImage(named: userService.getUser(username: username).avatar)
+    //        print(userService.getUser(username: username).name)
+    //        self.profileViewModel = viewModel
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
+    init(viewModel: ProfileViewModel) {
+        self.profileViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,10 +65,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = profileViewModel.createUser()
+        profileHeader.fullNameLabel.text = user.name
+        profileHeader.statusLabel.text = user.status
+        profileHeader.avatarImageView.image = UIImage(named: user.avatar)
+        
         #if DEBUG
-            view.backgroundColor = .red
+        view.backgroundColor = .red
         #elseif RELEASE
-            view.backgroundColor = .green
+        view.backgroundColor = .green
         #endif
         
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
@@ -117,7 +128,7 @@ class ProfileViewController: UIViewController {
                                     })
                                 },
                                 completion: nil)}
-
+    
     @objc func statusTextChanged(_ textField: UITextField) {
         if let temp = profileHeader.statusTextField.text {
             statusText = temp
@@ -179,8 +190,7 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row == 0 else { return }
-        let vc = PhotosViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        profileViewModel.onTapShowNextModule()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

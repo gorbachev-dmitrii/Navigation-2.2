@@ -17,6 +17,7 @@ class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let tabBarController: TabBarController
     let model = MyModel()
+    private let factory = ControllerFactory()
     
     init() {
         tabBarController = TabBarController()
@@ -41,15 +42,13 @@ class MainCoordinator: Coordinator {
     }
     
     private func configureLogin() -> LoginCoordinator {
-        
+
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person.fill"),
             selectedImage: nil)
-        
-        let loginCoordinator = LoginCoordinator(navigation: navigationController)
-        
+        let loginCoordinator = LoginCoordinator(navigation: navigationController, factory: factory)
         return loginCoordinator
     }
 }
