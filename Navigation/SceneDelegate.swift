@@ -11,14 +11,9 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private let loginFactory = MyLoginFactory()
-    //private let myModel = MyModel()
-
     private var appConfig: AppConfiguration?
-
     private let mainCoordinator = MainCoordinator()
 
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -26,23 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 
         let tabBarController = TabBarController()
-        window?.rootViewController = tabBarController
-
-        
+        //window?.rootViewController = tabBarController
         window?.rootViewController = mainCoordinator.tabBarController
-        
-
         window?.makeKeyAndVisible()
-        
-        if let tabController = window?.rootViewController as? UITabBarController,
-           let loginNavigation = tabController.viewControllers?.last as? UINavigationController,
-           let loginController = loginNavigation.viewControllers.first as? LogInViewController,
-           let feedNavigation = tabController.viewControllers?.first as? UINavigationController,
-           let feedController = feedNavigation.viewControllers.first as? FeedViewController   {
-            loginController.inspectorDelegate = loginFactory.createInspector()
-            //feedController.model = myModel
-                }
-        
+
         NetworkManager.fetchData(config: randomConfig())
         
     }

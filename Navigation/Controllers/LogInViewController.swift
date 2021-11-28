@@ -129,7 +129,7 @@ class LogInViewController: UIViewController {
     }
     
     func loginButtonTapped() {
-        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+        if let login = loginInput.text, let password = passwordInput.text {
             #if DEBUG
             let testUser = TestUserService()
             self.onShowNext?(login, testUser)
