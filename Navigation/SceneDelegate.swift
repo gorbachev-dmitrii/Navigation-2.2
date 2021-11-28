@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private let loginFactory = MyLoginFactory()
-    private let myModel = MyModel()
+    //private let myModel = MyModel()
 
     private var appConfig: AppConfiguration?
 
@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            let feedNavigation = tabController.viewControllers?.first as? UINavigationController,
            let feedController = feedNavigation.viewControllers.first as? FeedViewController   {
             loginController.inspectorDelegate = loginFactory.createInspector()
-            feedController.model = myModel
+            //feedController.model = myModel
                 }
         
         NetworkManager.fetchData(config: randomConfig())

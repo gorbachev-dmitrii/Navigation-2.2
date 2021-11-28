@@ -32,15 +32,15 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var button1: MyButton = {
-        let button = MyButton(title: "Button", titleColor: .systemBlue) {
-            self.onShowNext?()
+        let button = MyButton(title: "Button", titleColor: .systemBlue) { [weak self] in
+            self?.onShowNext?()
         }
         return button
     }()
     
     private lazy var button2: MyButton = {
-        let button = MyButton(title: "Button", titleColor: .systemBlue) {
-            self.onShowNext?()
+        let button = MyButton(title: "Button", titleColor: .systemBlue) { [weak self] in
+            self?.onShowNext?()
         }
         return button
     }()

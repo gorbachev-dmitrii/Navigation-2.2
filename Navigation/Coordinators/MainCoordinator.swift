@@ -16,7 +16,7 @@ class MainCoordinator: Coordinator {
     
     var coordinators: [Coordinator] = []
     let tabBarController: TabBarController
-    let model = MyModel()
+    private let model = MyModel()
     private let factory = ControllerFactory()
     
     init() {

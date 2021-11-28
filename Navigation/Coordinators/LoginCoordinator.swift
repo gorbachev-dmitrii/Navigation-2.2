@@ -13,11 +13,11 @@ final class LoginCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     private var login: String = ""
     private var userService: UserService?
-    var factory: ControllerFactory
+    private var controllerFactory: ControllerFactory
     
     init(navigation: UINavigationController, factory: ControllerFactory) {
         self.navigationController = navigation
-        self.factory = factory
+        self.controllerFactory = factory
     }
     
     func start() {
@@ -31,7 +31,7 @@ final class LoginCoordinator: Coordinator {
     }
     
     private func toProfile() {
-        let profileModule = factory.makeProfile()
+        let profileModule = controllerFactory.makeProfile()
         profileModule.viewModel.login = login
         profileModule.viewModel.userService = userService
         profileModule.viewModel.onShowNext = { [weak self] in
@@ -41,7 +41,7 @@ final class LoginCoordinator: Coordinator {
     }
     
     private func toPhotos() {
-        let photosController = factory.makePhotos()
+        let photosController = controllerFactory.makePhotos()
         navigationController.pushViewController(photosController, animated: true)
     }
 }
