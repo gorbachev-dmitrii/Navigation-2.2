@@ -73,6 +73,8 @@ class LogInViewController: UIViewController {
         let activityView = UIActivityIndicatorView()
         return activityView
     }()
+
+    var onShowNext: ((String, UserService) -> Void)?
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,14 +132,13 @@ class LogInViewController: UIViewController {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             #if DEBUG
             let testUser = TestUserService()
-            let vc = ProfileViewController(userService: testUser, username: login)
-            navigationController?.pushViewController(vc, animated: true)
+            self.onShowNext?(login, testUser)
+            
             #elseif RELEASE
             let currentUser = CurrentUserService()
-            let vc = ProfileViewController(userService: currentUser, username: login)
-            navigationController?.pushViewController(vc, animated: true)
+            self.onShowNext?(login, currentUser)
             #endif
-            print(delegate.checkInputData(login: login, password: password))
+            //print(delegate.checkInputData(login: login, password: password))
         }
     }
     
