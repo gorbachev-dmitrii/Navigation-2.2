@@ -19,14 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-
-        let tabBarController = TabBarController()
-        //window?.rootViewController = tabBarController
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
 
         NetworkManager.fetchData(config: randomConfig())
-        
     }
 
     private func randomConfig() -> AppConfiguration {
