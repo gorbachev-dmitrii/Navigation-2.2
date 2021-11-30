@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
     
     private lazy var passwordInput: MyTextField = {
         let input = MyTextField(placeholder: "Password", textColor: .black, bckgColor: .systemGray6) { text in
-
+            
         }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         input.isSecureTextEntry = true
@@ -45,7 +45,16 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-    private let generatePassword: UIButton = {
+    private lazy var generatePassword: MyButton = {
+        let button = MyButton(title: "Generate", titleColor: .white) {
+            self.onGenerateTap()
+        }
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .red
+        return button
+    }()
+    
+    private let generatePassword2: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.backgroundColor = .red
@@ -63,19 +72,13 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
-    private let container: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private let activityView: UIActivityIndicatorView = {
         let activityView = UIActivityIndicatorView()
         return activityView
     }()
     
     var onShowNext: ((String, UserService) -> Void)?
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +89,7 @@ class LogInViewController: UIViewController {
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
-        generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
         setupConstraints()
-        //loginButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,14 +144,14 @@ class LogInViewController: UIViewController {
         }
     }
     
-    @objc func onGenerateTap() {
+    func onGenerateTap() {
         activityView.startAnimating()
         let brut = BrutForcer()
-        let randowPassword = generatePass(length: 4)
+        let randowPassword = generatePass(length: 3)
         print(randowPassword)
         let queue = OperationQueue()
         queue.addOperation {
-            let pass = brut.bruteForce(passwordToUnlock: "abc")
+            let pass = brut.bruteForce(passwordToUnlock: randowPassword)
             OperationQueue.main.addOperation {
                 self.activityView.stopAnimating()
                 self.passwordInput.isSecureTextEntry = false
