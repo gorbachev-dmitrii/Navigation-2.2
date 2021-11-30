@@ -19,18 +19,19 @@ class LogInViewController: UIViewController {
         return imageView
     }()
     
-    private let loginInput: UITextField = {
-        let input = UITextField()
-        input.placeholder = "Email or phone"
+    private lazy var loginInput: MyTextField = {
+        let input = MyTextField(placeholder: "Email or phone", textColor: .black, bckgColor: .systemGray6) { text in
+        }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
-    private let passwordInput: UITextField = {
-        let input = UITextField()
-        input.placeholder = "Password"
-        input.isSecureTextEntry = true
+    private lazy var passwordInput: MyTextField = {
+        let input = MyTextField(placeholder: "Password", textColor: .black, bckgColor: .systemGray6) { text in
+
+        }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        input.isSecureTextEntry = true
         return input
     }()
     
@@ -73,7 +74,7 @@ class LogInViewController: UIViewController {
         let activityView = UIActivityIndicatorView()
         return activityView
     }()
-
+    
     var onShowNext: ((String, UserService) -> Void)?
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -87,9 +88,9 @@ class LogInViewController: UIViewController {
         setupTextField(textFields: [loginInput, passwordInput])
         generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
         setupConstraints()
+        //loginButton.isEnabled = false
     }
     
-    // MARK: Keyboard observers
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -120,25 +121,25 @@ class LogInViewController: UIViewController {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.layer.borderWidth = 0.5
             textField.layer.cornerRadius = 10
-            textField.textColor = .black
             textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             textField.tintColor = .blue
             textField.autocapitalizationType = .none
-            textField.backgroundColor = .systemGray6
         }
     }
     
     func loginButtonTapped() {
-        if let login = loginInput.text, let password = passwordInput.text {
-            #if DEBUG
+        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+            
+#if DEBUG
             let testUser = TestUserService()
             self.onShowNext?(login, testUser)
-            
-            #elseif RELEASE
+#elseif RELEASE
             let currentUser = CurrentUserService()
             self.onShowNext?(login, currentUser)
-            #endif
-            //print(delegate.checkInputData(login: login, password: password))
+#endif
+            print(delegate.checkInputData(login: login, password: password))
+        } else {
+            print("smth is nil")
         }
     }
     

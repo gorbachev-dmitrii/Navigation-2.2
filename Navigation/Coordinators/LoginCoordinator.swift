@@ -14,6 +14,8 @@ final class LoginCoordinator: Coordinator {
     private var login: String = ""
     private var userService: UserService?
     private var controllerFactory: ControllerFactory
+//    private var inspector: LoginInspector?
+    private let loginFactory = MyLoginFactory()
     
     init(navigation: UINavigationController, factory: ControllerFactory) {
         self.navigationController = navigation
@@ -22,6 +24,7 @@ final class LoginCoordinator: Coordinator {
     
     func start() {
         let loginController = LogInViewController()
+        loginController.inspectorDelegate = loginFactory.createInspector()
         navigationController.pushViewController(loginController, animated: true)
         loginController.onShowNext = { [weak self] in
             self?.login = $0

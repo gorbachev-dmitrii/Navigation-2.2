@@ -22,9 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
-
-        NetworkManager.fetchData(config: randomConfig())
-        
+        //NetworkManager.fetchData(config: randomConfig())
         FirebaseApp.configure()
     }
 
