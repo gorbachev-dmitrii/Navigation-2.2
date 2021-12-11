@@ -54,15 +54,6 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-    private let generatePassword2: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .red
-        button.setTitle("Generate", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let containerView: UIView = {
         let container = UIView()
         return container
