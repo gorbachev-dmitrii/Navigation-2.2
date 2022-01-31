@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         //NetworkManager.fetchData(config: randomConfig())
-        FirebaseApp.configure()
     }
 
     private func randomConfig() -> AppConfiguration {

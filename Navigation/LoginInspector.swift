@@ -15,16 +15,4 @@ class LoginInspector: LoginViewControllerDelegate {
         let result = LoginChecker.shared.check(log: login, pass: password)
         return result
     }
-    
-//    func createUser {
-//        Auth.auth().createUser(withEmail: login, password: password) { authResult, error in
-//
-//            guard let user = authResult?.user, error == nil else {
-//                return
-//            }
-//            print("\(user.email!) created")
-//        }
-//    }
-    
-    
 }

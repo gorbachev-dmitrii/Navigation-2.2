@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
     
     private lazy var passwordInput: MyTextField = {
         let input = MyTextField(placeholder: "Password", textColor: .black, bckgColor: .systemGray6) { text in
-            
+            self.loginButton.isEnabled = true
         }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         input.isSecureTextEntry = true
@@ -42,6 +42,7 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
+        button.isEnabled = false
         return button
     }()
     
@@ -69,6 +70,14 @@ class LogInViewController: UIViewController {
     }()
     
     var onShowNext: ((String, UserService) -> Void)?
+    
+//    func manageButton() {
+//        if (loginInput.text?.isEmpty) != nil || ((passwordInput.text?.isEmpty) != nil) {
+//            loginButton.isEnabled = false
+//        } else {
+//            loginButton.isEnabled = true
+//        }
+//    }
     
     // MARK: Lifecycle
     override func viewDidLoad() {
