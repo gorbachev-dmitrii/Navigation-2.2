@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class LogInViewController: UIViewController {
     
     //MARK: Properties
     weak var inspectorDelegate: LoginViewControllerDelegate?
+    
+    var handle: AuthStateDidChangeListenerHandle?
     
     private let logoView: UIImageView = {
         let imageView = UIImageView()
@@ -96,12 +99,27 @@ class LogInViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+          // [START_EXCLUDE]
+          
+            print(auth)
+            print("current user is \(String(describing: user))")
+          
+          // [END_EXCLUDE]
+        }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     // MARK: Keyboard actions
