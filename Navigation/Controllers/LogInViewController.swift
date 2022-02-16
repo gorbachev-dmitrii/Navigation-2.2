@@ -74,13 +74,13 @@ class LogInViewController: UIViewController {
     
     var onShowNext: ((String, UserService) -> Void)?
     
-//    func manageButton() {
-//        if (loginInput.text?.isEmpty) != nil || ((passwordInput.text?.isEmpty) != nil) {
-//            loginButton.isEnabled = false
-//        } else {
-//            loginButton.isEnabled = true
-//        }
-//    }
+    //    func manageButton() {
+    //        if (loginInput.text?.isEmpty) != nil || ((passwordInput.text?.isEmpty) != nil) {
+    //            loginButton.isEnabled = false
+    //        } else {
+    //            loginButton.isEnabled = true
+    //        }
+    //    }
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -101,12 +101,12 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-          // [START_EXCLUDE]
-          
+            // [START_EXCLUDE]
+            
             print(auth)
             print("current user is \(String(describing: user))")
-          
-          // [END_EXCLUDE]
+            
+            // [END_EXCLUDE]
         }
         
     }
@@ -147,16 +147,21 @@ class LogInViewController: UIViewController {
     }
     
     func loginButtonTapped() {
+        
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
-            
+            if login.isEmpty || password.isEmpty {
+                createLoginAlert()
+            } else {
 #if DEBUG
-            let testUser = TestUserService()
-            self.onShowNext?(login, testUser)
+                let testUser = TestUserService()
+                self.onShowNext?(login, testUser)
 #elseif RELEASE
-            let currentUser = CurrentUserService()
-            self.onShowNext?(login, currentUser)
+                let currentUser = CurrentUserService()
+                self.onShowNext?(login, currentUser)
 #endif
-            print(delegate.checkInputData(login: login, password: password))
+                print(delegate.checkInputData(login: login, password: password))
+            }
+            
         } else {
             print("smth is nil")
         }
@@ -183,6 +188,14 @@ class LogInViewController: UIViewController {
             String().printable.randomElement()!
         })
         return string
+    }
+    
+    func createLoginAlert() {
+        let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Constraints
