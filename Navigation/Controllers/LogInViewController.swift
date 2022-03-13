@@ -74,14 +74,6 @@ class LogInViewController: UIViewController {
     
     var onShowNext: ((String, UserService) -> Void)?
     
-    //    func manageButton() {
-    //        if (loginInput.text?.isEmpty) != nil || ((passwordInput.text?.isEmpty) != nil) {
-    //            loginButton.isEnabled = false
-    //        } else {
-    //            loginButton.isEnabled = true
-    //        }
-    //    }
-    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +85,7 @@ class LogInViewController: UIViewController {
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
+        signOut()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,12 +94,8 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-            // [START_EXCLUDE]
-            
-            print(auth)
-            print("current user is \(String(describing: user))")
-            
-            // [END_EXCLUDE]
+            print(auth.debugDescription)
+            print("current user is \(String(describing: user?.email))")
         }
         
     }
@@ -127,6 +116,15 @@ class LogInViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardSize.height
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            print("signed out")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
     }
     
