@@ -85,6 +85,7 @@ class LogInViewController: UIViewController {
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
+        // добавил метод signOut для удобства
         signOut()
     }
     
@@ -119,7 +120,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func signOut() {
+    private func signOut() {
         do {
             try Auth.auth().signOut()
             print("signed out")
@@ -133,7 +134,7 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     // MARK: Support Functions
-    func setupTextField(textFields: [UITextField]) {
+    private func setupTextField(textFields: [UITextField]) {
         for textField in textFields {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.layer.borderWidth = 0.5
@@ -144,7 +145,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func loginButtonTapped() {
+    private func loginButtonTapped() {
         
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if login.isEmpty || password.isEmpty {
@@ -165,7 +166,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func onGenerateTap() {
+    private func onGenerateTap() {
         activityView.startAnimating()
         let brut = BrutForcer()
         let randowPassword = generatePass(length: 3)
@@ -181,14 +182,14 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func generatePass(length: Int) -> String {
+    private func generatePass(length: Int) -> String {
         let string = String((0..<length).map{ _ in
             String().printable.randomElement()!
         })
         return string
     }
     
-    func createLoginAlert() {
+    private func createLoginAlert() {
         let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
@@ -197,7 +198,7 @@ class LogInViewController: UIViewController {
     }
     
     // MARK: Constraints
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
