@@ -8,6 +8,7 @@
 
 import UIKit
 import StorageService
+import Firebase
 
 class ProfileViewController: UIViewController {
     // MARK: Properties
@@ -64,7 +65,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let user = profileViewModel.createUser()
         profileHeader.fullNameLabel.text = user.name
         profileHeader.statusLabel.text = user.status

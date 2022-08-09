@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class LogInViewController: UIViewController {
     
     //MARK: Properties
     weak var inspectorDelegate: LoginViewControllerDelegate?
+    
+    var handle: AuthStateDidChangeListenerHandle?
     
     private let logoView: UIImageView = {
         let imageView = UIImageView()
@@ -19,18 +22,19 @@ class LogInViewController: UIViewController {
         return imageView
     }()
     
-    private let loginInput: UITextField = {
-        let input = UITextField()
-        input.placeholder = "Email or phone"
+    private lazy var loginInput: MyTextField = {
+        let input = MyTextField(placeholder: "Email or phone", textColor: .black, bckgColor: .systemGray6) { text in
+        }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
-    private let passwordInput: UITextField = {
-        let input = UITextField()
-        input.placeholder = "Password"
-        input.isSecureTextEntry = true
+    private lazy var passwordInput: MyTextField = {
+        let input = MyTextField(placeholder: "Password", textColor: .black, bckgColor: .systemGray6) { text in
+            self.loginButton.isEnabled = true
+        }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        input.isSecureTextEntry = true
         return input
     }()
     
@@ -41,15 +45,16 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
+        button.isEnabled = false
         return button
     }()
     
-    private let generatePassword: UIButton = {
-        let button = UIButton()
+    private lazy var generatePassword: MyButton = {
+        let button = MyButton(title: "Generate", titleColor: .white) {
+            self.onGenerateTap()
+        }
         button.layer.cornerRadius = 10
         button.backgroundColor = .red
-        button.setTitle("Generate", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -62,19 +67,13 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
-    private let container: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private let activityView: UIActivityIndicatorView = {
         let activityView = UIActivityIndicatorView()
         return activityView
     }()
-
+    
     var onShowNext: ((String, UserService) -> Void)?
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,21 +84,32 @@ class LogInViewController: UIViewController {
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
-        generatePassword.addTarget(self, action: #selector(onGenerateTap), for: .touchUpInside)
         setupConstraints()
+        // добавил метод signOut для удобства
+        signOut()
     }
     
-    // MARK: Keyboard observers
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            print(auth.debugDescription)
+            print("current user is \(String(describing: user?.email))")
+        }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     // MARK: Keyboard actions
@@ -110,46 +120,60 @@ class LogInViewController: UIViewController {
         }
     }
     
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            print("signed out")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+    
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     // MARK: Support Functions
-    func setupTextField(textFields: [UITextField]) {
+    private func setupTextField(textFields: [UITextField]) {
         for textField in textFields {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.layer.borderWidth = 0.5
             textField.layer.cornerRadius = 10
-            textField.textColor = .black
             textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             textField.tintColor = .blue
             textField.autocapitalizationType = .none
-            textField.backgroundColor = .systemGray6
         }
     }
     
-    func loginButtonTapped() {
-        if let login = loginInput.text, let password = passwordInput.text {
-            #if DEBUG
-            let testUser = TestUserService()
-            self.onShowNext?(login, testUser)
+    private func loginButtonTapped() {
+        
+        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+            if login.isEmpty || password.isEmpty {
+                createLoginAlert()
+            } else {
+#if DEBUG
+                let testUser = TestUserService()
+                self.onShowNext?(login, testUser)
+#elseif RELEASE
+                let currentUser = CurrentUserService()
+                self.onShowNext?(login, currentUser)
+#endif
+                print(delegate.checkInputData(login: login, password: password))
+            }
             
-            #elseif RELEASE
-            let currentUser = CurrentUserService()
-            self.onShowNext?(login, currentUser)
-            #endif
-            //print(delegate.checkInputData(login: login, password: password))
+        } else {
+            print("smth is nil")
         }
     }
     
-    @objc func onGenerateTap() {
+    private func onGenerateTap() {
         activityView.startAnimating()
         let brut = BrutForcer()
-        let randowPassword = generatePass(length: 4)
+        let randowPassword = generatePass(length: 3)
         print(randowPassword)
         let queue = OperationQueue()
         queue.addOperation {
-            let pass = brut.bruteForce(passwordToUnlock: "abc")
+            let pass = brut.bruteForce(passwordToUnlock: randowPassword)
             OperationQueue.main.addOperation {
                 self.activityView.stopAnimating()
                 self.passwordInput.isSecureTextEntry = false
@@ -158,15 +182,23 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func generatePass(length: Int) -> String {
+    private func generatePass(length: Int) -> String {
         let string = String((0..<length).map{ _ in
             String().printable.randomElement()!
         })
         return string
     }
     
+    private func createLoginAlert() {
+        let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: Constraints
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
