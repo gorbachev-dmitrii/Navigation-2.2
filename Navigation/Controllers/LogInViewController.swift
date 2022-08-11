@@ -85,7 +85,7 @@ class LogInViewController: UIViewController {
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
-        // добавил метод signOut для удобства
+        // добавил метод signOut для удобстваx
         signOut()
     }
     
