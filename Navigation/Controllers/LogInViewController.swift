@@ -13,6 +13,7 @@ class LogInViewController: UIViewController {
     
     //MARK: Properties
     weak var inspectorDelegate: LoginViewControllerDelegate?
+    weak var coordinator: LoginCoordinator?
     
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -87,6 +88,13 @@ class LogInViewController: UIViewController {
         setupConstraints()
         // добавил метод signOut для удобстваx
         signOut()
+        
+        if let currentUser = inspectorDelegate?.readRealmUser() {
+            if inspectorDelegate?.checkInputData(login: currentUser.email, password: currentUser.password) == "Success" {
+                self.coordinator?.toProfile()
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,10 +102,10 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            print(auth.debugDescription)
-            print("current user is \(String(describing: user?.email))")
-        }
+        //        handle = Auth.auth().addStateDidChangeListener { auth, user in
+        //            print(auth.debugDescription)
+        //            print("current user is \(String(describing: user?.email))")
+        //        }
         
     }
     
@@ -109,7 +117,7 @@ class LogInViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        Auth.auth().removeStateDidChangeListener(handle!)
+        //        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     // MARK: Keyboard actions
@@ -246,4 +254,5 @@ class LogInViewController: UIViewController {
 // MARK: LoginViewControllerDelegate
 protocol LoginViewControllerDelegate: AnyObject {
     func checkInputData(login: String, password: String) -> String
+    func readRealmUser() -> RealmUser?
 }
