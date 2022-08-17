@@ -86,15 +86,6 @@ class LogInViewController: UIViewController {
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
         setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
-        // добавил метод signOut для удобстваx
-        signOut()
-        
-        if let currentUser = inspectorDelegate?.readRealmUser() {
-            if inspectorDelegate?.checkInputData(login: currentUser.email, password: currentUser.password) == "Success" {
-                self.coordinator?.toProfile()
-            }
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

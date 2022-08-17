@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol Coordinator: AnyObject {
     var coordinators: [Coordinator] { get set }
@@ -24,7 +25,19 @@ class MainCoordinator: Coordinator {
         let feed = configureFeed()
         let login = configureLogin()
         feed.start()
-        login.start()
+        
+        let realm = try? Realm()
+        let result : [RealmUser] = realm?.objects(AuthModel.self).compactMap {
+            guard let email = $0.email, let password = $0.password else { return nil }
+            return RealmUser(email: email, password: password)
+        } ?? []
+        
+        if result.count != 0 {
+            login.toProfile()
+        } else {
+            login.start()
+        }
+        
         tabBarController.viewControllers = [feed.navigationController, login.navigationController]
         coordinators.append(feed)
         coordinators.append(login)

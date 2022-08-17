@@ -65,10 +65,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let user = profileViewModel.createUser()
-        profileHeader.fullNameLabel.text = user.name
-        profileHeader.statusLabel.text = user.status
-        profileHeader.avatarImageView.image = UIImage(named: user.avatar)
+ //       let user = profileViewModel.createUser()
+//        profileHeader.fullNameLabel.text = user.name
+//        profileHeader.statusLabel.text = user.status
+//        profileHeader.avatarImageView.image = UIImage(named: user.avatar)
         
         #if DEBUG
         view.backgroundColor = .red
