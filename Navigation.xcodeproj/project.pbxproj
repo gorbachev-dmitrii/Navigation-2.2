@@ -14,6 +14,7 @@
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
+		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B3E26CC599D00CFD40F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */; };
@@ -85,6 +86,7 @@
 		060782C5250CEB0A00A87020 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
@@ -167,6 +169,8 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				0DA2CB8128A5BD1700FE86FF /* Managers */,
+				0DA2CB7B28A5BC6400FE86FF /* UserModel */,
 				C391B34626E3C41C00D7D7DA /* ProfileModule */,
 				C33B2B4826DAA0C900CFD40F /* Coordinators */,
 				C35A0A6326014C5D00F0BB15 /* Controllers */,
@@ -178,20 +182,35 @@
 				0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
-				C3B65B33268759E70058268C /* User.swift */,
-				C3B65B36268799640058268C /* UserService.swift */,
-				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
-				C3B65B43268B30230058268C /* LoginInspector.swift */,
-				C3B65B46268FB7600058268C /* LoginFactory.swift */,
-				C3CE4794269796110000BCC5 /* Model.swift */,
-				C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */,
-				C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */,
-				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
 				C33B2B6026DD712A00CFD40F /* Task.swift */,
 				C33B2B6426DD7C6200CFD40F /* Constants.swift */,
 				C33B2B6726DD7F6100CFD40F /* Planet.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0DA2CB7B28A5BC6400FE86FF /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3B65B33268759E70058268C /* User.swift */,
+				C3B65B36268799640058268C /* UserService.swift */,
+				C3CE4794269796110000BCC5 /* Model.swift */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		0DA2CB8128A5BD1700FE86FF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
+				C3B65B43268B30230058268C /* LoginInspector.swift */,
+				C3B65B46268FB7600058268C /* LoginFactory.swift */,
+				C3A694CE26BB2E7E00EAAFBA /* BrutForcer.swift */,
+				C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */,
+				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
+				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		561A7B0174A35EDC1FAFDF1C /* Pods */ = {
@@ -466,6 +485,7 @@
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
+				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator.swift in Sources */,
 				C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */,
 				C33B2B3E26CC599D00CFD40F /* NetworkManager.swift in Sources */,

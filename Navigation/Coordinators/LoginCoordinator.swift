@@ -14,7 +14,6 @@ final class LoginCoordinator: Coordinator {
     private var login: String = ""
     private var userService: UserService?
     private var controllerFactory: ControllerFactory
-//    private var inspector: LoginInspector?
     private let loginFactory = MyLoginFactory()
     
     init(navigation: UINavigationController, factory: ControllerFactory) {
@@ -33,7 +32,7 @@ final class LoginCoordinator: Coordinator {
         }
     }
     
-    private func toProfile() {
+    func toProfile() {
         let profileModule = controllerFactory.makeProfile()
         profileModule.viewModel.login = login
         profileModule.viewModel.userService = userService

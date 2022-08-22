@@ -70,7 +70,6 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(type(of: self), #function)
         view.addSubviews(views: [sendWordButton, stackView, textField, label])
         view.disableAutoresizingMask(views: [sendWordButton, stackView, textField, label])
         setupConstraints()
