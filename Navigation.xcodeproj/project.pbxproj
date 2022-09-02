@@ -13,6 +13,7 @@
 		060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782BC250CE27A00A87020 /* LaunchScreen.storyboard */; };
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
+		0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
@@ -85,6 +86,7 @@
 		060782BF250CE27A00A87020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		060782C5250CEB0A00A87020 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */,
 				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				C33B2B4D26DAC51900CFD40F /* LoginCoordinator.swift */,
+				0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator.swift in Sources */,
+				0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */,
 				C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */,
 				C33B2B3E26CC599D00CFD40F /* NetworkManager.swift in Sources */,
 				C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */,

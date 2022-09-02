@@ -24,6 +24,7 @@ class MainCoordinator: Coordinator {
         tabBarController = TabBarController()
         let feed = configureFeed()
         let login = configureLogin()
+        let favorites = configureFavorites()
         feed.start()
         
         let realm = try? Realm()
@@ -38,9 +39,12 @@ class MainCoordinator: Coordinator {
             login.start()
         }
         
-        tabBarController.viewControllers = [feed.navigationController, login.navigationController]
+        favorites.start()
+        
+        tabBarController.viewControllers = [feed.navigationController, login.navigationController, favorites.navigationController]
         coordinators.append(feed)
         coordinators.append(login)
+        coordinators.append(favorites)
     }
     
     private func configureFeed() -> FeedCoordinator {
@@ -63,5 +67,15 @@ class MainCoordinator: Coordinator {
             selectedImage: nil)
         let loginCoordinator = LoginCoordinator(navigation: navigationController, factory: factory)
         return loginCoordinator
+    }
+    
+    private func configureFavorites() -> FavoritesCoordinator {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Favorites",
+            image: UIImage(systemName: "list.star"),
+            selectedImage: nil)
+        let favCoordinator = FavoritesCoordinator(navigation: navigationController)
+        return favCoordinator
     }
 }
