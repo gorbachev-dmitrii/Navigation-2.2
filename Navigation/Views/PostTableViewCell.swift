@@ -87,6 +87,12 @@ class PostTableViewCell: UITableViewCell {
     
     @objc private func doubleClickHandler() {
         print("cell clicked")
+        if let post = post {
+            CoreDataManager.shared.saveFavourite(post: post)
+        } else {
+            return
+        }
+            
     }
     
     func makeFilter() {

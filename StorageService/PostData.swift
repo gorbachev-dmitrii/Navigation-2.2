@@ -21,6 +21,14 @@ public struct PostData {
     public var image: String
     public var likes: Int
     public var views: Int
+    
+    public init(author: String, description: String, image: String, likes: Int, views: Int) {
+        self.author = author
+        self.description = description
+        self.image = image
+        self.likes = likes
+        self.views = views
+    }
 }
 
 public var posts = [PostData(author: "Netflix", description: "Netflix скоро заговорит по-русски! Будет доступен на русском языке!", image: "netflix", likes: 45, views: 230),
