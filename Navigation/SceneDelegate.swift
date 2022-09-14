@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         //NetworkManager.fetchData(config: randomConfig())
+        CoreDataManager.shared.removeFromCoreData()
     }
 
     private func randomConfig() -> AppConfiguration {

@@ -20,6 +20,7 @@ class PostTableViewCell: UITableViewCell {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
             }
+            
         }
     }
     

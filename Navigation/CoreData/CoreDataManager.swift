@@ -53,4 +53,45 @@ class CoreDataManager {
             }
         }
     }
+    func fetchFavourites() -> [PostData] {
+            
+            var fetchedPosts = [PostData]()
+            var favoritePosts = [PostEntity]()
+            
+            do {
+                favoritePosts = try context.fetch(fetchRequest)
+                for favorite in favoritePosts {
+                    let post = PostData(
+                        author: favorite.author ?? "",
+                        description: favorite.content ?? "",
+                        image: favorite.image!,
+                        likes: Int(favorite.likesCount),
+                        views: Int(favorite.viewsCount))
+                    fetchedPosts.append(post)
+                }
+            } catch let error {
+                print(error)
+            }
+            fetchRequest.predicate = nil
+            return fetchedPosts
+        }
+    
+    
+    public func removeFromCoreData() {
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PostEntity")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do {
+                try context.execute(deleteRequest)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+    }
+    
 }
+    
+
+                    
+                    
+                    
+                    
