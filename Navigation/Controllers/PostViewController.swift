@@ -39,6 +39,10 @@ class PostViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(tableView)
         setupConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         reloadCoreDataFilesByFetch()
     }
     
