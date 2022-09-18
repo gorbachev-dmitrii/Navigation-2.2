@@ -20,6 +20,7 @@ class PostTableViewCell: UITableViewCell {
                 likesLabel.text = "Likes: " + String(likes)
                 viewsLabel.text = "Views: " + String(views)
             }
+            
         }
     }
     
@@ -72,10 +73,27 @@ class PostTableViewCell: UITableViewCell {
             contentView.addSubview($0)
         })        
         setupConstraints()
+        setupGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupGestureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(doubleClickHandler))
+        gestureRecognizer.numberOfTapsRequired = 2
+        contentView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc private func doubleClickHandler() {
+        print("cell clicked")
+        if let post = post {
+            CoreDataManager.shared.saveFavourite(post: post)
+        } else {
+            return
+        }
+            
     }
     
     func makeFilter() {
@@ -86,7 +104,7 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
