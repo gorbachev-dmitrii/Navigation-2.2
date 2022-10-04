@@ -8,3 +8,5 @@
 
 "profileHeaderPlaceholder" = "Set your status";
 "profileHeaderSetStatusButton" = "Set status";
+"postCellLikes" = "Likes";
+"postCellViews" = "Views";

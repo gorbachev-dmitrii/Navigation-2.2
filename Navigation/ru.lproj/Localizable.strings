@@ -8,3 +8,5 @@
 
 "profileHeaderPlaceholder" = "Установите статус";
 "profileHeaderSetStatusButton" = "Установите статус";
+"postCellLikes" = "Лайки";
+"postCellViews" = "Просмотры";
