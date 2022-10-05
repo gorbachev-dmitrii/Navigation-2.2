@@ -10,3 +10,17 @@
 "profileHeaderSetStatusButton" = "Set status";
 "postCellLikes" = "Likes";
 "postCellViews" = "Views";
+"photosCellLabel" = "Photos";
+"postVCButton" = "To Info";
+"sendWordButton" = "Check word";
+"feedVCPlaceholder" = "Input field";
+"feedVCFirstButton" = "First button";
+"feedVCSecondButton" = "Second button";
+"loginInputPlaceholder" = "Email or phone";
+"passwordInputPlaceholder" = "Password";
+"loginButton" = "Login";
+"feedCheckLabel" = "Result check";
+"photosVCTitle" = "Photo Gallery";
+"tabBarFeed" = "Feed";
+"tabBarProfile" = "Profile";
+"tabBarFavorite" = "Favorites";

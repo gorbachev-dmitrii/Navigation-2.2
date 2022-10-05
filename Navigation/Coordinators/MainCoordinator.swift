@@ -51,7 +51,7 @@ class MainCoordinator: Coordinator {
         
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
-            title: "Feed",
+            title: NSLocalizedString("tabBarFeed", comment: ""),
             image: UIImage(systemName: "house.fill"),
             selectedImage: nil)
         let feedCoordinator = FeedCoordinator(navigation: navigationController, model: model)
@@ -62,7 +62,7 @@ class MainCoordinator: Coordinator {
 
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: NSLocalizedString("tabBarProfile", comment: ""),
             image: UIImage(systemName: "person.fill"),
             selectedImage: nil)
         let loginCoordinator = LoginCoordinator(navigation: navigationController, factory: factory)
@@ -72,7 +72,7 @@ class MainCoordinator: Coordinator {
     private func configureFavorites() -> FavoritesCoordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
-            title: "Favorites",
+            title: NSLocalizedString("tabBarFavorite", comment: ""),
             image: UIImage(systemName: "list.star"),
             selectedImage: nil)
         let favCoordinator = FavoritesCoordinator(navigation: navigationController)
