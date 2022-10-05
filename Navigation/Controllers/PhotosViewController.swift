@@ -33,7 +33,7 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.backgroundColor = .white
-        navigationItem.title = NSLocalizedString("photosVCTitle", comment: "")
+        navigationItem.title = "photosVCTitle".localized
         navigationController?.navigationBar.isHidden = false
         setupConstraints()
         // подписываем себя на изменения

@@ -41,7 +41,7 @@ class ProfileHeaderView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.placeholder = NSLocalizedString("profileHeaderPlaceholder", comment: "")
+        textField.placeholder = "profileHeaderPlaceholder".localized
         textField.textColor = .black
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
@@ -51,7 +51,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var setStatusButton: MyButton = {
-        let button = MyButton(title: NSLocalizedString("profileHeaderSetStatusButton", comment: ""), titleColor: .white) {
+        let button = MyButton(title: "profileHeaderSetStatusButton".localized, titleColor: .white) {
             self.changeText()
         }
         button.backgroundColor = .systemBlue

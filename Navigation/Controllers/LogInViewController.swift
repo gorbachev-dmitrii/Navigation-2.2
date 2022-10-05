@@ -24,14 +24,14 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginInput: MyTextField = {
-        let input = MyTextField(placeholder: NSLocalizedString("loginInputPlaceholder", comment: ""), textColor: .black, bckgColor: .systemGray6) { text in
+        let input = MyTextField(placeholder: "loginInputPlaceholder".localized, textColor: .black, bckgColor: .systemGray6) { text in
         }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
     private lazy var passwordInput: MyTextField = {
-        let input = MyTextField(placeholder: NSLocalizedString("passwordInputPlaceholder", comment: ""), textColor: .black, bckgColor: .systemGray6) { text in
+        let input = MyTextField(placeholder: "passwordInputPlaceholder".localized, textColor: .black, bckgColor: .systemGray6) { text in
             self.loginButton.isEnabled = true
         }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -40,7 +40,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginButton: MyButton = {
-        let button = MyButton(title: NSLocalizedString("loginButton", comment: ""), titleColor: .white) {
+        let button = MyButton(title: "loginButton".localized, titleColor: .white) {
             self.loginButtonTapped()
         }
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)

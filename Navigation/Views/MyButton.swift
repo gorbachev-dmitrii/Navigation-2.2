@@ -31,21 +31,21 @@ class MyButton: UIButton {
     }
     // нагло скопипасчено со StackOverflow)))
     override var isHighlighted: Bool {
-            get { return super.isHighlighted }
-            set {
-                guard newValue != isHighlighted else { return }
-
-                if newValue == true {
-                    titleLabel?.alpha = 0.25
-                } else {
-                    UIView.animate(withDuration: 0.25) {
-                        self.titleLabel?.alpha = 1
-                    }
-                    super.isHighlighted = newValue
+        get { return super.isHighlighted }
+        set {
+            guard newValue != isHighlighted else { return }
+            
+            if newValue == true {
+                titleLabel?.alpha = 0.25
+            } else {
+                UIView.animate(withDuration: 0.25) {
+                    self.titleLabel?.alpha = 1
                 }
-
                 super.isHighlighted = newValue
             }
+            
+            super.isHighlighted = newValue
         }
+    }
     
 }

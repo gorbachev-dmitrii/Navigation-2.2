@@ -17,8 +17,8 @@ class PostTableViewCell: UITableViewCell {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
             if let likes = post?.likes, let views = post?.views {
-                likesLabel.text = NSLocalizedString("postCellLikes", comment: "") + " " + String(likes)
-                viewsLabel.text = NSLocalizedString("postCellViews", comment: "") + " " + String(views)
+                likesLabel.text = "postCellLikes".localized + " " + String(likes)
+                viewsLabel.text = "postCellViews".localized + " " + String(views)
             }
             
         }
