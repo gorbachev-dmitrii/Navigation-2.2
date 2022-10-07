@@ -17,7 +17,7 @@ class PostViewController: UIViewController {
     private var favoritePosts = [PostData]()
     
     private lazy var button: MyButton = {
-        let btn = MyButton(title: "to InfoVC", titleColor: .black) {
+        let btn = MyButton(title: "postVCButton".localized, titleColor: .black) {
             self.goToInfo()
         }
         btn.translatesAutoresizingMaskIntoConstraints = false

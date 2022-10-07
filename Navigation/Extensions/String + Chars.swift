@@ -21,4 +21,9 @@ extension String {
         stringArray[index] = character
         self = String(stringArray)
     }
+    
+    var localized: String {
+        NSLocalizedString(self, comment: "")
+    }
+    
 }

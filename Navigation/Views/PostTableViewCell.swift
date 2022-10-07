@@ -17,8 +17,8 @@ class PostTableViewCell: UITableViewCell {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
             if let likes = post?.likes, let views = post?.views {
-                likesLabel.text = "Likes: " + String(likes)
-                viewsLabel.text = "Views: " + String(views)
+                likesLabel.text = "postCellLikes".localized + " " + String(likes)
+                viewsLabel.text = "postCellViews".localized + " " + String(views)
             }
             
         }
@@ -87,7 +87,6 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @objc private func doubleClickHandler() {
-        print("cell clicked")
         if let post = post {
             CoreDataManager.shared.saveFavourite(post: post)
         } else {

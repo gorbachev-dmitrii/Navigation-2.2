@@ -24,7 +24,7 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var sendWordButton: MyButton = {
-        let button = MyButton(title: "button", titleColor: .white) {
+        let button = MyButton(title: "sendWordButton".localized, titleColor: .white) {
             self.sendWord()
         }
         button.backgroundColor = .black
@@ -32,21 +32,21 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var button1: MyButton = {
-        let button = MyButton(title: "Button", titleColor: .systemBlue) { [weak self] in
+        let button = MyButton(title: "feedVCFirstButton".localized, titleColor: .systemBlue) { [weak self] in
             self?.onShowNext?()
         }
         return button
     }()
     
     private lazy var button2: MyButton = {
-        let button = MyButton(title: "Button", titleColor: .systemBlue) { [weak self] in
+        let button = MyButton(title: "feedVCSecondButton".localized, titleColor: .systemBlue) { [weak self] in
             self?.onShowNext?()
         }
         return button
     }()
     
     private lazy var textField: MyTextField = {
-        let field = MyTextField(placeholder: "input", textColor: .blue, bckgColor: .white) { (text) in
+        let field = MyTextField(placeholder: "feedVCPlaceholder".localized, textColor: .blue, bckgColor: .white) { (text) in
             print(text)
         }
         return field
@@ -55,7 +55,7 @@ final class FeedViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.backgroundColor = .brown
-        label.text = "Some text"
+        label.text = "feedCheckLabel".localized
         return label
     }()
     
