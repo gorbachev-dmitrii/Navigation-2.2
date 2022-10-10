@@ -17,6 +17,7 @@
 		0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409828C2192B0012429A /* CoreDataManager.swift */; };
 		0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409B28C2AD5B0012429A /* CoreDataPost.xcdatamodeld */; };
 		0D240A0828E9A642002160A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D240A0A28E9A642002160A1 /* Localizable.strings */; };
+		0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
@@ -95,6 +96,7 @@
 		0D240A0928E9A642002160A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D240A0B28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0D240A0C28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Custom Colors.swift"; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				C35A0A5825FD68AC00F0BB15 /* UIView + Support Functions.swift */,
 				C32CA0D326C476E900DCBAAE /* String + Chars.swift */,
+				0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				C391B34826E3C66600D7D7DA /* ProfileViewModel.swift in Sources */,
 				C33B2B4E26DAC51900CFD40F /* LoginCoordinator.swift in Sources */,
 				C3B65B37268799640058268C /* UserService.swift in Sources */,
+				0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */,
 				C3B65B532693A7050058268C /* MyButton.swift in Sources */,
 				C33B2B6126DD712A00CFD40F /* Task.swift in Sources */,
 				C3B65B44268B30230058268C /* LoginInspector.swift in Sources */,

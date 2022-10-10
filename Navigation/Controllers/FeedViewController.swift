@@ -24,10 +24,10 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var sendWordButton: MyButton = {
-        let button = MyButton(title: "sendWordButton".localized, titleColor: .white) {
+        let button = MyButton(title: "sendWordButton".localized, titleColor: UIColor.createColor(lightMode: .black, darkMode: .white)) {
             self.sendWord()
         }
-        button.backgroundColor = .black
+        button.backgroundColor = .cyan
         return button
     }()
     
@@ -46,7 +46,10 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var textField: MyTextField = {
-        let field = MyTextField(placeholder: "feedVCPlaceholder".localized, textColor: .blue, bckgColor: .white) { (text) in
+        let field = MyTextField(
+            placeholder: "feedVCPlaceholder".localized,
+            textColor: .blue,
+            bckgColor: UIColor.createColor(lightMode: .black, darkMode: .white)) { (text) in
             print(text)
         }
         return field
@@ -73,7 +76,7 @@ final class FeedViewController: UIViewController {
         view.addSubviews(views: [sendWordButton, stackView, textField, label])
         view.disableAutoresizingMask(views: [sendWordButton, stackView, textField, label])
         setupConstraints()
-        view.backgroundColor = .cyan
+        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
     }
     
     private func setupConstraints() {

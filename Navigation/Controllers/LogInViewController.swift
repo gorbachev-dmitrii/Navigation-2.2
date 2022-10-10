@@ -24,14 +24,20 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginInput: MyTextField = {
-        let input = MyTextField(placeholder: "loginInputPlaceholder".localized, textColor: .black, bckgColor: .systemGray6) { text in
+        let input = MyTextField(
+            placeholder: "loginInputPlaceholder".localized,
+            textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
+            bckgColor: .systemGray6) { text in
         }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
     private lazy var passwordInput: MyTextField = {
-        let input = MyTextField(placeholder: "passwordInputPlaceholder".localized, textColor: .black, bckgColor: .systemGray6) { text in
+        let input = MyTextField(
+            placeholder: "passwordInputPlaceholder".localized,
+            textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
+            bckgColor: .systemGray6) { text in
             self.loginButton.isEnabled = true
         }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -79,7 +85,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         view.addSubviews(views: [scrollView, generatePassword, activityView])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
