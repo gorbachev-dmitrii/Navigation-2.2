@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController {
 //        profileHeader.avatarImageView.image = UIImage(named: user.avatar)
         
         #if DEBUG
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         #elseif RELEASE
         view.backgroundColor = .green
         #endif
@@ -137,10 +137,10 @@ class ProfileViewController: UIViewController {
     // MARK: Constraints
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             blurView.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor),
             blurView.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor),

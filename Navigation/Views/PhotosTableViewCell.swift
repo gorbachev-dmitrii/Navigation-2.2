@@ -13,7 +13,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "photosCellLabel".localized
         return label
@@ -43,7 +43,7 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUIImage() {
+    private func setupUIImage() {
         let array = [firstImage, secondImage, thirdImage, fourthImage]
         for (index, image) in array.enumerated() {
             image.clipsToBounds = true

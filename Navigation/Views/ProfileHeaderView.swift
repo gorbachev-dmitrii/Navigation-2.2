@@ -26,7 +26,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     
@@ -34,7 +34,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .label
         return label
     }()
     let statusTextField: UITextField = {
@@ -42,7 +42,7 @@ class ProfileHeaderView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.placeholder = "profileHeaderPlaceholder".localized
-        textField.textColor = .black
+        textField.textColor = .label
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1

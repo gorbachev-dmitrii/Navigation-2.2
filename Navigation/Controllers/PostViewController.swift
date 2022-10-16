@@ -36,7 +36,7 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         view.addSubview(tableView)
         setupConstraints()
     }

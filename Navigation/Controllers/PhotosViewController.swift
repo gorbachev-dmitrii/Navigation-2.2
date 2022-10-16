@@ -32,7 +32,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         navigationItem.title = "photosVCTitle".localized
         navigationController?.navigationBar.isHidden = false
         setupConstraints()
