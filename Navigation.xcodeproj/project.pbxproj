@@ -18,6 +18,7 @@
 		0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409B28C2AD5B0012429A /* CoreDataPost.xcdatamodeld */; };
 		0D240A0828E9A642002160A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D240A0A28E9A642002160A1 /* Localizable.strings */; };
 		0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */; };
+		0D443827290584B200D5DCE6 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
@@ -97,6 +98,7 @@
 		0D240A0B28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0D240A0C28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Custom Colors.swift"; sourceTree = "<group>"; };
+		0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				C33B2B3D26CC599D00CFD40F /* NetworkManager.swift */,
 				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
 				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
+				0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				C3CE47992699EA6B0000BCC5 /* TabBarController.swift in Sources */,
 				0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */,
 				C3A694CF26BB2E7E00EAAFBA /* BrutForcer.swift in Sources */,
+				0D443827290584B200D5DCE6 /* LocalAuthorizationService.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */,
 				C391B34826E3C66600D7D7DA /* ProfileViewModel.swift in Sources */,

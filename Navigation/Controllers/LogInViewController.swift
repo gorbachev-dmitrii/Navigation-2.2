@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
             placeholder: "loginInputPlaceholder".localized,
             textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
             bckgColor: .systemGray6) { text in
-        }
+            }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
@@ -38,8 +38,8 @@ class LogInViewController: UIViewController {
             placeholder: "passwordInputPlaceholder".localized,
             textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
             bckgColor: .systemGray6) { text in
-            self.loginButton.isEnabled = true
-        }
+                self.loginButton.isEnabled = true
+            }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         input.isSecureTextEntry = true
         return input
@@ -79,6 +79,14 @@ class LogInViewController: UIViewController {
         return activityView
     }()
     
+    private lazy var biometricsLogin: MyButton = {
+        let btn = MyButton(title: "", titleColor: .black) {
+            self.biometricsAuthorizationButtonTapped()
+        }
+        btn.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
+        return btn
+    }()
+    
     var onShowNext: ((String, UserService) -> Void)?
     
     // MARK: Lifecycle
@@ -86,7 +94,7 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
-        view.addSubviews(views: [scrollView, generatePassword, activityView])
+        view.addSubviews(views: [scrollView, generatePassword, activityView, biometricsLogin])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
@@ -133,7 +141,6 @@ class LogInViewController: UIViewController {
             print("Error signing out: %@", signOutError)
         }
     }
-    
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
@@ -165,9 +172,16 @@ class LogInViewController: UIViewController {
 #endif
                 print(delegate.checkInputData(login: login, password: password))
             }
-            
         } else {
             print("smth is nil")
+        }
+    }
+    
+    private func biometricsAuthorizationButtonTapped() {
+        LocalAuthorizationService.shared.authorizeIfPossible { success in
+            if success {
+                print("success")
+            }
         }
     }
     
@@ -242,8 +256,10 @@ class LogInViewController: UIViewController {
             generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             activityView.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
-            activityView.topAnchor.constraint(equalTo: passwordInput.topAnchor)
+            activityView.topAnchor.constraint(equalTo: passwordInput.topAnchor),
             
+            biometricsLogin.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            biometricsLogin.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50)
         ])
     }
 }
