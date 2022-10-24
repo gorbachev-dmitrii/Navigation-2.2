@@ -19,6 +19,7 @@
 		0D240A0828E9A642002160A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D240A0A28E9A642002160A1 /* Localizable.strings */; };
 		0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */; };
 		0D443827290584B200D5DCE6 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */; };
+		0D4438292906E17300D5DCE6 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4438282906E17300D5DCE6 /* LocalNotificationsService.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
@@ -99,6 +100,7 @@
 		0D240A0C28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Custom Colors.swift"; sourceTree = "<group>"; };
 		0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
+		0D4438282906E17300D5DCE6 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
 				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
 				0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */,
+				0D4438282906E17300D5DCE6 /* LocalNotificationsService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				C3B65B34268759E70058268C /* User.swift in Sources */,
 				C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
+				0D4438292906E17300D5DCE6 /* LocalNotificationsService.swift in Sources */,
 				C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */,
 				C381F57726973F7700E24790 /* MyTextField.swift in Sources */,
 				C3F4434625B32622000FBEDA /* ProfileViewController.swift in Sources */,
