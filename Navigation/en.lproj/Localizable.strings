@@ -24,3 +24,4 @@
 "tabBarFeed" = "Feed";
 "tabBarProfile" = "Profile";
 "tabBarFavorite" = "Favorites";
+"getAuth" = "Need log in";
