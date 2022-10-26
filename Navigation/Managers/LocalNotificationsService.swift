@@ -16,6 +16,9 @@ final class LocalNotificationsService {
 
     func registeForLatestUpdatesIfPossible() {
         center.requestAuthorization(options: [.badge, .provisional, .sound]) { granted, error in
+            if granted {
+                self.scheduleNotification()
+            }
             if let error = error {
                 print(error.localizedDescription)
             }
