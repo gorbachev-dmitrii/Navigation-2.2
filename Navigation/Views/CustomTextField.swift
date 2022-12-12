@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTextField: UITextField {
+class CustomTextField: UITextField {
     
     var onText: ((String) -> Void)?
     

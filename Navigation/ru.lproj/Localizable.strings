@@ -21,7 +21,7 @@
 "loginButton" = "Войти";
 "feedCheckLabel" = "Проверка ввода";
 "photosVCTitle" = "Галерея";
-"tabBarFeed" = "Лента";
+"tabBarFeed" = "Главная";
 "tabBarProfile" = "Профиль";
-"tabBarFavorite" = "Избранное";
+"tabBarFavorite" = "Сохраненное";
 "getAuth" = "Авторизуйтесь";

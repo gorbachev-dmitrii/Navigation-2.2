@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit
 import StorageService
 import SnapKit
 
@@ -18,7 +17,7 @@ class PostViewController: UIViewController {
     
     private lazy var button: MyButton = {
         let btn = MyButton(title: "postVCButton".localized, titleColor: .black) {
-            self.goToInfo()
+    
         }
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -51,11 +50,6 @@ class PostViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private func goToInfo() {
-        let vc = InfoViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.leading.equalTo(self.view.safeAreaLayoutGuide)
@@ -74,7 +68,6 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
         cell.selectionStyle = .default
-        cell.makeFilter()
         cell.post = favoritePosts[indexPath.row]
         return cell
     }

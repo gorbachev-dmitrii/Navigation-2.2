@@ -95,13 +95,6 @@ class PostTableViewCell: UITableViewCell {
             
     }
     
-    func makeFilter() {
-        guard let imageName = post?.image else { return }
-        guard let source = UIImage(named: imageName) else { return }
-        ImageProcessor().processImage(sourceImage: source, filter: .noir) { (image) in
-            cellImageView.image = image
-        }
-    }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([

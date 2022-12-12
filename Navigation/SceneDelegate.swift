@@ -7,34 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private var appConfig: AppConfiguration?
-    private let mainCoordinator = MainCoordinator()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        
+        let mainCoordinator = MainCoordinator()
+        window?.overrideUserInterfaceStyle = .light
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         //NetworkManager.fetchData(config: randomConfig())
         //CoreDataManager.shared.removeFromCoreData()
-    }
-
-    private func randomConfig() -> AppConfiguration {
-        let randomInt = Int.random(in: 1...3)
-        switch randomInt {
-        case 1: appConfig = .first(URL(string: "https://swapi.dev/api/people/8")!)
-        case 2: appConfig = .second(URL(string: "https://swapi.dev/api/starships/3")!)
-        case 3: appConfig = .third(URL(string: "https://swapi.dev/api/planets/5")!)
-        default:
-            print("not found")
-        }
-        return appConfig!
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

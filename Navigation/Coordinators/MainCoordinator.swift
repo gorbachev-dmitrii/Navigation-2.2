@@ -41,7 +41,7 @@ class MainCoordinator: Coordinator {
         
         favorites.start()
         
-        tabBarController.viewControllers = [feed.navigationController, login.navigationController, favorites.navigationController]
+        tabBarController.viewControllers = [feed.navigationController, login.navigationController,  favorites.navigationController]
         coordinators.append(feed)
         coordinators.append(login)
         coordinators.append(favorites)

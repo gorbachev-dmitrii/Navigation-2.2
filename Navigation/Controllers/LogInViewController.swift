@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class LogInViewController: UIViewController {
     
@@ -23,20 +24,20 @@ class LogInViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var loginInput: MyTextField = {
-        let input = MyTextField(
+    private lazy var loginInput: CustomTextField = {
+        let input = CustomTextField(
             placeholder: "loginInputPlaceholder".localized,
-            textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
+            textColor: .black,
             bckgColor: .systemGray6) { text in
             }
         input.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return input
     }()
     
-    private lazy var passwordInput: MyTextField = {
-        let input = MyTextField(
+    private lazy var passwordInput: CustomTextField = {
+        let input = CustomTextField(
             placeholder: "passwordInputPlaceholder".localized,
-            textColor: UIColor.createColor(lightMode: .black, darkMode: .white),
+            textColor: .black,
             bckgColor: .systemGray6) { text in
                 self.loginButton.isEnabled = true
             }
@@ -53,15 +54,6 @@ class LogInViewController: UIViewController {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.isEnabled = false
-        return button
-    }()
-    
-    private lazy var generatePassword: MyButton = {
-        let button = MyButton(title: "Generate", titleColor: .white) {
-            self.onGenerateTap()
-        }
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .red
         return button
     }()
     
@@ -93,8 +85,8 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
-        view.addSubviews(views: [scrollView, generatePassword, activityView, biometricsLogin])
+        view.backgroundColor = .white
+        view.addSubviews(views: [scrollView, activityView, biometricsLogin])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
@@ -159,18 +151,15 @@ class LogInViewController: UIViewController {
     
     private func loginButtonTapped() {
         
-        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+        if let login = loginInput.text, let password = passwordInput.text {
+            print("not else")
             if login.isEmpty || password.isEmpty {
                 createLoginAlert()
             } else {
-#if DEBUG
                 let testUser = TestUserService()
                 self.onShowNext?(login, testUser)
-#elseif RELEASE
-                let currentUser = CurrentUserService()
-                self.onShowNext?(login, currentUser)
-#endif
-                print(delegate.checkInputData(login: login, password: password))
+                print("a;a;a;;a")
+                //print(delegate.checkInputData(login: login, password: password))
             }
         } else {
             print("smth is nil")
@@ -183,29 +172,6 @@ class LogInViewController: UIViewController {
                 print("success")
             }
         }
-    }
-    
-    private func onGenerateTap() {
-        activityView.startAnimating()
-        let brut = BrutForcer()
-        let randowPassword = generatePass(length: 3)
-        print(randowPassword)
-        let queue = OperationQueue()
-        queue.addOperation {
-            let pass = brut.bruteForce(passwordToUnlock: randowPassword)
-            OperationQueue.main.addOperation {
-                self.activityView.stopAnimating()
-                self.passwordInput.isSecureTextEntry = false
-                self.passwordInput.text = pass
-            }
-        }
-    }
-    
-    private func generatePass(length: Int) -> String {
-        let string = String((0..<length).map{ _ in
-            String().printable.randomElement()!
-        })
-        return string
     }
     
     private func createLoginAlert() {
@@ -251,9 +217,6 @@ class LogInViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 16),
             loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            
-            generatePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            generatePassword.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             activityView.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
             activityView.topAnchor.constraint(equalTo: passwordInput.topAnchor),
