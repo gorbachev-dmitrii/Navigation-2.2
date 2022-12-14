@@ -6,22 +6,42 @@
   Copyright © 2022 Artem Novichkov. All rights reserved.
 */
 
-"profileHeaderPlaceholder" = "Установите статус";
-"profileHeaderSetStatusButton" = "Установите статус";
-"postCellLikes" = "Лайки";
-"postCellViews" = "Просмотры";
-"photosCellLabel" = "Фото";
-"postVCButton" = "К Инфо";
-"sendWordButton" = "Проверить слово";
-"feedVCPlaceholder" = "Введи слово";
-"feedVCFirstButton" = "Кнопка 1";
-"feedVCSecondButton" = "Кнопка 2";
-"loginInputPlaceholder" = "Введи Email или телефон";
-"passwordInputPlaceholder" = "Введи пароль";
-"loginButton" = "Войти";
-"feedCheckLabel" = "Проверка ввода";
-"photosVCTitle" = "Галерея";
+// TabBarItems
+
 "tabBarFeed" = "Главная";
 "tabBarProfile" = "Профиль";
 "tabBarFavorite" = "Сохраненное";
+
+// EntryViewController
+"registerButton" = "Зарегистрироваться";
+"haveAccButton" = "Уже есть аккаунт";
+
+
+// SignInViewController
+
+"signInButton" = "Подтвердить";
+"loginInputPlaceholder" = "Введи Email или телефон";
+"passwordInputPlaceholder" = "Введи пароль";
+"helloText" = "С возвращением";
+"hintText" = "Введите номер телефона для входа в приложение";
+
+// ...
+
+"loginButton" = "Войти";
+"postVCButton" = "К Инфо";
+"feedVCFirstButton" = "Кнопка 1";
+"feedVCSecondButton" = "Кнопка 2";
+
+
+"profileHeaderPlaceholder" = "Установите статус";
+"postCellLikes" = "Лайки";
+"postCellViews" = "Просмотры";
+"photosCellLabel" = "Фото";
+
+"sendWordButton" = "Проверить слово";
+"feedVCPlaceholder" = "Введи слово";
+
+"feedCheckLabel" = "Проверка ввода";
+"photosVCTitle" = "Галерея";
+
 "getAuth" = "Авторизуйтесь";

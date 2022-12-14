@@ -21,36 +21,28 @@ final class EntryViewController: UIViewController {
     }()
     
     private lazy var registerButton: CustomButton = {
-        let button = CustomButton(title: "Reg", titleColor: .white) {
+        let button = CustomButton(title: "registerButton".localized.uppercased(), titleColor: .white) {
             print("tapped")
         }
-        button.backgroundColor = .black
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.backgroundColor = UIColor(named: "CustomBlack")
         button.layer.cornerRadius = 10
         return button
     }()
     
     private lazy var haveAccountButton: CustomButton = {
-        let button = CustomButton(title: "Est acc", titleColor: .black) {
-            print("tapped2")
+        let button = CustomButton(title: "haveAccButton".localized, titleColor: .black) {
             self.loginButtonTapped()
         }
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return button
     }()
-    
-    private let label: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .brown
-        label.text = "feedCheckLabel".localized
-        return label
-    }()
 
-    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
-        view.addSubview(label)
+        view.backgroundColor = .white
         view.addSubviews(views: [registerButton, haveAccountButton, logoView])
         setupConstraints()
     }
@@ -72,11 +64,6 @@ final class EntryViewController: UIViewController {
             make.leading.equalTo(128)
             make.trailing.equalTo(-128)
             make.bottom.equalTo(-150)
-        }
-        
-        label.snp.makeConstraints { make in
-            make.centerX.equalTo(view.center.x)
-            make.centerY.equalTo(view.center.y)
         }
         
         logoView.snp.makeConstraints { make in

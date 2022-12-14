@@ -15,6 +15,7 @@
 		0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */; };
 		0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409828C2192B0012429A /* CoreDataManager.swift */; };
 		0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409B28C2AD5B0012429A /* CoreDataPost.xcdatamodeld */; };
+		0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BEA7E294A74FD0061699F /* SignInViewController.swift */; };
 		0D240A0828E9A642002160A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D240A0A28E9A642002160A1 /* Localizable.strings */; };
 		0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */; };
 		0D443827290584B200D5DCE6 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D443826290584B200D5DCE6 /* LocalAuthorizationService.swift */; };
@@ -88,6 +89,7 @@
 		0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		0D07409828C2192B0012429A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0D07409C28C2AD5B0012429A /* CoreDataPost.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPost.xcdatamodel; sourceTree = "<group>"; };
+		0D1BEA7E294A74FD0061699F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0D240A0928E9A642002160A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D240A0B28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0D240A0C28E9A653002160A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
 				C3CE47982699EA6B0000BCC5 /* TabBarController.swift */,
 				0D4438B32949300A00D5DCE6 /* EntryViewController.swift */,
+				0D1BEA7E294A74FD0061699F /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
+				0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator.swift in Sources */,
 				0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */,

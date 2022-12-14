@@ -6,6 +6,30 @@
   Copyright © 2022 Artem Novichkov. All rights reserved.
 */
 
+// TabBarItems
+
+"tabBarFeed" = "Feed";
+"tabBarProfile" = "Profile";
+"tabBarFavorite" = "Favorites";
+
+// EntryViewController
+
+"registerButton" = "Register";
+"haveAccButton" = "Already have an account";
+
+// SignInViewController
+
+"signInButton" = "Confirm";
+"loginInputPlaceholder" = "Email or phone";
+"passwordInputPlaceholder" = "Password";
+"helloText" = "Welcome back";
+"hintText" = "Type in your mobile number";
+
+
+
+// ...
+
+
 "profileHeaderPlaceholder" = "Set your status";
 "profileHeaderSetStatusButton" = "Set status";
 "postCellLikes" = "Likes";
@@ -16,12 +40,9 @@
 "feedVCPlaceholder" = "Input field";
 "feedVCFirstButton" = "First button";
 "feedVCSecondButton" = "Second button";
-"loginInputPlaceholder" = "Email or phone";
-"passwordInputPlaceholder" = "Password";
+
 "loginButton" = "Login";
 "feedCheckLabel" = "Result check";
 "photosVCTitle" = "Photo Gallery";
-"tabBarFeed" = "Feed";
-"tabBarProfile" = "Profile";
-"tabBarFavorite" = "Favorites";
+
 "getAuth" = "Need log in";
