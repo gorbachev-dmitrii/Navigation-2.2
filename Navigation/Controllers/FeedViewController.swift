@@ -23,23 +23,23 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var sendWordButton: MyButton = {
-        let button = MyButton(title: "sendWordButton".localized, titleColor: UIColor.createColor(lightMode: .black, darkMode: .white)) {
+    private lazy var sendWordButton: CustomButton = {
+        let button = CustomButton(title: "sendWordButton".localized, titleColor: UIColor.createColor(lightMode: .black, darkMode: .white)) {
             self.sendWord()
         }
         button.backgroundColor = .cyan
         return button
     }()
     
-    private lazy var button1: MyButton = {
-        let button = MyButton(title: "feedVCFirstButton".localized, titleColor: .systemBlue) { [weak self] in
+    private lazy var button1: CustomButton = {
+        let button = CustomButton(title: "feedVCFirstButton".localized, titleColor: .systemBlue) { [weak self] in
             self?.onShowNext?()
         }
         return button
     }()
     
-    private lazy var button2: MyButton = {
-        let button = MyButton(title: "feedVCSecondButton".localized, titleColor: .systemBlue) { [weak self] in
+    private lazy var button2: CustomButton = {
+        let button = CustomButton(title: "feedVCSecondButton".localized, titleColor: .systemBlue) { [weak self] in
             self?.onShowNext?()
         }
         return button

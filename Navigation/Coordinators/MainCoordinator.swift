@@ -36,7 +36,8 @@ class MainCoordinator: Coordinator {
         if result.count != 0 {
             login.toProfile()
         } else {
-            login.start()
+            print("net users")
+            login.startNew()
         }
         
         favorites.start()

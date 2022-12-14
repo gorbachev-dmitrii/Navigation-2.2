@@ -6,10 +6,9 @@
 //  Copyright © 2021 Artem Novichkov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class MyButton: UIButton {
+class CustomButton: UIButton {
     
     var onTap: (() -> Void)?
     

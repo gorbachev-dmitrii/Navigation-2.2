@@ -7,16 +7,13 @@
 //
 
 import UIKit
-import Firebase
 import SnapKit
 
 class LogInViewController: UIViewController {
     
     //MARK: Properties
-    weak var inspectorDelegate: LoginViewControllerDelegate?
+    var inspectorDelegate: LoginViewControllerDelegate?
     weak var coordinator: LoginCoordinator?
-    
-    var handle: AuthStateDidChangeListenerHandle?
     
     private let logoView: UIImageView = {
         let imageView = UIImageView()
@@ -46,8 +43,8 @@ class LogInViewController: UIViewController {
         return input
     }()
     
-    private lazy var loginButton: MyButton = {
-        let button = MyButton(title: "loginButton".localized, titleColor: .white) {
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton(title: "loginButton".localized, titleColor: .white) {
             self.loginButtonTapped()
         }
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
@@ -66,13 +63,8 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
-    private let activityView: UIActivityIndicatorView = {
-        let activityView = UIActivityIndicatorView()
-        return activityView
-    }()
-    
-    private lazy var biometricsLogin: MyButton = {
-        let btn = MyButton(title: "", titleColor: .black) {
+    private lazy var biometricsLogin: CustomButton = {
+        let btn = CustomButton(title: "", titleColor: .black) {
             self.biometricsAuthorizationButtonTapped()
         }
         btn.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
@@ -86,10 +78,10 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
-        view.addSubviews(views: [scrollView, activityView, biometricsLogin])
+        view.addSubviews(views: [scrollView, biometricsLogin])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
-        view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput, activityView])
+        view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput])
         setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
     }
@@ -99,10 +91,6 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        //        handle = Auth.auth().addStateDidChangeListener { auth, user in
-        //            print(auth.debugDescription)
-        //            print("current user is \(String(describing: user?.email))")
-        //        }
         
     }
     
@@ -110,11 +98,6 @@ class LogInViewController: UIViewController {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     // MARK: Keyboard actions
@@ -125,14 +108,6 @@ class LogInViewController: UIViewController {
         }
     }
     
-    private func signOut() {
-        do {
-            try Auth.auth().signOut()
-            print("signed out")
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-    }
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
@@ -150,16 +125,14 @@ class LogInViewController: UIViewController {
     }
     
     private func loginButtonTapped() {
-        
-        if let login = loginInput.text, let password = passwordInput.text {
-            print("not else")
-            if login.isEmpty || password.isEmpty {
-                createLoginAlert()
-            } else {
+        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+            if !login.isEmpty || !password.isEmpty {
                 let testUser = TestUserService()
                 self.onShowNext?(login, testUser)
                 print("a;a;a;;a")
-                //print(delegate.checkInputData(login: login, password: password))
+                print(delegate.checkInputData(login: login, password: password))
+            } else {
+                createLoginAlert()
             }
         } else {
             print("smth is nil")
@@ -186,6 +159,9 @@ class LogInViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             // scrollView
+//            scrollView.snp.makeConstraints({ make in
+//                <#code#>
+//            })
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -217,9 +193,6 @@ class LogInViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 16),
             loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            
-            activityView.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
-            activityView.topAnchor.constraint(equalTo: passwordInput.topAnchor),
             
             biometricsLogin.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             biometricsLogin.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50)

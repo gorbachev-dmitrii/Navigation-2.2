@@ -50,8 +50,8 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
-    private lazy var setStatusButton: MyButton = {
-        let button = MyButton(title: "profileHeaderSetStatusButton".localized, titleColor: .white) {
+    private lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(title: "profileHeaderSetStatusButton".localized, titleColor: .white) {
             self.changeText()
         }
         button.backgroundColor = .systemBlue

@@ -23,13 +23,28 @@ final class LoginCoordinator: Coordinator {
     
     func start() {
         let loginController = LogInViewController()
-        loginController.inspectorDelegate = loginFactory.createInspector()
+        loginController.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(loginController, animated: true)
         loginController.onShowNext = { [weak self] in
             self?.login = $0
             self?.userService = $1
             self?.toProfile()
         }
+    }
+    
+    func startNew() {
+        let entryController = EntryViewController()
+        navigationController.pushViewController(entryController, animated: true)
+        entryController.onShowNext = { [weak self] in
+            print("coord have got msg")
+            self?.toProfile()
+        }
+    }
+    
+    func toLoginController() {
+        let loginController = LogInViewController()
+        loginController.inspectorDelegate = LoginInspector()
+        navigationController.pushViewController(loginController, animated: true)
     }
     
     func toProfile() {
