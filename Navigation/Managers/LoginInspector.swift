@@ -16,31 +16,6 @@ class LoginInspector: LoginViewControllerDelegate {
         let result = compareRealmUsers(email: login, password: password)
         return result
     }
-// MARK: Firebase
-    func createUser(log: String, pass: String ) {
-        Auth.auth().createUser(withEmail: log, password: pass) { authResult, error in
-            if let user = authResult?.user, error == nil {
-                print("\(user.email!) created")
-            } else {
-                print(error.debugDescription)
-                return
-            }
-        }
-    }
-    
-    func signIn(log: String, pass: String) {
-        Auth.auth().signIn(withEmail: log, password: pass) { authResult, error in
-            if authResult?.user == nil {
-                print("fail, try to create user")
-                self.createUser(log: log, pass: pass)
-            } else {
-                print("success")
-            }
-            print(authResult.debugDescription)
-            print("-------------")
-            print(error.debugDescription)
-        }
-    }
     
 // MARK: Realm
     private func saveRealmUser(email: String, password: String) {

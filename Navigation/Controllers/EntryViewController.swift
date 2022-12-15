@@ -12,7 +12,7 @@ import SnapKit
 final class EntryViewController: UIViewController {
     //MARK: Properties
     
-    var onShowNext: (() -> Void)?
+    var onShowNext: ((_: String) -> Void)?
 
     private let logoView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +22,7 @@ final class EntryViewController: UIViewController {
     
     private lazy var registerButton: CustomButton = {
         let button = CustomButton(title: "registerButton".localized.uppercased(), titleColor: .white) {
-            print("tapped")
+            self.registerButtonTapped()
         }
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor = UIColor(named: "CustomBlack")
@@ -48,7 +48,11 @@ final class EntryViewController: UIViewController {
     }
     
     private func loginButtonTapped() {
-        self.onShowNext?()
+        self.onShowNext?("signIn")
+    }
+    
+    private func registerButtonTapped() {
+        self.onShowNext?("signUp")
     }
     
     //MARK: Constraints

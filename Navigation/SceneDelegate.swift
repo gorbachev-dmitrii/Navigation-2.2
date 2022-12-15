@@ -19,10 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let mainCoordinator = MainCoordinator()
         window?.overrideUserInterfaceStyle = .light
-        let realm = try! Realm()
-        try! realm.write {
-            realm.deleteAll()
-        }
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         //CoreDataManager.shared.removeFromCoreData()

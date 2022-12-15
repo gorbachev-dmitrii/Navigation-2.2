@@ -25,10 +25,11 @@
 "helloText" = "Welcome back";
 "hintText" = "Type in your mobile number";
 
+// SignUpViewController
 
-
-// ...
-
+"registerText" = "Register";
+"tipText" = "Provided creditentials will be used to Sign In";
+"termsText" = "By pressing you accept the terms of use";
 
 "profileHeaderPlaceholder" = "Set your status";
 "profileHeaderSetStatusButton" = "Set status";

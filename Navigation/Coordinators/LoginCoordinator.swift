@@ -35,9 +35,12 @@ final class LoginCoordinator: Coordinator {
     func startNew() {
         let entryController = EntryViewController()
         navigationController.pushViewController(entryController, animated: true)
-        entryController.onShowNext = {
-            print("coord have got msg")
-            self.toSignInVC()
+        entryController.onShowNext = { sender in
+            switch sender {
+            case "signIn": self.toSignInVC()
+            case "signUp": self.toSignUpVC()
+            default: break
+            }
         }
     }
     
@@ -45,8 +48,16 @@ final class LoginCoordinator: Coordinator {
         let signInVC = SignInViewController()
         navigationController.pushViewController(signInVC, animated: true)
         signInVC.onShowNext = {
-            print("coord have got msg from signin")
             self.toProfile()
+        }
+    }
+    
+    func toSignUpVC() {
+        let signUpVC = SignUpViewController()
+        navigationController.pushViewController(signUpVC, animated: true)
+        signUpVC.onShowNext = {
+            print("coord have got msg from signin")
+            //self.toProfile()
         }
     }
     

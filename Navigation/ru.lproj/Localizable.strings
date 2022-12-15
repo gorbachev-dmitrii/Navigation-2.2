@@ -20,12 +20,17 @@
 // SignInViewController
 
 "signInButton" = "Подтвердить";
-"loginInputPlaceholder" = "Введи Email или телефон";
+"loginInputPlaceholder" = "Введи Email";
 "passwordInputPlaceholder" = "Введи пароль";
 "helloText" = "С возвращением";
 "hintText" = "Введите номер телефона для входа в приложение";
 
-// ...
+// SignUpViewController
+
+"registerText" = "Зарегистрироваться";
+"tipText" = "Введенные данные будут использованы для авторизации";
+"termsText" = "Нажимая кнопку 'Подтвердить' Вы принимаете пользовательское Соглашение и политику конфедициальности ";
+
 
 "loginButton" = "Войти";
 "postVCButton" = "К Инфо";

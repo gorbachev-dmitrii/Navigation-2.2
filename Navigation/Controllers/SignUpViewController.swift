@@ -1,5 +1,5 @@
 //
-//  SignInViewController.swift
+//  RegistrationViewController.swift
 //  Navigation
 //
 //  Created by Dima Gorbachev on 15.12.2022.
@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SnapKit
 
-final class SignInViewController: UIViewController {
-    //MARK: Properties
+final class SignUpViewController: UIViewController {
+    
+    // MARK: Properties
     
     var onShowNext: (() -> Void)?
-    var inspectorDelegate: LoginViewControllerDelegate?
-
+    
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
             placeholder: "loginInputPlaceholder".localized,
@@ -29,17 +30,16 @@ final class SignInViewController: UIViewController {
             placeholder: "passwordInputPlaceholder".localized,
             textColor: UIColor(named: "CustomGray")!,
             bckgColor: .white) { text in
-                self.signInButton.isEnabled = true
-                self.signInButton.alpha = 1
+                //self.signInButton.isEnabled = true
             }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         input.isSecureTextEntry = true
         return input
     }()
     
-    private lazy var signInButton: CustomButton = {
+    private lazy var registerButton: CustomButton = {
         let button = CustomButton(title: "signInButton".localized.uppercased(), titleColor: .white) {
-            self.signInButtonTapped()
+            self.registerButtonTapped()
         }
         button.backgroundColor = UIColor(named: "CustomBlack")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -49,57 +49,47 @@ final class SignInViewController: UIViewController {
         return button
     }()
     
-    private lazy var helloLabel = {
+    private lazy var registerLabel = {
         let label = UILabel()
-        label.text = "helloText".localized
-        label.textColor = UIColor(named: "CustomOrange")
+        label.text = "registerText".localized.uppercased()
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.textColor = UIColor(named: "CustomBlack")
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
-    private lazy var hintLabel = {
+    private lazy var tipLabel = {
         let label = UILabel()
-        label.text = "hintText".localized
+        label.text = "tipText".localized
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.textColor = UIColor(named: "CustomGray")
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    private lazy var acceptTermsLabel = {
+        let label = UILabel()
+        label.text = "termsText".localized
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = UIColor(named: "CustomGray")
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     // MARK: Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubviews(views: [loginInput, passwordInput, signInButton, helloLabel, hintLabel])
-        setupConstraints()
+        view.addSubviews(views: [loginInput, passwordInput, registerButton, tipLabel, registerLabel, acceptTermsLabel])
         setupTextField(textFields: [loginInput, passwordInput])
+        setupConstraints()
     }
     
-    private func signInButtonTapped() {
-        
-        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
-            if !login.isEmpty || !password.isEmpty {
-                print(delegate.checkInputData(login: login, password: password))
-            } else {
-                createLoginAlert()
-            }
-        } else {
-            return
-        }
-        
-        
+    private func registerButtonTapped() {
         self.onShowNext?()
-    }
-    
-    private func createLoginAlert() {
-        let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
     
     private func setupConstraints() {
@@ -113,26 +103,32 @@ final class SignInViewController: UIViewController {
         passwordInput.snp.makeConstraints { make in
             make.leading.equalTo(57)
             make.trailing.equalTo(-57)
-            make.bottom.equalTo(signInButton.snp.top).inset(-158)
+            make.bottom.equalTo(registerButton.snp.top).inset(-63)
             make.height.equalTo(48)
         }
         
-        signInButton.snp.makeConstraints { make in
-            make.leading.equalTo(93)
-            make.trailing.equalTo(-93)
-            make.bottom.equalTo(-245)
+        registerLabel.snp.makeConstraints { make in
+            make.leading.equalTo(76)
+            make.trailing.equalTo(-76)
+            make.top.equalTo(148)
         }
         
-        hintLabel.snp.makeConstraints { make in
-            make.leading.equalTo(98)
-            make.trailing.equalTo(-98)
-            make.bottom.equalTo(loginInput.snp.top).inset(-12)
+        tipLabel.snp.makeConstraints { make in
+            make.leading.equalTo(80)
+            make.trailing.equalTo(-80)
+            make.top.equalTo(269)
         }
         
-        helloLabel.snp.makeConstraints { make in
-            make.leading.equalTo(109)
-            make.trailing.equalTo(-109)
-            make.bottom.equalTo(hintLabel.snp.top).inset(-26)
+        registerButton.snp.makeConstraints { make in
+            make.leading.equalTo(56)
+            make.trailing.equalTo(-56)
+            make.bottom.equalTo(-271)
+        }
+        
+        acceptTermsLabel.snp.makeConstraints { make in
+            make.leading.equalTo(56)
+            make.trailing.equalTo(-56)
+            make.top.equalTo(registerButton.snp.bottom).inset(-20)
         }
     }
     
