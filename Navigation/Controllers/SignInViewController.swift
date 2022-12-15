@@ -13,7 +13,7 @@ final class SignInViewController: UIViewController {
     
     var onShowNext: (() -> Void)?
     var inspectorDelegate: LoginViewControllerDelegate?
-
+    
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
             placeholder: "loginInputPlaceholder".localized,
@@ -82,7 +82,9 @@ final class SignInViewController: UIViewController {
         
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
-                print(delegate.checkInputData(login: login, password: password))
+                if delegate.checkInputData(login: login, password: password) == "Success" {
+                    self.onShowNext?()
+                } else { print("fail") }
             } else {
                 createLoginAlert()
             }
@@ -90,8 +92,6 @@ final class SignInViewController: UIViewController {
             return
         }
         
-        
-        self.onShowNext?()
     }
     
     private func createLoginAlert() {

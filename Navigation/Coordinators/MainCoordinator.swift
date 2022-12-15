@@ -22,10 +22,10 @@ class MainCoordinator: Coordinator {
     
     init() {
         tabBarController = UITabBarController()
-        let feed = configureFeed()
-        let login = configureLogin()
+        let feedCoordinator = configureFeed()
+        let loginCoordinator = configureLogin()
         let favorites = configureFavorites()
-        feed.start()
+        feedCoordinator.start()
         
         let realm = try? Realm()
         let result : [RealmUser] = realm?.objects(AuthModel.self).compactMap {
@@ -34,16 +34,16 @@ class MainCoordinator: Coordinator {
         } ?? []
         
         if result.count != 0 {
-            login.toProfile()
+            loginCoordinator.toProfile()
         } else {
-            login.startNew()
+            loginCoordinator.start()
         }
         
         favorites.start()
         
-        tabBarController.viewControllers = [feed.navigationController, login.navigationController,  favorites.navigationController]
-        coordinators.append(feed)
-        coordinators.append(login)
+        tabBarController.viewControllers = [feedCoordinator.navigationController, loginCoordinator.navigationController,  favorites.navigationController]
+        coordinators.append(feedCoordinator)
+        coordinators.append(loginCoordinator)
         coordinators.append(favorites)
     }
     

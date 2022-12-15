@@ -21,17 +21,6 @@ final class LoginCoordinator: Coordinator {
         self.controllerFactory = factory
     }
     
-    func start() {
-        let loginController = LogInViewController()
-        loginController.inspectorDelegate = LoginInspector()
-        navigationController.pushViewController(loginController, animated: true)
-        loginController.onShowNext = { [weak self] in
-            self?.login = $0
-            self?.userService = $1
-            self?.toProfile()
-        }
-    }
-    
     func startNew() {
         let entryController = EntryViewController()
         navigationController.pushViewController(entryController, animated: true)
@@ -46,6 +35,7 @@ final class LoginCoordinator: Coordinator {
     
     func toSignInVC() {
         let signInVC = SignInViewController()
+        signInVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signInVC, animated: true)
         signInVC.onShowNext = {
             self.toProfile()
@@ -61,24 +51,13 @@ final class LoginCoordinator: Coordinator {
         }
     }
     
-    func toLoginController() {
-        let loginController = LogInViewController()
-        loginController.inspectorDelegate = LoginInspector()
- 
-    }
-    
     func toProfile() {
         let profileModule = controllerFactory.makeProfile()
         profileModule.viewModel.login = login
         profileModule.viewModel.userService = userService
         profileModule.viewModel.onShowNext = { [weak self] in
-            self?.toPhotos()
+
         }
         navigationController.pushViewController(profileModule.controller, animated: true)
-    }
-    
-    private func toPhotos() {
-        let photosController = controllerFactory.makePhotos()
-        navigationController.pushViewController(photosController, animated: true)
     }
 }
