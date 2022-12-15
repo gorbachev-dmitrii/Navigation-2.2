@@ -63,14 +63,6 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var biometricsLogin: CustomButton = {
-        let btn = CustomButton(title: "", titleColor: .black) {
-            self.biometricsAuthorizationButtonTapped()
-        }
-        btn.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
-        return btn
-    }()
-    
     var onShowNext: ((String, UserService) -> Void)?
     
     // MARK: Lifecycle
@@ -78,7 +70,7 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
-        view.addSubviews(views: [scrollView, biometricsLogin])
+        view.addSubviews(views: [scrollView])
         scrollView.addSubview(containerView)
         containerView.addSubviews(views: [logoView, loginInput, passwordInput, loginButton])
         view.disableAutoresizingMask(views: [containerView, scrollView, logoView, loginInput, passwordInput])
@@ -139,14 +131,6 @@ class LogInViewController: UIViewController {
         }
     }
     
-    private func biometricsAuthorizationButtonTapped() {
-        LocalAuthorizationService.shared.authorizeIfPossible { success in
-            if success {
-                print("success")
-            }
-        }
-    }
-    
     private func createLoginAlert() {
         let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
@@ -192,10 +176,7 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: loginInput.leadingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 16),
-            loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            
-            biometricsLogin.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            biometricsLogin.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50)
+            loginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
     }
 }

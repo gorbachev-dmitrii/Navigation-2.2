@@ -24,12 +24,21 @@
 "passwordInputPlaceholder" = "Password";
 "helloText" = "Welcome back";
 "hintText" = "Type in your mobile number";
+"alertTitle" = "Sign in error";
+"alertMessage" = "Login or password is incorrect";
+"alertAction" = "Try again";
 
 // SignUpViewController
 
 "registerText" = "Register";
 "tipText" = "Provided creditentials will be used to Sign In";
 "termsText" = "By pressing you accept the terms of use";
+
+// SavedPostsViewController
+
+"postAlertTitle" = "Your saved posts list is empty";
+"postAlertMessage" = "Save post via double tap";
+"postAlertAction" = "All right";
 
 "profileHeaderPlaceholder" = "Set your status";
 "profileHeaderSetStatusButton" = "Set status";

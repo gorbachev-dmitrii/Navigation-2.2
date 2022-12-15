@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        }
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
-        //CoreDataManager.shared.removeFromCoreData()
+        CoreDataManager.shared.removeFromCoreData()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

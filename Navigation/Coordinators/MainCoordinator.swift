@@ -16,12 +16,12 @@ protocol Coordinator: AnyObject {
 class MainCoordinator: Coordinator {
     
     var coordinators: [Coordinator] = []
-    let tabBarController: TabBarController
+    let tabBarController: UITabBarController
     private let model = MyModel()
     private let factory = ControllerFactory()
     
     init() {
-        tabBarController = TabBarController()
+        tabBarController = UITabBarController()
         let feed = configureFeed()
         let login = configureLogin()
         let favorites = configureFavorites()
@@ -36,7 +36,6 @@ class MainCoordinator: Coordinator {
         if result.count != 0 {
             login.toProfile()
         } else {
-            print("net users")
             login.startNew()
         }
         
@@ -64,7 +63,7 @@ class MainCoordinator: Coordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
             title: "tabBarProfile".localized,
-            image: UIImage(systemName: "person.fill"),
+            image: UIImage(systemName: "person.crop.circle"),
             selectedImage: nil)
         let loginCoordinator = LoginCoordinator(navigation: navigationController, factory: factory)
         return loginCoordinator
@@ -74,7 +73,7 @@ class MainCoordinator: Coordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
             title: "tabBarFavorite".localized,
-            image: UIImage(systemName: "list.star"),
+            image: UIImage(systemName: "heart"),
             selectedImage: nil)
         let favCoordinator = FavoritesCoordinator(navigation: navigationController)
         return favCoordinator

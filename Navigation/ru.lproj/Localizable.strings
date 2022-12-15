@@ -16,7 +16,6 @@
 "registerButton" = "Зарегистрироваться";
 "haveAccButton" = "Уже есть аккаунт";
 
-
 // SignInViewController
 
 "signInButton" = "Подтвердить";
@@ -25,12 +24,21 @@
 "helloText" = "С возвращением";
 "hintText" = "Введите номер телефона для входа в приложение";
 
+"alertTitle" = "Ошибка авторизации";
+"alertMessage" = "Логин и/или пароль не заполнены";
+"alertAction" = "Еще раз";
+
 // SignUpViewController
 
 "registerText" = "Зарегистрироваться";
 "tipText" = "Введенные данные будут использованы для авторизации";
 "termsText" = "Нажимая кнопку 'Подтвердить' Вы принимаете пользовательское Соглашение и политику конфедициальности ";
 
+// SavedPostsViewController
+
+"postAlertTitle" = "Тут пока пусто";
+"postAlertMessage" = "Сохраните пост двойным нажатием";
+"postAlertAction" = "Хорошо";
 
 "loginButton" = "Войти";
 "postVCButton" = "К Инфо";

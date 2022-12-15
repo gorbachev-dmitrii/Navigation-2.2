@@ -1,5 +1,5 @@
 //
-//  PostViewController.swift
+//  SavedPostsViewController.swift
 //  Navigation
 //
 //  Created by Artem Novichkov on 12.09.2020.
@@ -10,18 +10,10 @@ import UIKit
 import StorageService
 import SnapKit
 
-class PostViewController: UIViewController {
+class SavedPostsViewController: UIViewController {
     
     var post: Post?
     private var favoritePosts = [PostData]()
-    
-    private lazy var button: CustomButton = {
-        let btn = CustomButton(title: "postVCButton".localized, titleColor: .black) {
-    
-        }
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        return btn
-    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -35,9 +27,13 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        view.backgroundColor = .white
         view.addSubview(tableView)
         setupConstraints()
+        
+        if favoritePosts.count == 0 {
+            createEmptyFavListAlert()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,12 +51,20 @@ class PostViewController: UIViewController {
             make.leading.equalTo(self.view.safeAreaLayoutGuide)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(100)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func createEmptyFavListAlert() {
+        let alert = UIAlertController(title: "postAlertTitle".localized, message: "postAlertMessage".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "postAlertAction".localized, style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
-extension PostViewController: UITableViewDelegate, UITableViewDataSource {
+extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoritePosts.count
     }

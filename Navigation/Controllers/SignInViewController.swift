@@ -95,8 +95,8 @@ final class SignInViewController: UIViewController {
     }
     
     private func createLoginAlert() {
-        let alert = UIAlertController(title: "Ошибка авторизации", message: "Логин и/или пароль не заполнены", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+        let alert = UIAlertController(title: "alertTitle".localized, message: "alertMessage".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "alertAction".localized, style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
