@@ -12,7 +12,7 @@ import SnapKit
 class LogInViewController: UIViewController {
     
     //MARK: Properties
-    var inspectorDelegate: LoginViewControllerDelegate?
+    var inspectorDelegate: LoginDelegate?
     weak var coordinator: LoginCoordinator?
     
     private let logoView: UIImageView = {
@@ -181,8 +181,4 @@ class LogInViewController: UIViewController {
     }
 }
 
-// MARK: LoginViewControllerDelegate
-protocol LoginViewControllerDelegate: AnyObject {
-    func checkInputData(login: String, password: String) -> String
-    func readRealmUser() -> RealmUser?
-}
+

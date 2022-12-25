@@ -7,21 +7,24 @@
 //
 
 import Foundation
-import Firebase
 import RealmSwift
 
-class LoginInspector: LoginViewControllerDelegate {
+class LoginInspector: LoginDelegate {
     
     func checkInputData(login: String, password: String) -> String {
         let result = compareRealmUsers(email: login, password: password)
         return result
     }
     
-// MARK: Realm
-    private func saveRealmUser(email: String, password: String) {
+    func checkIfExists(login: String, password: String) {
+        checkUser(login: login, password: password)
+    }
+    
+    // MARK: Realm
+    private func saveRealmUser(login: String, password: String) {
         let realm = try? Realm()
         let realmUserObject = AuthModel()
-        realmUserObject.email = email
+        realmUserObject.email = login
         realmUserObject.password = password
         do {
             realm?.beginWrite()
@@ -47,6 +50,20 @@ class LoginInspector: LoginViewControllerDelegate {
         }
     }
     
+    private func checkUser(login: String, password: String) {
+        let realm = try? Realm()
+        guard let users = realm?.objects(AuthModel.self) else {return}
+        if users.contains(where: { $0.email == login && $0.password == password }) {
+            print("est takoi user")
+            // тут будем
+        } else {
+            // тут будем писать в бд нового юзера
+            //saveRealmUser(login: login, password: password)
+            print("------")
+        }
+    }
+    
+    
     private func compareRealmUsers(email: String, password: String) -> String {
         let lastUser = readRealmUser()
         let user = RealmUser(email: email, password: password)
@@ -54,7 +71,7 @@ class LoginInspector: LoginViewControllerDelegate {
             print("Logining Current User")
             return "Success"
         } else {
-            saveRealmUser(email: email, password: password)
+            saveRealmUser(login: email, password: password)
             return "Fail"
         }
     }

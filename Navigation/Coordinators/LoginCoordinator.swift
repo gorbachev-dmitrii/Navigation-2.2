@@ -46,7 +46,7 @@ final class LoginCoordinator: Coordinator {
         let signUpVC = SignUpViewController()
         navigationController.pushViewController(signUpVC, animated: true)
         signUpVC.onShowNext = {
-            print("coord have got msg from signin")
+            print("coord have got msg from signup")
             //self.toProfile()
         }
     }
@@ -61,3 +61,6 @@ final class LoginCoordinator: Coordinator {
         navigationController.pushViewController(profileModule.controller, animated: true)
     }
 }
+
+
+

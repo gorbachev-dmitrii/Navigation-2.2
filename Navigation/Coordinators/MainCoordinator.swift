@@ -32,11 +32,10 @@ class MainCoordinator: Coordinator {
             guard let email = $0.email, let password = $0.password else { return nil }
             return RealmUser(email: email, password: password)
         } ?? []
-        
         if result.count != 0 {
             loginCoordinator.toProfile()
         } else {
-            loginCoordinator.start()
+            loginCoordinator.startNew()
         }
         
         favorites.start()

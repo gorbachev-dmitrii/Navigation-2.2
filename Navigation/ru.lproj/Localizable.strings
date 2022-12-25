@@ -19,7 +19,7 @@
 // SignInViewController
 
 "signInButton" = "Подтвердить";
-"loginInputPlaceholder" = "Введи Email";
+"loginInputPlaceholder" = "Введи логин";
 "passwordInputPlaceholder" = "Введи пароль";
 "helloText" = "С возвращением";
 "hintText" = "Введите номер телефона для входа в приложение";

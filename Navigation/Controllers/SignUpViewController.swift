@@ -30,7 +30,8 @@ final class SignUpViewController: UIViewController {
             placeholder: "passwordInputPlaceholder".localized,
             textColor: UIColor(named: "CustomGray")!,
             bckgColor: .white) { text in
-                //self.signInButton.isEnabled = true
+                self.registerButton.isEnabled = true
+                self.registerButton.alpha = 1
             }
         input.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         input.isSecureTextEntry = true

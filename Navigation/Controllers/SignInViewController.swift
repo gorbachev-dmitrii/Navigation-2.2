@@ -12,7 +12,7 @@ final class SignInViewController: UIViewController {
     //MARK: Properties
     
     var onShowNext: (() -> Void)?
-    var inspectorDelegate: LoginViewControllerDelegate?
+    var inspectorDelegate: LoginDelegate?
     
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
@@ -82,9 +82,10 @@ final class SignInViewController: UIViewController {
         
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
-                if delegate.checkInputData(login: login, password: password) == "Success" {
-                    self.onShowNext?()
-                } else { print("fail") }
+                delegate.checkIfExists(login: login, password: password) 
+//                if delegate.checkInputData(login: login, password: password) == "Success" {
+//                    self.onShowNext?()
+//                } else { print("fail") }
             } else {
                 createLoginAlert()
             }
@@ -145,4 +146,12 @@ final class SignInViewController: UIViewController {
             textField.autocapitalizationType = .none
         }
     }
+}
+
+
+// MARK: LoginDelegate
+protocol LoginDelegate: AnyObject {
+    func checkInputData(login: String, password: String) -> String
+    func readRealmUser() -> RealmUser?
+    func checkIfExists(login: String, password: String)
 }
