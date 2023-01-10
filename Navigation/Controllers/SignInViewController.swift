@@ -82,21 +82,28 @@ final class SignInViewController: UIViewController {
         
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
-                delegate.checkIfExists(login: login, password: password) 
-//                if delegate.checkInputData(login: login, password: password) == "Success" {
-//                    self.onShowNext?()
-//                } else { print("fail") }
+                if let user = delegate.checkСredentials(login: login, password: password) {
+                    //self.onShowNext?()
+                    print(user)
+                } else {
+                    createInvalidDataAlert()
+                }
             } else {
-                createLoginAlert()
+                createEmptyFieldsAlert()
             }
-        } else {
-            return
         }
-        
     }
     
-    private func createLoginAlert() {
-        let alert = UIAlertController(title: "alertTitle".localized, message: "alertMessage".localized, preferredStyle: .alert)
+    private func createEmptyFieldsAlert() {
+        let alert = UIAlertController(title: "emptyFieldsAlertTitle".localized, message: "emptyFieldsAlertMessage".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "alertAction".localized, style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func createInvalidDataAlert() {
+        let alert = UIAlertController(title: "invalidDataAlertTitle".localized, message: "invalidDataAlertMessage".localized, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "alertAction".localized, style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
@@ -152,6 +159,7 @@ final class SignInViewController: UIViewController {
 // MARK: LoginDelegate
 protocol LoginDelegate: AnyObject {
     func checkInputData(login: String, password: String) -> String
-    func readRealmUser() -> RealmUser?
+    func readRealmUser() -> RealmUser_old?
+    func checkСredentials(login: String, password: String) -> RealmUser?
     func checkIfExists(login: String, password: String)
 }

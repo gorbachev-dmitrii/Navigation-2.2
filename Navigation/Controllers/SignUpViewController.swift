@@ -14,6 +14,7 @@ final class SignUpViewController: UIViewController {
     // MARK: Properties
     
     var onShowNext: (() -> Void)?
+    var inspectorDelegate: LoginDelegate?
     
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
@@ -90,7 +91,13 @@ final class SignUpViewController: UIViewController {
     }
     
     private func registerButtonTapped() {
-        self.onShowNext?()
+        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+            if !login.isEmpty || !password.isEmpty {
+                delegate.checkIfExists(login: login, password: password)
+            } else {
+                print("Пустые поля")
+            }
+        }
     }
     
     private func setupConstraints() {

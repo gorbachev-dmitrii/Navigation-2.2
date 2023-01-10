@@ -22,6 +22,7 @@
 		0D4438B42949300A00D5DCE6 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4438B32949300A00D5DCE6 /* EntryViewController.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
+		0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */; };
@@ -97,6 +98,7 @@
 		0D4438B32949300A00D5DCE6 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				0DD7BE11296E1C6500710935 /* Unused */,
 				0D07409A28C2AD3A0012429A /* CoreData */,
 				0DA2CB8128A5BD1700FE86FF /* Managers */,
 				0DA2CB7B28A5BC6400FE86FF /* UserModel */,
@@ -207,6 +210,7 @@
 				C3B65B33268759E70058268C /* User.swift */,
 				C3B65B36268799640058268C /* UserService.swift */,
 				C3CE4794269796110000BCC5 /* Model.swift */,
+				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -214,13 +218,21 @@
 		0DA2CB8128A5BD1700FE86FF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
-				C3B65B46268FB7600058268C /* LoginFactory.swift */,
-				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
-				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DD7BE11296E1C6500710935 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
+				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
+				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
+				C3B65B46268FB7600058268C /* LoginFactory.swift */,
+				C391B34D26E3F24100D7D7DA /* ControllerFactory.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		561A7B0174A35EDC1FAFDF1C /* Pods */ = {
@@ -271,7 +283,6 @@
 			children = (
 				060782C7250CEE5D00A87020 /* SavedPostsViewController.swift */,
 				C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */,
-				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
 				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
 				0D4438B32949300A00D5DCE6 /* EntryViewController.swift */,
@@ -495,6 +506,7 @@
 				C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */,
 				C381F57726973F7700E24790 /* CustomTextField.swift in Sources */,
 				C3F4434625B32622000FBEDA /* ProfileViewController.swift in Sources */,
+				0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */,
 				C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */,
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,

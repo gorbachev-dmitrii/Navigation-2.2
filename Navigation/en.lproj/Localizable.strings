@@ -24,8 +24,10 @@
 "passwordInputPlaceholder" = "Password";
 "helloText" = "Welcome back";
 "hintText" = "Type in your mobile number";
-"alertTitle" = "Sign in error";
-"alertMessage" = "Login or password is incorrect";
+"emptyFieldsAlertTitle" = "Sign in error";
+"emptyFieldsAlertMessage" = "Login or password is empty";
+"invalidDataAlertTitle" = "Sign in error";
+"invalidDataAlertMessage" = "Login or password is incorrect";
 "alertAction" = "Try again";
 
 // SignUpViewController

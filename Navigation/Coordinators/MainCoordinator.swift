@@ -18,7 +18,7 @@ class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let tabBarController: UITabBarController
     private let model = MyModel()
-    private let factory = ControllerFactory()
+    //private let factory = ControllerFactory()
     
     init() {
         tabBarController = UITabBarController()
@@ -27,17 +27,17 @@ class MainCoordinator: Coordinator {
         let favorites = configureFavorites()
         feedCoordinator.start()
         
-        let realm = try? Realm()
-        let result : [RealmUser] = realm?.objects(AuthModel.self).compactMap {
-            guard let email = $0.email, let password = $0.password else { return nil }
-            return RealmUser(email: email, password: password)
-        } ?? []
-        if result.count != 0 {
-            loginCoordinator.toProfile()
-        } else {
-            loginCoordinator.startNew()
-        }
-        
+//        let realm = try? Realm()
+//        let result : [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
+//            guard let login = $0.login, let password = $0.password else { return nil }
+//            return RealmUser(login: login, password: password)
+//        } ?? []
+//        if result.count != 0 {
+//            loginCoordinator.toProfile()
+//        } else {
+//            loginCoordinator.startNew()
+//        }
+        loginCoordinator.startNew()
         favorites.start()
         
         tabBarController.viewControllers = [feedCoordinator.navigationController, loginCoordinator.navigationController,  favorites.navigationController]
@@ -64,7 +64,7 @@ class MainCoordinator: Coordinator {
             title: "tabBarProfile".localized,
             image: UIImage(systemName: "person.crop.circle"),
             selectedImage: nil)
-        let loginCoordinator = LoginCoordinator(navigation: navigationController, factory: factory)
+        let loginCoordinator = LoginCoordinator(navigation: navigationController)
         return loginCoordinator
     }
     
@@ -76,5 +76,9 @@ class MainCoordinator: Coordinator {
             selectedImage: nil)
         let favCoordinator = FavoritesCoordinator(navigation: navigationController)
         return favCoordinator
+    }
+    
+    private func check() {
+        
     }
 }

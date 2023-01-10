@@ -16,7 +16,7 @@ class AuthModel: Object {
     
 }
 
-final class RealmUser {
+final class RealmUser_old {
     let email: String
     let password: String
     

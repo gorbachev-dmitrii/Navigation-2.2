@@ -13,6 +13,7 @@
 "tabBarFavorite" = "Сохраненное";
 
 // EntryViewController
+
 "registerButton" = "Зарегистрироваться";
 "haveAccButton" = "Уже есть аккаунт";
 
@@ -22,10 +23,11 @@
 "loginInputPlaceholder" = "Введи логин";
 "passwordInputPlaceholder" = "Введи пароль";
 "helloText" = "С возвращением";
-"hintText" = "Введите номер телефона для входа в приложение";
-
-"alertTitle" = "Ошибка авторизации";
-"alertMessage" = "Логин и/или пароль не заполнены";
+"hintText" = "Введите логин и пароль для входа в приложение";
+"emptyFieldsAlertTitle" = "Ошибка авторизации";
+"emptyFieldsAlertMessage" = "Логин и/или пароль не заполнены";
+"invalidDataAlertTitle" = "Ошибка авторизации";
+"invalidDataAlertMessage" = "Неверный логин и/или пароль";
 "alertAction" = "Еще раз";
 
 // SignUpViewController

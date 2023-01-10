@@ -13,12 +13,11 @@ final class LoginCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     private var login: String = ""
     private var userService: UserService?
-    private var controllerFactory: ControllerFactory
+    private var controllerFactory: ControllerFactory?
     private let loginFactory = MyLoginFactory()
     
-    init(navigation: UINavigationController, factory: ControllerFactory) {
+    init(navigation: UINavigationController) {
         self.navigationController = navigation
-        self.controllerFactory = factory
     }
     
     func startNew() {
@@ -44,6 +43,7 @@ final class LoginCoordinator: Coordinator {
     
     func toSignUpVC() {
         let signUpVC = SignUpViewController()
+        signUpVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signUpVC, animated: true)
         signUpVC.onShowNext = {
             print("coord have got msg from signup")
@@ -52,13 +52,13 @@ final class LoginCoordinator: Coordinator {
     }
     
     func toProfile() {
-        let profileModule = controllerFactory.makeProfile()
-        profileModule.viewModel.login = login
-        profileModule.viewModel.userService = userService
-        profileModule.viewModel.onShowNext = { [weak self] in
-
-        }
-        navigationController.pushViewController(profileModule.controller, animated: true)
+//        let profileModule = controllerFactory.makeProfile()
+//        profileModule.viewModel.login = login
+//        profileModule.viewModel.userService = userService
+//        profileModule.viewModel.onShowNext = { [weak self] in
+//
+//        }
+//        navigationController.pushViewController(profileModule.controller, animated: true)
     }
 }
 
