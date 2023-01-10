@@ -26,8 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         //CoreDataManager.shared.removeFromCoreData()
-        let a = LoginInspector()
-        a.saveUserToRealm(login: "test", password: "1234")
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -27,10 +27,9 @@ class LoginInspector: LoginDelegate {
             print("Такой пользователь уже зарегистрирован")
         } else {
             print("Нужно сохранить в БД")
-            //saveUserToRealm(login: login, password: password)
+            saveUserToRealm(login: login, password: password)
         }
     }
-    
     
     // MARK: Realm
     
