@@ -15,11 +15,11 @@ import UIKit
 //
 struct ControllerFactory {
 
-    func makeProfile() -> (viewModel: ProfileViewModel, controller: ProfileViewController) {
-        let viewModel = ProfileViewModel()
-        let profileVC = ProfileViewController(viewModel: viewModel)
-        return (viewModel, profileVC)
-    }
+//    func makeProfile() -> (viewModel: ProfileViewModel, controller: ProfileViewController) {
+//        let viewModel = ProfileViewModel()
+//        let profileVC = ProfileViewController(viewModel: viewModel)
+//        return (viewModel, profileVC)
+//    }
     
     func makePhotos() -> PhotosViewController {
         let vc = PhotosViewController()

@@ -11,7 +11,7 @@ import UIKit
 final class SignInViewController: UIViewController {
     //MARK: Properties
     
-    var onShowNext: (() -> Void)?
+    var onShowNext: ((_ user: RealmUser) -> Void)?
     var inspectorDelegate: LoginDelegate?
     
     private lazy var loginInput: CustomTextField = {
@@ -83,7 +83,7 @@ final class SignInViewController: UIViewController {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
                 if let user = delegate.checkСredentials(login: login, password: password) {
-                    //self.onShowNext?()
+                    self.onShowNext?(user)
                     print(user)
                 } else {
                     createInvalidDataAlert()

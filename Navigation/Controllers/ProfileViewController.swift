@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    var profileViewModel: ProfileViewModel
+    //var profileViewModel: ProfileViewModel
     // MARK: Lifecycle
     
     //    init(viewModel: ProfileViewModel, userService: UserService, username: String) {
@@ -54,14 +54,14 @@ class ProfileViewController: UIViewController {
     //        self.profileViewModel = viewModel
     //        super.init(nibName: nil, bundle: nil)
     //    }
-    init(viewModel: ProfileViewModel) {
-        self.profileViewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
+//    init(viewModel: ProfileViewModel) {
+//        self.profileViewModel = viewModel
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,7 +189,7 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row == 0 else { return }
-        profileViewModel.onTapShowNextModule()
+//        profileViewModel.onTapShowNextModule()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

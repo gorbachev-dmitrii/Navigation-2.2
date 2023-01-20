@@ -36,7 +36,7 @@ final class LoginCoordinator: Coordinator {
         let signInVC = SignInViewController()
         signInVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signInVC, animated: true)
-        signInVC.onShowNext = {
+        signInVC.onShowNext = { user in
             self.toProfile()
         }
     }
@@ -52,13 +52,14 @@ final class LoginCoordinator: Coordinator {
     }
     
     func toProfile() {
+        let profileVC = ProfileViewController()
 //        let profileModule = controllerFactory.makeProfile()
 //        profileModule.viewModel.login = login
 //        profileModule.viewModel.userService = userService
 //        profileModule.viewModel.onShowNext = { [weak self] in
 //
 //        }
-//        navigationController.pushViewController(profileModule.controller, animated: true)
+        navigationController.pushViewController(profileVC, animated: true)
     }
 }
 
