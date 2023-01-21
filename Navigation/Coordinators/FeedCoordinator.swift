@@ -22,7 +22,7 @@ final class FeedCoordinator: Coordinator {
     }
     
     func start() {
-        let feedController = FeedViewController(model: model)
+        let feedController = FeedViewController()
         navigationController.pushViewController(feedController, animated: true)
         feedController.onShowNext = { [weak self] in
             self?.goNext()

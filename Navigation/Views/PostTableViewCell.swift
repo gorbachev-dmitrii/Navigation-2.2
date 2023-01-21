@@ -16,11 +16,11 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
-            if let likes = post?.likes, let views = post?.views {
+            if let likes = post?.likes, let views = post?.views, let image = post?.image {
                 likesLabel.text = "postCellLikes".localized + " " + String(likes)
                 viewsLabel.text = "postCellViews".localized + " " + String(views)
+                cellImageView.image = UIImage(named: image)
             }
-            
         }
     }
     

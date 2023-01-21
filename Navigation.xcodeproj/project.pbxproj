@@ -248,8 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */,
-				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				C33B2B4D26DAC51900CFD40F /* LoginCoordinator.swift */,
+				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */,
 			);
 			path = Coordinators;

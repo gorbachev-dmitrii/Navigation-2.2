@@ -22,10 +22,10 @@ class MainCoordinator: Coordinator {
     
     init() {
         tabBarController = UITabBarController()
-        let feedCoordinator = configureFeed()
+//        let feedCoordinator = configureFeed()
         let loginCoordinator = configureLogin()
-        let favorites = configureFavorites()
-        feedCoordinator.start()
+        let favoritesCoordinator = configureFavorites()
+//        feedCoordinator.start()
         
 //        let realm = try? Realm()
 //        let result : [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
@@ -37,13 +37,13 @@ class MainCoordinator: Coordinator {
 //        } else {
 //            loginCoordinator.startNew()
 //        }
-        loginCoordinator.startNew()
-        favorites.start()
+        loginCoordinator.start()
+        favoritesCoordinator.start()
         
-        tabBarController.viewControllers = [feedCoordinator.navigationController, loginCoordinator.navigationController,  favorites.navigationController]
-        coordinators.append(feedCoordinator)
+        tabBarController.viewControllers = [loginCoordinator.navigationController,  favoritesCoordinator.navigationController]
+//        coordinators.append(feedCoordinator)
         coordinators.append(loginCoordinator)
-        coordinators.append(favorites)
+        coordinators.append(favoritesCoordinator)
     }
     
     private func configureFeed() -> FeedCoordinator {

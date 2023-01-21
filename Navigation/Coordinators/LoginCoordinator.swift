@@ -20,7 +20,7 @@ final class LoginCoordinator: Coordinator {
         self.navigationController = navigation
     }
     
-    func startNew() {
+    func start() {
         let entryController = EntryViewController()
         navigationController.pushViewController(entryController, animated: true)
         entryController.onShowNext = { sender in
