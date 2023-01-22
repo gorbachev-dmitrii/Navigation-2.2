@@ -16,7 +16,7 @@ class SavedPostsViewController: UIViewController {
     private var favoritePosts = [PostData]()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -30,14 +30,13 @@ class SavedPostsViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(tableView)
         setupConstraints()
-        
-        if favoritePosts.count == 0 {
-            createEmptyFavListAlert()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if favoritePosts.count == 0 {
+            createEmptyFavListAlert()
+        }
         reloadCoreDataFilesByFetch()
     }
     

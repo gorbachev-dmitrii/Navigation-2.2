@@ -9,6 +9,7 @@
 import UIKit
 import StorageService
 import Firebase
+import SnapKit
 
 class ProfileViewController: UIViewController {
     // MARK: Properties
@@ -135,20 +136,20 @@ class ProfileViewController: UIViewController {
         }
     }
     // MARK: Constraints
+    
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            blurView.leadingAnchor.constraint(equalTo: profileHeader.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: profileHeader.trailingAnchor),
-            blurView.heightAnchor.constraint(equalToConstant: view.frame.height),
-            
-            cancelButton.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -10),
-            cancelButton.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 10)
-        ])
+        tableView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
+        blurView.snp.makeConstraints { make in
+            make.leading.equalTo(profileHeader.snp.leading)
+            make.trailing.equalTo(profileHeader.snp.trailing)
+            make.height.equalToSuperview()
+        }
+        cancelButton.snp.makeConstraints { make in
+            make.trailing.equalTo(blurView.snp.trailing).inset(10)
+            make.top.equalTo(blurView.snp.top).inset(10)
+        }
     }
 }
 // MARK: UITableViewDelegate
