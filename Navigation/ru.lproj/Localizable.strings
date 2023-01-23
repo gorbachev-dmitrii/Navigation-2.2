@@ -42,13 +42,18 @@
 "postAlertMessage" = "Сохраните пост двойным нажатием";
 "postAlertAction" = "Хорошо";
 
+// ProfileViewController
+
+"profileHeaderPlaceholder" = "Установите статус";
+"profileHeaderSetStatusButton" = "Установите статус";
+"sectionTitle" = "My posts";
+
 "loginButton" = "Войти";
 "postVCButton" = "К Инфо";
 "feedVCFirstButton" = "Кнопка 1";
 "feedVCSecondButton" = "Кнопка 2";
 
 
-"profileHeaderPlaceholder" = "Установите статус";
 "postCellLikes" = "Лайки";
 "postCellViews" = "Просмотры";
 "photosCellLabel" = "Фото";

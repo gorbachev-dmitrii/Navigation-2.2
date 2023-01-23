@@ -42,8 +42,12 @@
 "postAlertMessage" = "Save post via double tap";
 "postAlertAction" = "All right";
 
+// ProfileViewController
+
 "profileHeaderPlaceholder" = "Set your status";
 "profileHeaderSetStatusButton" = "Set status";
+"sectionTitle" = "My posts";
+
 "postCellLikes" = "Likes";
 "postCellViews" = "Views";
 "photosCellLabel" = "Photos";
