@@ -37,8 +37,11 @@ class ProfileHeaderView: UIView {
         label.textColor = .label
         return label
     }()
-    let statusTextField: UITextField = {
-        let textField = UITextField()
+    
+    let statusTextField: CustomTextField = {
+        let textField = CustomTextField(placeholder: "profileHeaderPlaceholder".localized,
+                                        textColor: UIColor(named: "CustomGray")!,
+                                        bckgColor: .white, onText: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.placeholder = "profileHeaderPlaceholder".localized
