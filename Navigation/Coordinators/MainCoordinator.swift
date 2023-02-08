@@ -18,37 +18,20 @@ class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let tabBarController: UITabBarController
     private let model = MyModel()
-    //private let factory = ControllerFactory()
+    let inspector = LoginInspector()
     
     init() {
         tabBarController = UITabBarController()
-        let loginCoordinator = configureLogin(tb: tabBarController)
+        let loginCoordinator = configureLogin(tabBar: tabBarController)
         let favoritesCoordinator = configureFavorites()
         let profileCoordinator = configureProfile()
         favoritesCoordinator.start()
         profileCoordinator.start()
+        loginCoordinator.start()
         
         tabBarController.viewControllers = [loginCoordinator.navigationController, profileCoordinator.navigationController, favoritesCoordinator.navigationController]
+        tabBarController.tabBar.isHidden = true
         
-        if check() {
-            loginCoordinator.toFeed()
-        } else {
-            tabBarController.tabBar.isHidden = true
-            loginCoordinator.start()
-            
-        }
-        
-//        let realm = try? Realm()
-//        let result : [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
-//            guard let login = $0.login, let password = $0.password else { return nil }
-//            return RealmUser(login: login, password: password)
-//        } ?? []
-//        if result.count != 0 {
-//            loginCoordinator.toProfile()
-//        } else {
-//            loginCoordinator.startNew()
-//        }
-
         coordinators.append(profileCoordinator)
         coordinators.append(loginCoordinator)
         coordinators.append(favoritesCoordinator)
@@ -64,13 +47,13 @@ class MainCoordinator: Coordinator {
         return profileCoordinator
     }
     
-    private func configureLogin(tb: UITabBarController) -> LoginCoordinator {
+    private func configureLogin(tabBar: UITabBarController) -> LoginCoordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
             title: "tabBarFeed".localized,
             image: UIImage(systemName: "house.fill"),
             selectedImage: nil)
-        let loginCoordinator = LoginCoordinator(navigation: navigationController, tb: tb)
+        let loginCoordinator = LoginCoordinator(navigation: navigationController, tabBar: tabBar)
         return loginCoordinator
     }
     
@@ -86,6 +69,6 @@ class MainCoordinator: Coordinator {
     
     private func check() -> Bool {
         // true = юзер есть, не авторизовываем его
-        return false
+        return true
     }
 }

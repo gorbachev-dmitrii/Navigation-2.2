@@ -11,7 +11,7 @@ import UIKit
 final class SignInViewController: UIViewController {
     //MARK: Properties
     
-    var onShowNext: ((_ user: RealmUser) -> Void)?
+    var onShowNext: (() -> Void)?
     var inspectorDelegate: LoginDelegate?
     
     private lazy var loginInput: CustomTextField = {
@@ -75,7 +75,6 @@ final class SignInViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubviews(views: [loginInput, passwordInput, signInButton, helloLabel, hintLabel])
         setupConstraints()
-        setupTextField(textFields: [loginInput, passwordInput])
     }
     
     private func signInButtonTapped() {
@@ -83,7 +82,7 @@ final class SignInViewController: UIViewController {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
                 if let user = delegate.checkСredentials(login: login, password: password) {
-                    self.onShowNext?(user)
+                    self.onShowNext?()
                     print(user)
                 } else {
                     createInvalidDataAlert()

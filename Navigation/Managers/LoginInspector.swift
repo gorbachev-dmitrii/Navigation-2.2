@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class LoginInspector: LoginDelegate {
+final class LoginInspector: LoginDelegate {
     
     func checkСredentials(login: String, password: String) -> RealmUser? {
         return checkUserData(login: login, password: password)
@@ -44,7 +44,7 @@ class LoginInspector: LoginDelegate {
         
     }
     
-    func saveUserToRealm(login: String, password: String) {
+    private func saveUserToRealm(login: String, password: String) {
         let realm = try? Realm()
         let realmUserObject = RealmUserModel()
         realmUserObject.login = login
@@ -58,13 +58,19 @@ class LoginInspector: LoginDelegate {
         }
     }
     
-    private func readUser() {
+    func readUser() -> RealmUser? {
         let realm = try? Realm()
-        let result : [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
+        let users: [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
             guard let login = $0.login, let password = $0.password else { return nil }
             return RealmUser(login: login, password: password)
         } ?? []
-        print("Available Users are  : \(result)")
+        print("Available Users are  : \(users)")
+        
+        if !users.isEmpty {
+            return users[0]
+        } else {
+            return nil
+        }
     }
     
     // unused

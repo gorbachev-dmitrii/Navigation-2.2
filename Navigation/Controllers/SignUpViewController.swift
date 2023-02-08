@@ -86,7 +86,6 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubviews(views: [loginInput, passwordInput, registerButton, tipLabel, registerLabel, acceptTermsLabel])
-        setupTextField(textFields: [loginInput, passwordInput])
         setupConstraints()
     }
     
@@ -94,6 +93,7 @@ final class SignUpViewController: UIViewController {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
                 delegate.checkIfExists(login: login, password: password)
+                self.onShowNext?()
             } else {
                 print("Пустые поля")
             }
@@ -137,16 +137,6 @@ final class SignUpViewController: UIViewController {
             make.leading.equalTo(56)
             make.trailing.equalTo(-56)
             make.top.equalTo(registerButton.snp.bottom).inset(-20)
-        }
-    }
-    
-    private func setupTextField(textFields: [UITextField]) {
-        for textField in textFields {
-            textField.layer.borderColor = UIColor(named: "CustomBlack")?.cgColor
-            textField.layer.borderWidth = 0.5
-            textField.layer.cornerRadius = 10
-            textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-            textField.autocapitalizationType = .none
         }
     }
 }

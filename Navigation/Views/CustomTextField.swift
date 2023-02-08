@@ -18,6 +18,11 @@ class CustomTextField: UITextField {
         self.placeholder = placeholder
         self.textColor = textColor
         self.backgroundColor = bckgColor
+        self.layer.borderColor = UIColor(named: "CustomBlack")?.cgColor
+        self.layer.borderWidth = 0.5
+        self.layer.cornerRadius = 10
+        self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        self.autocapitalizationType = .none
         translatesAutoresizingMaskIntoConstraints = false
         addTarget(self, action: #selector(textPrinted), for: .editingChanged)
     }

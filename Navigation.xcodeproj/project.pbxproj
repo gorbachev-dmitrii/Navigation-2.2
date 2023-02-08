@@ -228,6 +228,7 @@
 		0DD7BE11296E1C6500710935 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
 				C3B65B40268A7DD20058268C /* LoginChecker.swift */,
@@ -251,7 +252,6 @@
 			children = (
 				C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */,
 				C33B2B4D26DAC51900CFD40F /* LoginCoordinator.swift */,
-				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */,
 				0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */,
 			);
