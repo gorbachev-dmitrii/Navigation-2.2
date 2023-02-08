@@ -15,9 +15,11 @@ final class LoginCoordinator: Coordinator {
     private var userService: UserService?
     private var controllerFactory: ControllerFactory?
     private let loginFactory = MyLoginFactory()
-    
-    init(navigation: UINavigationController) {
+    let tabBarController: UITabBarController
+
+    init(navigation: UINavigationController, tb: UITabBarController) {
         self.navigationController = navigation
+        self.tabBarController = tb
     }
     
     func start() {
@@ -36,8 +38,9 @@ final class LoginCoordinator: Coordinator {
         let signInVC = SignInViewController()
         signInVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signInVC, animated: true)
-        signInVC.onShowNext = { user in
-            self.toProfile()
+        signInVC.onShowNext = { [self] user in
+            self.toFeed()
+            tabBarController.tabBar.isHidden = false
         }
     }
     
@@ -51,16 +54,22 @@ final class LoginCoordinator: Coordinator {
         }
     }
     
-    func toProfile() {
-        let profileVC = ProfileViewController()
+    func toFeed() {
+        let feedVC = FeedViewController()
+        navigationController.pushViewController(feedVC, animated: true)
+
+    }
+    
+//    func toProfile() {
+//        let profileVC = ProfileViewController()
 //        let profileModule = controllerFactory.makeProfile()
 //        profileModule.viewModel.login = login
 //        profileModule.viewModel.userService = userService
 //        profileModule.viewModel.onShowNext = { [weak self] in
 //
 //        }
-        navigationController.pushViewController(profileVC, animated: true)
-    }
+//        navigationController.pushViewController(profileVC, animated: true)
+//    }
 }
 
 

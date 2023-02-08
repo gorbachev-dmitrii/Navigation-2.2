@@ -11,11 +11,6 @@ import RealmSwift
 
 class LoginInspector: LoginDelegate {
     
-    func checkInputData(login: String, password: String) -> String {
-        let result = compareRealmUsers(email: login, password: password)
-        return result
-    }
-    
     func checkСredentials(login: String, password: String) -> RealmUser? {
         return checkUserData(login: login, password: password)
     }
@@ -43,6 +38,10 @@ class LoginInspector: LoginDelegate {
             print("Неверный пароль")
             return nil
         }
+    }
+    
+    private func sfg() {
+        
     }
     
     func saveUserToRealm(login: String, password: String) {
@@ -79,6 +78,11 @@ class LoginInspector: LoginDelegate {
             saveRealmUser(login: email, password: password)
             return "Fail"
         }
+    }
+    
+    func checkInputData(login: String, password: String) -> String {
+        let result = compareRealmUsers(email: login, password: password)
+        return result
     }
     
     func readRealmUser() -> RealmUser_old? {

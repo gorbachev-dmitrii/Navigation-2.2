@@ -22,10 +22,21 @@ class MainCoordinator: Coordinator {
     
     init() {
         tabBarController = UITabBarController()
-//        let feedCoordinator = configureFeed()
-        let loginCoordinator = configureLogin()
+        let loginCoordinator = configureLogin(tb: tabBarController)
         let favoritesCoordinator = configureFavorites()
-//        feedCoordinator.start()
+        let profileCoordinator = configureProfile()
+        favoritesCoordinator.start()
+        profileCoordinator.start()
+        
+        tabBarController.viewControllers = [loginCoordinator.navigationController, profileCoordinator.navigationController, favoritesCoordinator.navigationController]
+        
+        if check() {
+            loginCoordinator.toFeed()
+        } else {
+            tabBarController.tabBar.isHidden = true
+            loginCoordinator.start()
+            
+        }
         
 //        let realm = try? Realm()
 //        let result : [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
@@ -37,34 +48,29 @@ class MainCoordinator: Coordinator {
 //        } else {
 //            loginCoordinator.startNew()
 //        }
-        loginCoordinator.start()
-        favoritesCoordinator.start()
-        
-        tabBarController.viewControllers = [loginCoordinator.navigationController,  favoritesCoordinator.navigationController]
-//        coordinators.append(feedCoordinator)
+
+        coordinators.append(profileCoordinator)
         coordinators.append(loginCoordinator)
         coordinators.append(favoritesCoordinator)
     }
     
-    private func configureFeed() -> FeedCoordinator {
-        
-        let navigationController = UINavigationController()
-        navigationController.tabBarItem = UITabBarItem(
-            title: "tabBarFeed".localized,
-            image: UIImage(systemName: "house.fill"),
-            selectedImage: nil)
-        let feedCoordinator = FeedCoordinator(navigation: navigationController, model: model)
-        return feedCoordinator
-    }
-    
-    private func configureLogin() -> LoginCoordinator {
-
+    private func configureProfile() -> ProfileCoordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
             title: "tabBarProfile".localized,
             image: UIImage(systemName: "person.crop.circle"),
             selectedImage: nil)
-        let loginCoordinator = LoginCoordinator(navigation: navigationController)
+        let profileCoordinator = ProfileCoordinator(navigation: navigationController)
+        return profileCoordinator
+    }
+    
+    private func configureLogin(tb: UITabBarController) -> LoginCoordinator {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = UITabBarItem(
+            title: "tabBarFeed".localized,
+            image: UIImage(systemName: "house.fill"),
+            selectedImage: nil)
+        let loginCoordinator = LoginCoordinator(navigation: navigationController, tb: tb)
         return loginCoordinator
     }
     
@@ -78,7 +84,8 @@ class MainCoordinator: Coordinator {
         return favCoordinator
     }
     
-    private func check() {
-        
+    private func check() -> Bool {
+        // true = юзер есть, не авторизовываем его
+        return false
     }
 }

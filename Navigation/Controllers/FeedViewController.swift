@@ -40,6 +40,7 @@ final class FeedViewController: UIViewController {
         title = "Главная"
         view.addSubview(tableView)
         setupConstraints()
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     private func setupConstraints() {

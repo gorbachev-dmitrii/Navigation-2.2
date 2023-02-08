@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let realm = try! Realm()
 //        try! realm.write {
 //            realm.deleteAll()
-//        }
+//        }        
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         CoreDataManager.shared.removeFromCoreData()

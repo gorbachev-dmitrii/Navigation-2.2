@@ -23,6 +23,7 @@
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */; };
+		0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */; };
@@ -99,6 +100,7 @@
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
+		0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				C33B2B4D26DAC51900CFD40F /* LoginCoordinator.swift */,
 				C33B2B4926DAA0F100CFD40F /* FeedCoordinator.swift */,
 				0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */,
+				0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
 				060782C8250CEE5D00A87020 /* SavedPostsViewController.swift in Sources */,
 				0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */,
+				0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
 				0D1BEA81294B70430061699F /* SignUpViewController.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator.swift in Sources */,
