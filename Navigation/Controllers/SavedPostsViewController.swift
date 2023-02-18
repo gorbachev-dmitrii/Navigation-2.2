@@ -34,10 +34,10 @@ class SavedPostsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        reloadCoreDataFilesByFetch()
         if favoritePosts.count == 0 {
             createEmptyFavListAlert()
         }
-        reloadCoreDataFilesByFetch()
     }
     
     private func reloadCoreDataFilesByFetch() {
