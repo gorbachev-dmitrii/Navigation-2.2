@@ -11,10 +11,6 @@ import UIKit
 final class LoginCoordinator: Coordinator {
     let navigationController: UINavigationController
     var coordinators: [Coordinator] = []
-    private var login: String = ""
-    private var userService: UserService?
-    private var controllerFactory: ControllerFactory?
-    private let loginFactory = MyLoginFactory()
     let tabBarController: UITabBarController
 
     init(navigation: UINavigationController, tabBar: UITabBarController) {
@@ -49,7 +45,6 @@ final class LoginCoordinator: Coordinator {
         signUpVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signUpVC, animated: true)
         signUpVC.onShowNext = { [weak self] in
-            print("coord have got msg from signup")
             self?.toFeed()
             self?.tabBarController.tabBar.isHidden = false
         }
@@ -60,17 +55,6 @@ final class LoginCoordinator: Coordinator {
         navigationController.pushViewController(feedVC, animated: true)
 
     }
-    
-//    func toProfile() {
-//        let profileVC = ProfileViewController()
-//        let profileModule = controllerFactory.makeProfile()
-//        profileModule.viewModel.login = login
-//        profileModule.viewModel.userService = userService
-//        profileModule.viewModel.onShowNext = { [weak self] in
-//
-//        }
-//        navigationController.pushViewController(profileVC, animated: true)
-//    }
 }
 
 

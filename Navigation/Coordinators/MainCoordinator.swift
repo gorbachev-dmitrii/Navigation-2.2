@@ -14,10 +14,8 @@ protocol Coordinator: AnyObject {
 }
 
 class MainCoordinator: Coordinator {
-    
     var coordinators: [Coordinator] = []
     let tabBarController: UITabBarController
-    private let model = MyModel()
     let inspector = LoginInspector()
     
     init() {
@@ -35,6 +33,7 @@ class MainCoordinator: Coordinator {
         coordinators.append(profileCoordinator)
         coordinators.append(loginCoordinator)
         coordinators.append(favoritesCoordinator)
+        inspector.readUser()
     }
     
     private func configureProfile() -> ProfileCoordinator {

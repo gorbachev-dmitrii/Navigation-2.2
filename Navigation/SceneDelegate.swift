@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         window?.tintColor = UIColor(named: "CustomOrange")
-        CoreDataManager.shared.removeFromCoreData()
+//        CoreDataManager.shared.removeFromCoreData()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
