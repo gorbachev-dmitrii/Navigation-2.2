@@ -15,25 +15,35 @@ protocol Coordinator: AnyObject {
 
 class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
-    let tabBarController: UITabBarController
-    let inspector = LoginInspector()
+    let navigationController: UINavigationController
     
-    init() {
-        tabBarController = UITabBarController()
-        let loginCoordinator = configureLogin(tabBar: tabBarController)
-        let favoritesCoordinator = configureFavorites()
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
+        let tabBarController = UITabBarController()
+        navigationController.pushViewController(tabBarController, animated: true)
+        let feedCoordinator = configureFeed()
         let profileCoordinator = configureProfile()
-        favoritesCoordinator.start()
+        let favoritesCoordinator = configureFavorites()
+        feedCoordinator.start()
         profileCoordinator.start()
-        loginCoordinator.start()
-        
-        tabBarController.viewControllers = [loginCoordinator.navigationController, profileCoordinator.navigationController, favoritesCoordinator.navigationController]
-        tabBarController.tabBar.isHidden = true
-        
+        favoritesCoordinator.start()
+        tabBarController.viewControllers = [feedCoordinator.navigationController , profileCoordinator.navigationController, favoritesCoordinator.navigationController]
+        coordinators.append(feedCoordinator)
         coordinators.append(profileCoordinator)
-        coordinators.append(loginCoordinator)
         coordinators.append(favoritesCoordinator)
-        inspector.readUser()
+    }
+    
+    private func configureFeed() -> FeedCoordinator {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = UITabBarItem(
+            title: "tabBarFeed".localized,
+            image: UIImage(systemName: "house.fill"),
+            selectedImage: nil)
+        let feedCoordinator = FeedCoordinator(navigation: navigationController)
+        return feedCoordinator
     }
     
     private func configureProfile() -> ProfileCoordinator {
@@ -46,16 +56,6 @@ class MainCoordinator: Coordinator {
         return profileCoordinator
     }
     
-    private func configureLogin(tabBar: UITabBarController) -> LoginCoordinator {
-        let navigationController = UINavigationController()
-        navigationController.tabBarItem = UITabBarItem(
-            title: "tabBarFeed".localized,
-            image: UIImage(systemName: "house.fill"),
-            selectedImage: nil)
-        let loginCoordinator = LoginCoordinator(navigation: navigationController, tabBar: tabBar)
-        return loginCoordinator
-    }
-    
     private func configureFavorites() -> FavoritesCoordinator {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = UITabBarItem(
@@ -64,10 +64,5 @@ class MainCoordinator: Coordinator {
             selectedImage: nil)
         let favCoordinator = FavoritesCoordinator(navigation: navigationController)
         return favCoordinator
-    }
-    
-    private func check() -> Bool {
-        // true = юзер есть, не авторизовываем его
-        return true
     }
 }

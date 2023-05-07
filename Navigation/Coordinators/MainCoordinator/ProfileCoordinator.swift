@@ -8,12 +8,10 @@
 
 import UIKit
 
-
-class ProfileCoordinator: Coordinator {
+final class ProfileCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let navigationController: UINavigationController
 
-    
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }

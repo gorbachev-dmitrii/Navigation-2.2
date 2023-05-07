@@ -17,13 +17,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let mainCoordinator = MainCoordinator()
+        let app = AppCoordinator()
+        window?.rootViewController = app.navigation
+        app.start()
         window?.overrideUserInterfaceStyle = .light
 //        let realm = try! Realm()
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
-        window?.rootViewController = mainCoordinator.tabBarController
+//        window?.rootViewController = mainCoordinator.tabBarController
+//        window?.rootViewController = LogInViewController()
         window?.makeKeyAndVisible()
         window?.tintColor = UIColor(named: "CustomOrange")
 //        CoreDataManager.shared.removeFromCoreData()

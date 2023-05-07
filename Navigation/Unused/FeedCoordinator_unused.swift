@@ -9,7 +9,7 @@
 import UIKit
 import StorageService
 
-final class FeedCoordinator: Coordinator {
+final class FeedCoordinator_unused: Coordinator {
     
     let post: Post = Post(title: "Пост")
     var coordinators: [Coordinator] = []
