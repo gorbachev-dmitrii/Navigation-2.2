@@ -15,8 +15,6 @@ final class LoginInspector: LoginDelegate {
         return checkUserData(login: login, password: password)
     }
     
-    
-    
     func checkIfExists(login: String, password: String) {
         let realm = try? Realm()
         guard let users = realm?.objects(RealmUserModel.self) else {return}

@@ -13,7 +13,7 @@ final class EntryViewController: UIViewController {
     //MARK: Properties
     
     var onShowNext: ((_: String) -> Void)?
-
+//    let entryView = EntryView()
     private let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -58,6 +58,9 @@ final class EntryViewController: UIViewController {
     //MARK: Constraints
     
     private func setupConstraints() {
+//        entryView.snp.makeConstraints { make in
+//            make.leading.trailing.bottom.top.equalToSuperview()
+//        }
         registerButton.snp.makeConstraints { make in
             make.leading.equalTo(55)
             make.trailing.equalTo(-55)
