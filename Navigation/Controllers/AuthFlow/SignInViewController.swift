@@ -83,7 +83,8 @@ final class SignInViewController: UIViewController {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
                 if let user = delegate.checkСredentials(login: login, password: password) {
-                    self.onShowNext2?(user)
+//                    self.onShowNext2?(user)
+                    self.onShowNext?()
                     print(user)
                 } else {
                     createInvalidDataAlert()

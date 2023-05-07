@@ -21,18 +21,30 @@ final class AppCoordinator {
     func start() {
         // тут логика запуска либо логин координатора, либо главного, в зависимости от того, есть ли юзер в БД
         // обращение к LoginInspector?
-        configureMain()
+//        configureMain()
+        checkAuthState() ? configureMain() : configureAuth()
     }
 //
-//    private func configureAuth() {
-//        let authCoordinator = LoginCoordinator(navigationController: navigation)
-//        authCoordinator.start()
-//    }
+    private func configureAuth() {
+        let authCoordinator = LoginCoordinator(navigation: navigation)
+        authCoordinator.start()
+    }
     
     private func configureMain() {
         let mainCoordinator = MainCoordinator(navigationController: navigation)
         mainCoordinator.navigationController.navigationBar.isHidden = true
         mainCoordinator.start()
+    }
+    
+    private func checkAuthState() -> Bool {
+//        if let user = UserManager.shared.readTeam() {
+//            print("current teamId is - \(user.teamId)")
+//            return true
+//        } else {
+//            print("no saved team")
+//            return false
+//        }
+        return false
     }
 }
 

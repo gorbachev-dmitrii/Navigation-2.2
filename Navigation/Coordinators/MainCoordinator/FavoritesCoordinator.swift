@@ -17,7 +17,7 @@ final class FavoritesCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = SavedPostsViewController()
+        let controller = FavoritesViewController()
         navigationController.pushViewController(controller, animated: true)
     }
 }

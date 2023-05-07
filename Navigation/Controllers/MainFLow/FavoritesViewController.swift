@@ -1,5 +1,5 @@
 //
-//  SavedPostsViewController.swift
+//  FavoritesViewController.swift
 //  Navigation
 //
 //  Created by Artem Novichkov on 12.09.2020.
@@ -10,7 +10,7 @@ import UIKit
 import StorageService
 import SnapKit
 
-class SavedPostsViewController: UIViewController {
+class FavoritesViewController: UIViewController {
     
     var post: Post?
     private var favoritePosts = [PostData]()
@@ -63,7 +63,7 @@ class SavedPostsViewController: UIViewController {
     }
 }
 
-extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource {
+extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoritePosts.count
     }

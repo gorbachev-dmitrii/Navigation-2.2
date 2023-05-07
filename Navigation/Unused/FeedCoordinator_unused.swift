@@ -30,7 +30,7 @@ final class FeedCoordinator_unused: Coordinator {
     }
     
     private func goNext() {
-        let vc = SavedPostsViewController()
+        let vc = FavoritesViewController()
         navigationController.pushViewController(vc, animated: true)
         vc.post = post
     }

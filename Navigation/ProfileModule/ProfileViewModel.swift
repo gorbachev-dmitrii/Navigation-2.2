@@ -11,7 +11,7 @@ import UIKit
 class ProfileViewModel {
     
     var coordinator: LoginCoordinator?
-    var userService: UserService?
+    var userService: UserService_old?
     var login: String?
     
     var onShowNext: (() -> Void)?
@@ -20,7 +20,7 @@ class ProfileViewModel {
         self?.onShowNext?()
     }
     
-    func createUser() -> User {
+    func createUser() -> User_old {
         return (userService?.getUser(username: login!))!
     }
 }

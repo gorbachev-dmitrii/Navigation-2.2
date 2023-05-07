@@ -11,7 +11,7 @@
 		060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B3250CE27700A87020 /* SceneDelegate.swift */; };
 		060782BB250CE27A00A87020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060782BA250CE27A00A87020 /* Assets.xcassets */; };
 		060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782BC250CE27A00A87020 /* LaunchScreen.storyboard */; };
-		060782C8250CEE5D00A87020 /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* SavedPostsViewController.swift */; };
+		060782C8250CEE5D00A87020 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* FavoritesViewController.swift */; };
 		0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */; };
 		0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409828C2192B0012429A /* CoreDataManager.swift */; };
 		0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D07409B28C2AD5B0012429A /* CoreDataPost.xcdatamodeld */; };
@@ -43,8 +43,8 @@
 		C3B65B102685377D0058268C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; };
 		C3B65B112685377D0058268C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3B65B092685377D0058268C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3B65B30268759320058268C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B192685379C0058268C /* PostData.swift */; };
-		C3B65B34268759E70058268C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B33268759E70058268C /* User.swift */; };
-		C3B65B37268799640058268C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B36268799640058268C /* UserService.swift */; };
+		C3B65B34268759E70058268C /* User_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B33268759E70058268C /* User_old.swift */; };
+		C3B65B37268799640058268C /* UserService_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B36268799640058268C /* UserService_old.swift */; };
 		C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B40268A7DD20058268C /* LoginChecker.swift */; };
 		C3B65B44268B30230058268C /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B43268B30230058268C /* LoginInspector.swift */; };
 		C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B46268FB7600058268C /* LoginFactory.swift */; };
@@ -88,7 +88,7 @@
 		060782BA250CE27A00A87020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		060782BD250CE27A00A87020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		060782BF250CE27A00A87020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		060782C7250CEE5D00A87020 /* SavedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsViewController.swift; sourceTree = "<group>"; };
+		060782C7250CEE5D00A87020 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0D07409628BC2EB70012429A /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		0D07409828C2192B0012429A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0D07409C28C2AD5B0012429A /* CoreDataPost.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPost.xcdatamodel; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		C3B65B0B2685377D0058268C /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C3B65B0C2685377D0058268C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3B65B192685379C0058268C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
-		C3B65B33268759E70058268C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		C3B65B36268799640058268C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		C3B65B33268759E70058268C /* User_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_old.swift; sourceTree = "<group>"; };
+		C3B65B36268799640058268C /* UserService_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService_old.swift; sourceTree = "<group>"; };
 		C3B65B40268A7DD20058268C /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
 		C3B65B43268B30230058268C /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		C3B65B46268FB7600058268C /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
@@ -182,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				0DD7BE11296E1C6500710935 /* Unused */,
-				0D07409A28C2AD3A0012429A /* CoreData */,
 				0DA2CB8128A5BD1700FE86FF /* Managers */,
 				0DA2CB7B28A5BC6400FE86FF /* UserModel */,
 				C391B34626E3C41C00D7D7DA /* ProfileModule */,
@@ -220,12 +219,30 @@
 			path = MainCoordinator;
 			sourceTree = "<group>";
 		};
+		0D91D2E72A07BFF400EC62EF /* MainFLow */ = {
+			isa = PBXGroup;
+			children = (
+				060782C7250CEE5D00A87020 /* FavoritesViewController.swift */,
+				C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */,
+				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
+				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
+			);
+			path = MainFLow;
+			sourceTree = "<group>";
+		};
+		0D91D2E82A07BFFD00EC62EF /* AuthFlow */ = {
+			isa = PBXGroup;
+			children = (
+				0D4438B32949300A00D5DCE6 /* EntryViewController.swift */,
+				0D1BEA7E294A74FD0061699F /* SignInViewController.swift */,
+				0D1BEA80294B70430061699F /* SignUpViewController.swift */,
+			);
+			path = AuthFlow;
+			sourceTree = "<group>";
+		};
 		0DA2CB7B28A5BC6400FE86FF /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
-				C3B65B33268759E70058268C /* User.swift */,
-				C3B65B36268799640058268C /* UserService.swift */,
-				C3CE4794269796110000BCC5 /* Model.swift */,
 				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
 			);
 			path = UserModel;
@@ -234,6 +251,7 @@
 		0DA2CB8128A5BD1700FE86FF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				0D07409A28C2AD3A0012429A /* CoreData */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
 			);
 			path = Managers;
@@ -242,6 +260,9 @@
 		0DD7BE11296E1C6500710935 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				C3CE4794269796110000BCC5 /* Model.swift */,
+				C3B65B33268759E70058268C /* User_old.swift */,
+				C3B65B36268799640058268C /* UserService_old.swift */,
 				C33B2B4926DAA0F100CFD40F /* FeedCoordinator_unused.swift */,
 				C3C92C4D25C3551900B8A89D /* LogInViewController.swift */,
 				0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */,
@@ -298,13 +319,8 @@
 		C35A0A6326014C5D00F0BB15 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				060782C7250CEE5D00A87020 /* SavedPostsViewController.swift */,
-				C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */,
-				C35A0A5B25FEB16400F0BB15 /* PhotosViewController.swift */,
-				C3F4434525B32622000FBEDA /* ProfileViewController.swift */,
-				0D4438B32949300A00D5DCE6 /* EntryViewController.swift */,
-				0D1BEA7E294A74FD0061699F /* SignInViewController.swift */,
-				0D1BEA80294B70430061699F /* SignUpViewController.swift */,
+				0D91D2E82A07BFFD00EC62EF /* AuthFlow */,
+				0D91D2E72A07BFF400EC62EF /* MainFLow */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -510,7 +526,7 @@
 				0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */,
 				C391B34826E3C66600D7D7DA /* ProfileViewModel.swift in Sources */,
 				C33B2B4E26DAC51900CFD40F /* LoginCoordinator.swift in Sources */,
-				C3B65B37268799640058268C /* UserService.swift in Sources */,
+				C3B65B37268799640058268C /* UserService_old.swift in Sources */,
 				0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */,
 				C3B65B532693A7050058268C /* CustomButton.swift in Sources */,
 				C3B65B44268B30230058268C /* LoginInspector.swift in Sources */,
@@ -519,7 +535,7 @@
 				C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */,
 				0D42F8EA2A017F6500DAE575 /* AppCoordinator.swift in Sources */,
 				C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */,
-				C3B65B34268759E70058268C /* User.swift in Sources */,
+				C3B65B34268759E70058268C /* User_old.swift in Sources */,
 				C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				C368285525F97B7F00FBE667 /* PhotosTableViewCell.swift in Sources */,
@@ -529,7 +545,7 @@
 				C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */,
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
-				060782C8250CEE5D00A87020 /* SavedPostsViewController.swift in Sources */,
+				060782C8250CEE5D00A87020 /* FavoritesViewController.swift in Sources */,
 				0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */,
 				0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,

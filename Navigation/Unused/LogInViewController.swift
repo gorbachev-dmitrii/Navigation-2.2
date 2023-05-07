@@ -63,7 +63,7 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
-    var onShowNext: ((String, UserService) -> Void)?
+    var onShowNext: ((String, UserService_old) -> Void)?
     
     // MARK: Lifecycle
     override func viewDidLoad() {

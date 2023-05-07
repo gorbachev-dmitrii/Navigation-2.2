@@ -11,11 +11,9 @@ import UIKit
 final class LoginCoordinator: Coordinator {
     let navigationController: UINavigationController
     var coordinators: [Coordinator] = []
-    let tabBarController: UITabBarController
 
-    init(navigation: UINavigationController, tabBar: UITabBarController) {
+    init(navigation: UINavigationController) {
         self.navigationController = navigation
-        self.tabBarController = tabBar
     }
     
     func start() {
@@ -30,30 +28,28 @@ final class LoginCoordinator: Coordinator {
         }
     }
     
-    func toSignInVC() {
+    private func toSignInVC() {
         let signInVC = SignInViewController()
         signInVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signInVC, animated: true)
         signInVC.onShowNext = { [weak self] in
-            self?.toFeed()
-            self?.tabBarController.tabBar.isHidden = false
+            self?.coordinateToMain()
         }
     }
     
-    func toSignUpVC() {
+    private func toSignUpVC() {
         let signUpVC = SignUpViewController()
         signUpVC.inspectorDelegate = LoginInspector()
         navigationController.pushViewController(signUpVC, animated: true)
         signUpVC.onShowNext = { [weak self] in
-            self?.toFeed()
-            self?.tabBarController.tabBar.isHidden = false
+            self?.coordinateToMain()
         }
     }
     
-    func toFeed() {
-        let feedVC = FeedViewController()
-        navigationController.pushViewController(feedVC, animated: true)
-
+    private func coordinateToMain() {
+        let mainCoordinator = MainCoordinator(navigationController: navigationController)
+        mainCoordinator.navigationController.navigationBar.isHidden = true
+        mainCoordinator.start()
     }
 }
 

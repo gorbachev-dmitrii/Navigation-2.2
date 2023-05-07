@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  User_old.swift
 //  Navigation
 //
 //  Created by Dima Gorbachev on 26.06.2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User_old {
     var name: String
     var avatar: String
     var status: String
