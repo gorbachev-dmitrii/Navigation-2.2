@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileViewModel {
     
-    var coordinator: LoginCoordinator?
+    var coordinator: AuthCoordinator?
     var userService: UserService_old?
     var login: String?
     

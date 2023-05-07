@@ -8,8 +8,11 @@
 
 import UIKit
 
+protocol Coordinator: AnyObject {
+    var coordinators: [Coordinator] { get set }
+}
 
-// управляет Flow - запуск координатора авторизация/регистрация и основного координатора приложения
+// AppCoordinator управляет Flow - запуск координатора авторизация/регистрация или основного координатора приложения
 
 final class AppCoordinator {
     let navigation: UINavigationController
@@ -19,17 +22,17 @@ final class AppCoordinator {
         navigation = UINavigationController()
         userService = UserService()
     }
-    
+    // Определение Flow на основании того, есть юзер в БД или нет
     func start() {
-        checkAuthState() ? configureMain() : configureAuth()
+        checkAuthState() ? configureMainFlow() : configureAuthFlow()
     }
-    //
-    private func configureAuth() {
-        let authCoordinator = LoginCoordinator(navigation: navigation)
+    
+    private func configureAuthFlow() {
+        let authCoordinator = AuthCoordinator(navigation: navigation)
         authCoordinator.start()
     }
     
-    private func configureMain() {
+    private func configureMainFlow() {
         let mainCoordinator = MainCoordinator(navigationController: navigation, userService: userService)
         mainCoordinator.navigationController.navigationBar.isHidden = true
         mainCoordinator.start()

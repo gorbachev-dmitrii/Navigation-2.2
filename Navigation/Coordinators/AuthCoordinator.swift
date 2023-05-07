@@ -1,5 +1,5 @@
 //
-//  LoginCoordinator.swift
+//  AuthCoordinator.swift
 //  Navigation
 //
 //  Created by Dima Gorbachev on 28.08.2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LoginCoordinator: Coordinator {
+final class AuthCoordinator: Coordinator {
     let navigationController: UINavigationController
     var coordinators: [Coordinator] = []
     let userService = UserService()

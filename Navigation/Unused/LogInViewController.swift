@@ -13,7 +13,7 @@ class LogInViewController: UIViewController {
     
     //MARK: Properties
     var inspectorDelegate: LoginDelegate?
-    weak var coordinator: LoginCoordinator?
+    weak var coordinator: AuthCoordinator?
     
     private let logoView: UIImageView = {
         let imageView = UIImageView()

@@ -7,11 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
-
-protocol Coordinator: AnyObject {
-    var coordinators: [Coordinator] { get set }
-}
 
 class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []

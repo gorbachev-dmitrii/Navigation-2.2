@@ -14,22 +14,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         let app = AppCoordinator()
         window?.rootViewController = app.navigation
         app.start()
         window?.overrideUserInterfaceStyle = .light
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
-//        window?.rootViewController = mainCoordinator.tabBarController
-//        window?.rootViewController = LogInViewController()
         window?.makeKeyAndVisible()
         window?.tintColor = UIColor(named: "CustomOrange")
 //        CoreDataManager.shared.removeFromCoreData()
+//                let realm = try! Realm()
+//                try! realm.write {
+//                    realm.deleteAll()
+//                }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
