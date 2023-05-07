@@ -13,6 +13,7 @@ import RealmSwift
 protocol LoginDelegate: AnyObject {
     func authorizeUser(login: String, password: String) -> RealmUser?
     func registerUser(login: String, password: String)
+    func getUser() -> RealmUser?
 }
 
 final class LoginInspector: LoginDelegate {
@@ -27,6 +28,10 @@ final class LoginInspector: LoginDelegate {
         checkIfExists(login: login, password: password)
     }
     
+    func getUser() -> RealmUser? {
+        return readUser()
+    }
+    
     // MARK: Realm functions
     
     private func checkUserData(login: String, password: String) -> RealmUser? {
@@ -39,7 +44,7 @@ final class LoginInspector: LoginDelegate {
         }
     }
     
-    func checkIfExists(login: String, password: String) {
+    private func checkIfExists(login: String, password: String) {
         let realm = try? Realm()
         guard let users = realm?.objects(RealmUserModel.self) else {return}
         if !users.contains(where: { $0.login == login && $0.password == password }) {
@@ -63,7 +68,7 @@ final class LoginInspector: LoginDelegate {
         }
     }
     
-    func readUser() -> RealmUser? {
+    private func readUser() -> RealmUser? {
         let realm = try? Realm()
         let users: [RealmUser] = realm?.objects(RealmUserModel.self).compactMap {
             guard let login = $0.login, let password = $0.password else { return nil }
