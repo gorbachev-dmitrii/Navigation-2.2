@@ -80,6 +80,7 @@ class ProfileHeaderView: UIView {
         super.init(frame: .zero)
         self.addSubviews(views: [avatarImageView, setStatusButton, statusLabel, statusTextField, fullNameLabel])
         setupSnapConstraints()
+        self.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
