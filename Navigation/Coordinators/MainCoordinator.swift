@@ -16,9 +16,11 @@ protocol Coordinator: AnyObject {
 class MainCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let navigationController: UINavigationController
+    let userService: UserService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, userService: UserService) {
         self.navigationController = navigationController
+        self.userService = userService
     }
     
     func start() {
@@ -52,7 +54,7 @@ class MainCoordinator: Coordinator {
             title: "tabBarProfile".localized,
             image: UIImage(systemName: "person.crop.circle"),
             selectedImage: nil)
-        let profileCoordinator = ProfileCoordinator(navigation: navigationController)
+        let profileCoordinator = ProfileCoordinator(navigation: navigationController, userService: userService)
         return profileCoordinator
     }
     

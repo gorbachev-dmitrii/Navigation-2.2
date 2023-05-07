@@ -11,6 +11,7 @@ import UIKit
 final class LoginCoordinator: Coordinator {
     let navigationController: UINavigationController
     var coordinators: [Coordinator] = []
+    let userService = UserService()
 
     init(navigation: UINavigationController) {
         self.navigationController = navigation
@@ -47,7 +48,7 @@ final class LoginCoordinator: Coordinator {
     }
     
     private func coordinateToMain() {
-        let mainCoordinator = MainCoordinator(navigationController: navigationController)
+        let mainCoordinator = MainCoordinator(navigationController: navigationController, userService: userService)
         mainCoordinator.navigationController.navigationBar.isHidden = true
         mainCoordinator.start()
     }

@@ -11,14 +11,18 @@ import UIKit
 final class ProfileCoordinator: Coordinator {
     var coordinators: [Coordinator] = []
     let navigationController: UINavigationController
-
-    init(navigation: UINavigationController) {
+    let userService: UserService
+    
+    init(navigation: UINavigationController, userService: UserService) {
         self.navigationController = navigation
+        self.userService = userService
     }
     
     func start() {
-        let controller = ProfileViewController()
-        navigationController.pushViewController(controller, animated: true)
+        if let user = userService.user {
+            let controller = ProfileViewController(user: user)
+            navigationController.pushViewController(controller, animated: true)
+        }
     }
     
 }

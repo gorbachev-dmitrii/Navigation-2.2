@@ -23,6 +23,7 @@
 		0D42F8EC2A01819100DAE575 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */; };
 		0D4438B42949300A00D5DCE6 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4438B32949300A00D5DCE6 /* EntryViewController.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
+		0D91D2EC2A07D79100EC62EF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D91D2EB2A07D79100EC62EF /* UserService.swift */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */; };
 		0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */; };
@@ -102,6 +103,7 @@
 		0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		0D4438B32949300A00D5DCE6 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D91D2EB2A07D79100EC62EF /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				0D07409A28C2AD3A0012429A /* CoreData */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
+				0D91D2EB2A07D79100EC62EF /* UserService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */,
 				0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
+				0D91D2EC2A07D79100EC62EF /* UserService.swift in Sources */,
 				0D1BEA81294B70430061699F /* SignUpViewController.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator_unused.swift in Sources */,
 				0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */,

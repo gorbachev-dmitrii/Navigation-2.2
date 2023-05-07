@@ -15,6 +15,8 @@ final class LoginInspector: LoginDelegate {
         return checkUserData(login: login, password: password)
     }
     
+    
+    
     func checkIfExists(login: String, password: String) {
         let realm = try? Realm()
         guard let users = realm?.objects(RealmUserModel.self) else {return}
@@ -39,9 +41,16 @@ final class LoginInspector: LoginDelegate {
             return nil
         }
     }
-    
-    private func sfg() {
-        
+    // registartion
+    private func checkLoginIfExists(login: String, password: String) {
+        let realm = try? Realm()
+        guard let users = realm?.objects(RealmUserModel.self) else {return}
+        if users.contains(where: { $0.login == login }) {
+            print("Пользователь с таким логином уже зарегистрирован")
+        } else {
+            print("Гоу сохранять в БД")
+            saveUserToRealm(login: login, password: password)
+        }
     }
     
     private func saveUserToRealm(login: String, password: String) {

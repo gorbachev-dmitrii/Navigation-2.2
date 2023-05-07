@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
     //let userService: UserService
+    let user: RealmUser
     
     private let blurView: UIView = {
         let view = UIView()
@@ -45,7 +46,15 @@ class ProfileViewController: UIViewController {
     
     //var profileViewModel: ProfileViewModel
     // MARK: Lifecycle
+    init(user: RealmUser) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     //    init(viewModel: ProfileViewModel, userService: UserService, username: String) {
     //        self.userService = userService
     //        profileHeader.fullNameLabel.text = userService.getUser(username: username).name
@@ -66,6 +75,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(user.login)
         //       let user = profileViewModel.createUser()
         //        profileHeader.fullNameLabel.text = user.name
         //        profileHeader.statusLabel.text = user.status

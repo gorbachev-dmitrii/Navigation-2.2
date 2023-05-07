@@ -13,38 +13,34 @@ import UIKit
 
 final class AppCoordinator {
     let navigation: UINavigationController
+    let userService: UserService
     
     init() {
         navigation = UINavigationController()
+        userService = UserService()
     }
     
     func start() {
-        // тут логика запуска либо логин координатора, либо главного, в зависимости от того, есть ли юзер в БД
-        // обращение к LoginInspector?
-//        configureMain()
         checkAuthState() ? configureMain() : configureAuth()
     }
-//
+    //
     private func configureAuth() {
         let authCoordinator = LoginCoordinator(navigation: navigation)
         authCoordinator.start()
     }
     
     private func configureMain() {
-        let mainCoordinator = MainCoordinator(navigationController: navigation)
+        let mainCoordinator = MainCoordinator(navigationController: navigation, userService: userService)
         mainCoordinator.navigationController.navigationBar.isHidden = true
         mainCoordinator.start()
     }
     
     private func checkAuthState() -> Bool {
-//        if let user = UserManager.shared.readTeam() {
-//            print("current teamId is - \(user.teamId)")
-//            return true
-//        } else {
-//            print("no saved team")
-//            return false
-//        }
-        return false
+        if userService.user != nil {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
