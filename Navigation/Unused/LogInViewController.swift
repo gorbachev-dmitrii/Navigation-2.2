@@ -122,7 +122,7 @@ class LogInViewController: UIViewController {
                 let testUser = TestUserService()
                 self.onShowNext?(login, testUser)
                 print("a;a;a;;a")
-                print(delegate.checkInputData(login: login, password: password))
+//                print(delegate.checkInputData(login: login, password: password))
             } else {
                 createLoginAlert()
             }

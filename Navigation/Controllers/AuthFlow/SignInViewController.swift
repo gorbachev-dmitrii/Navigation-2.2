@@ -82,7 +82,7 @@ final class SignInViewController: UIViewController {
         
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
-                if let user = delegate.checkСredentials(login: login, password: password) {
+                if let user = delegate.authorizeUser(login: login, password: password) {
 //                    self.onShowNext2?(user)
                     self.onShowNext?()
                     print(user)
@@ -157,10 +157,4 @@ final class SignInViewController: UIViewController {
 }
 
 
-// MARK: LoginDelegate
-protocol LoginDelegate: AnyObject {
-    func checkInputData(login: String, password: String) -> String
-    func readRealmUser() -> RealmUser_old?
-    func checkСredentials(login: String, password: String) -> RealmUser?
-    func checkIfExists(login: String, password: String)
-}
+

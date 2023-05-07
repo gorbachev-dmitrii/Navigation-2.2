@@ -92,7 +92,7 @@ final class SignUpViewController: UIViewController {
     private func registerButtonTapped() {
         if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
             if !login.isEmpty || !password.isEmpty {
-                delegate.checkIfExists(login: login, password: password)
+                delegate.registerUser(login: login, password: password)
                 self.onShowNext?()
             } else {
                 print("Пустые поля")

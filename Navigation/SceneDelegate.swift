@@ -23,10 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         window?.tintColor = UIColor(named: "CustomOrange")
 //        CoreDataManager.shared.removeFromCoreData()
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.deleteAll()
-                }
+//                let realm = try! Realm()
+//                try! realm.write {
+//                    realm.deleteAll()
+//                }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

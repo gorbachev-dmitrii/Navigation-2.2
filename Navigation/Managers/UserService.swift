@@ -15,7 +15,7 @@ final class UserService {
     init() {
         loginInspector = LoginInspector()
         user = loginInspector.readUser()
-        print("from UserService")
-        print(user?.login)
+//        print("from UserService")
+//        print(user?.login)
     }
 }
