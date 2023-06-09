@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        tableView.register(PostTableViewCell_old.self, forCellReuseIdentifier: String(describing: PostTableViewCell_old.self))
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.delegate = self
 //        tableView.backgroundColor = UIColor(named: "CustomMilky")
@@ -97,7 +97,7 @@ extension ProfileViewController: UITableViewDataSource {
             cell.selectionStyle = .default
             return cell
         } else {
-            let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            let cell: PostTableViewCell_old = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell_old.self), for: indexPath) as! PostTableViewCell_old
             cell.post = posts[indexPath.row]
             cell.selectionStyle = .none
             return cell

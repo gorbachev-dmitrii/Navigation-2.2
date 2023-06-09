@@ -2,127 +2,172 @@
 //  PostTableViewCell.swift
 //  Navigation
 //
-//  Created by Dima Gorbachev on 02.02.2021.
-//  Copyright © 2021 Artem Novichkov. All rights reserved.
+//  Created by Dima Gorbachev on 30.05.2023.
+//  Copyright © 2023 Artem Novichkov. All rights reserved.
 //
 
 import UIKit
-import iOSIntPackage
+import SnapKit
 import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
     var post: PostData? {
         didSet {
-            titleLabel.text = post?.author
-            descriptionLabel.text = post?.description
-            if let likes = post?.likes, let views = post?.views, let image = post?.image {
-                likesLabel.text = "postCellLikes".localized + " " + String(likes)
-                viewsLabel.text = "postCellViews".localized + " " + String(views)
-                cellImageView.image = UIImage(named: image)
+            if let image = post?.image, let likes = post?.likes {
+                postImage.image = UIImage(named: image)
+                likesLabel.text = "\(likes)"
             }
+            usernameLabel.text = post?.author
+            userImage.image = UIImage(named: "userImage")
+            postText.text = post?.description
         }
     }
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .label
-        label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    var onAddFavTap: (() -> Void)?
+    
+    private lazy var headerContainer: UIView = {
+        let view = UIView()
+        view.addSubview(userImage)
+        view.addSubview(usernameLabel)
+        return view
     }()
     
-    private let cellImageView: UIImageView = {
+    private lazy var mainContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "CustomMilky")
+        view.addSubview(postText)
+        view.addSubview(postImage)
+        return view
+    }()
+    
+    private lazy var footerContainer: UIView = {
+        let view = UIView()
+        view.addSubview(button)
+        view.addSubview(likesLabel)
+        view.addSubview(addFavorite)
+        view.layer.borderWidth = 1
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .black
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let descriptionLabel: UILabel = {
+    private lazy var usernameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .label
+        return label
+    }()
+    
+    private lazy var postText: UILabel = {
+        let label = UILabel()
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let viewsLabel: UILabel = {
+    private lazy var postImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private lazy var likesLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let likesLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var button: CustomButton = {
+        let button = CustomButton(title: "", titleColor: .clear) {
+            print("aalalalla")
+        }
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        return button
     }()
-     
+    
+    private lazy var addFavorite: CustomButton = {
+        let button = CustomButton(title: "", titleColor: .clear) {
+            self.onAddFavTap?()
+        }
+        button.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        return button
+    }()
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        [titleLabel, cellImageView, descriptionLabel, viewsLabel, likesLabel].forEach({
-            contentView.addSubview($0)
-        })        
+        contentView.addSubview(headerContainer)
+        contentView.addSubview(mainContainer)
+        contentView.addSubview(footerContainer)
         setupConstraints()
-        setupGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupGestureRecognizer() {
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(doubleClickHandler))
-        gestureRecognizer.numberOfTapsRequired = 2
-        contentView.addGestureRecognizer(gestureRecognizer)
-    }
-    
-    @objc private func doubleClickHandler() {
-        if let post = post {
-            CoreDataManager.shared.saveFavourite(post: post)
-        } else {
-            return
-        }
-            
-    }
-    
-    
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: cellImageView.topAnchor, constant: -12),
-            
-            cellImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cellImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            cellImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -16),
-            cellImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-            cellImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: 16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            
-            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+        
+        // MARK: header container
+        
+        headerContainer.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(92)
+        }
+        
+        userImage.snp.makeConstraints { make in
+            make.leading.top.equalTo(16)
+            make.width.height.equalTo(60)
+        }
+        
+        usernameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(userImage.snp.trailing).offset(24)
+            make.top.equalTo(userImage.snp.top)
+        }
+        
+        // MARK: main container
+        
+        mainContainer.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(headerContainer.snp.bottom)
+        }
+        
+        postText.snp.makeConstraints { make in
+            make.leading.top.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.bottom.equalTo(postImage.snp.top)
+        }
+        
+        postImage.snp.makeConstraints { make in
+            make.top.equalTo(postText.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalTo(postText)
+            make.height.equalTo(headerContainer.snp.width).inset(50)
+        }
+        
+        // MARK: footer container
+        
+        footerContainer.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(mainContainer.snp.bottom)
+            make.height.equalTo(50)
+        }
+        
+        button.snp.makeConstraints { make in
+            make.leading.equalTo(16)
+            make.centerY.equalToSuperview()
+        }
+        
+        likesLabel.snp.makeConstraints { make in
+            make.leading.equalTo(button.snp.trailing).offset(10)
+            make.centerY.equalToSuperview()
+        }
+        
+        addFavorite.snp.makeConstraints { make in
+            make.trailing.equalTo(-23)
+            make.centerY.equalToSuperview()
+        }
     }
-    
 }

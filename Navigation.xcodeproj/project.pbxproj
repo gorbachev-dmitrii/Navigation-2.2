@@ -23,11 +23,15 @@
 		0D42F8EC2A01819100DAE575 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */; };
 		0D4438B42949300A00D5DCE6 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4438B32949300A00D5DCE6 /* EntryViewController.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
+		0D73C6782A08618E00AA1C2F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0D73C6772A08618E00AA1C2F /* Realm */; };
+		0D73C67A2A08618E00AA1C2F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D73C6792A08618E00AA1C2F /* RealmSwift */; };
+		0D73C67C2A086DFF00AA1C2F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73C67B2A086DFF00AA1C2F /* UserModel.swift */; };
 		0D91D2EC2A07D79100EC62EF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D91D2EB2A07D79100EC62EF /* UserService.swift */; };
 		0D91D2F12A07F86300EC62EF /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D91D2F02A07F86300EC62EF /* EntryView.swift */; };
 		0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */; };
 		0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */; };
 		0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */; };
+		0DFA6AA22A254B130078FCDC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA6AA12A254B130078FCDC /* PostTableViewCell.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */; };
@@ -52,7 +56,7 @@
 		C3B65B47268FB7600058268C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B46268FB7600058268C /* LoginFactory.swift */; };
 		C3B65B532693A7050058268C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B65B522693A7050058268C /* CustomButton.swift */; };
 		C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C4D25C3551900B8A89D /* LogInViewController.swift */; };
-		C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */; };
+		C3C92C5D25C8B05500B8A89D /* PostTableViewCell_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C92C5C25C8B05500B8A89D /* PostTableViewCell_old.swift */; };
 		C3CE4795269796110000BCC5 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE4794269796110000BCC5 /* Model.swift */; };
 		C3F4434325B325F7000FBEDA /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */; };
 		C3F4434625B32622000FBEDA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F4434525B32622000FBEDA /* ProfileViewController.swift */; };
@@ -104,11 +108,13 @@
 		0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		0D4438B32949300A00D5DCE6 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D73C67B2A086DFF00AA1C2F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0D91D2EB2A07D79100EC62EF /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0D91D2F02A07F86300EC62EF /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		0DA2CB7F28A5BCFE00FE86FF /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		0DFA6AA12A254B130078FCDC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
@@ -134,7 +140,7 @@
 		C3B65B46268FB7600058268C /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		C3B65B522693A7050058268C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C3C92C4D25C3551900B8A89D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		C3C92C5C25C8B05500B8A89D /* PostTableViewCell_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell_old.swift; sourceTree = "<group>"; };
 		C3CE4794269796110000BCC5 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C3F4434525B32622000FBEDA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +154,8 @@
 			files = (
 				C3B65B102685377D0058268C /* StorageService.framework in Frameworks */,
 				FD1459D0338E724015907796 /* Pods_Navigation.framework in Frameworks */,
+				0D73C6782A08618E00AA1C2F /* Realm in Frameworks */,
+				0D73C67A2A08618E00AA1C2F /* RealmSwift in Frameworks */,
 				C349F283267E27EA002E64E5 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
+				0D73C67B2A086DFF00AA1C2F /* UserModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -322,10 +331,11 @@
 				0D91D2ED2A07F7EA00EC62EF /* AuthFlow */,
 				C35A0A5E26014C2500F0BB15 /* PhotosCollectionViewCell.swift */,
 				C3F4434225B325F7000FBEDA /* ProfileHeaderView.swift */,
-				C3C92C5C25C8B05500B8A89D /* PostTableViewCell.swift */,
+				C3C92C5C25C8B05500B8A89D /* PostTableViewCell_old.swift */,
 				C368285425F97B7F00FBE667 /* PhotosTableViewCell.swift */,
 				C3B65B522693A7050058268C /* CustomButton.swift */,
 				C381F57626973F7700E24790 /* CustomTextField.swift */,
+				0DFA6AA12A254B130078FCDC /* PostTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -398,6 +408,8 @@
 			name = Navigation;
 			packageProductDependencies = (
 				C349F282267E27EA002E64E5 /* iOSIntPackage */,
+				0D73C6772A08618E00AA1C2F /* Realm */,
+				0D73C6792A08618E00AA1C2F /* RealmSwift */,
 			);
 			productName = Navigation;
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
@@ -452,6 +464,7 @@
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
 				C349F281267E27EA002E64E5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				0D73C6762A08618E00AA1C2F /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
 			projectDirPath = "";
@@ -538,6 +551,7 @@
 				0D42F8EC2A01819100DAE575 /* FeedCoordinator.swift in Sources */,
 				0D07409D28C2AD5B0012429A /* CoreDataPost.xcdatamodeld in Sources */,
 				0D07409928C2192B0012429A /* CoreDataManager.swift in Sources */,
+				0D73C67C2A086DFF00AA1C2F /* UserModel.swift in Sources */,
 				0D91D2F12A07F86300EC62EF /* EntryView.swift in Sources */,
 				C391B34826E3C66600D7D7DA /* ProfileViewModel.swift in Sources */,
 				C33B2B4E26DAC51900CFD40F /* AuthCoordinator.swift in Sources */,
@@ -565,12 +579,13 @@
 				0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,
 				0D91D2EC2A07D79100EC62EF /* UserService.swift in Sources */,
+				0DFA6AA22A254B130078FCDC /* PostTableViewCell.swift in Sources */,
 				0D1BEA81294B70430061699F /* SignUpViewController.swift in Sources */,
 				C33B2B4A26DAA0F100CFD40F /* FeedCoordinator_unused.swift in Sources */,
 				0D07409728BC2EB70012429A /* FavoritesCoordinator.swift in Sources */,
 				C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */,
 				C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */,
-				C3C92C5D25C8B05500B8A89D /* PostTableViewCell.swift in Sources */,
+				C3C92C5D25C8B05500B8A89D /* PostTableViewCell_old.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +884,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0D73C6762A08618E00AA1C2F /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C349F281267E27EA002E64E5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
@@ -880,6 +903,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0D73C6772A08618E00AA1C2F /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D73C6762A08618E00AA1C2F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0D73C6792A08618E00AA1C2F /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D73C6762A08618E00AA1C2F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		C349F282267E27EA002E64E5 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C349F281267E27EA002E64E5 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;

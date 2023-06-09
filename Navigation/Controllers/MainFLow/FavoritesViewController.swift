@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        tableView.register(PostTableViewCell_old.self, forCellReuseIdentifier: String(describing: PostTableViewCell_old.self))
         return tableView
         
     }()
@@ -69,7 +69,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+       let cell: PostTableViewCell_old = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell_old.self), for: indexPath) as! PostTableViewCell_old
         cell.selectionStyle = .default
         cell.post = favoritePosts[indexPath.row]
         return cell
