@@ -15,6 +15,7 @@ final class SignUpViewController: UIViewController {
     
     var onShowNext: (() -> Void)?
     var inspectorDelegate: LoginDelegate?
+    let manager = RealmManager()
     
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
@@ -90,9 +91,9 @@ final class SignUpViewController: UIViewController {
     }
     
     private func registerButtonTapped() {
-        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+        if let login = loginInput.text, let password = passwordInput.text {
             if !login.isEmpty || !password.isEmpty {
-                delegate.registerUser(login: login, password: password)
+                manager.createUser(login: login, password: password)
                 self.onShowNext?()
             } else {
                 print("Пустые поля")

@@ -25,4 +25,9 @@ final class ProfileCoordinator: Coordinator {
         }
     }
     
+    func toEditProfile() {
+        let controller = UIViewController()
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
 }

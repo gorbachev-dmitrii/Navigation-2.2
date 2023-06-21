@@ -32,6 +32,8 @@
 		0DD7BE0F296E0BE600710935 /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */; };
 		0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */; };
 		0DFA6AA22A254B130078FCDC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA6AA12A254B130078FCDC /* PostTableViewCell.swift */; };
+		0DFA6AAC2A3527DC0078FCDC /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA6AAB2A3527DC0078FCDC /* RealmManager.swift */; };
+		0DFA6AAE2A352A920078FCDC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA6AAD2A352A920078FCDC /* User.swift */; };
 		C32CA0D426C476E900DCBAAE /* String + Chars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CA0D326C476E900DCBAAE /* String + Chars.swift */; };
 		C33B2B3326CAE96B00CFD40F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B3226CAE96B00CFD40F /* FeedViewController.swift */; };
 		C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B2B4326D6E3B400CFD40F /* MainCoordinator.swift */; };
@@ -115,6 +117,8 @@
 		0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		0DD7BE162993B6C800710935 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		0DFA6AA12A254B130078FCDC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		0DFA6AAB2A3527DC0078FCDC /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		0DFA6AAD2A352A920078FCDC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1D4746C93BB52BAC02F2D4CC /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		6D977D90EF307DC3B46951C1 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32CA0D326C476E900DCBAAE /* String + Chars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Chars.swift"; sourceTree = "<group>"; };
@@ -264,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
-				0D73C67B2A086DFF00AA1C2F /* UserModel.swift */,
+				0DFA6AAD2A352A920078FCDC /* User.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -275,6 +279,7 @@
 				0D07409A28C2AD3A0012429A /* CoreData */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				0D91D2EB2A07D79100EC62EF /* UserService.swift */,
+				0DFA6AAB2A3527DC0078FCDC /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 		0DD7BE11296E1C6500710935 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				0D73C67B2A086DFF00AA1C2F /* UserModel.swift */,
 				C3CE4794269796110000BCC5 /* Model.swift */,
 				C3B65B33268759E70058268C /* User_old.swift */,
 				C3B65B36268799640058268C /* UserService_old.swift */,
@@ -563,6 +569,7 @@
 				C3F4434325B325F7000FBEDA /* ProfileHeaderView.swift in Sources */,
 				C3B65B41268A7DD20058268C /* LoginChecker.swift in Sources */,
 				0D42F8EA2A017F6500DAE575 /* AppCoordinator.swift in Sources */,
+				0DFA6AAC2A3527DC0078FCDC /* RealmManager.swift in Sources */,
 				C35A0A5C25FEB16400F0BB15 /* PhotosViewController.swift in Sources */,
 				C3B65B34268759E70058268C /* User_old.swift in Sources */,
 				C33B2B4426D6E3B400CFD40F /* MainCoordinator.swift in Sources */,
@@ -575,6 +582,7 @@
 				C35A0A5F26014C2500F0BB15 /* PhotosCollectionViewCell.swift in Sources */,
 				C3CE4795269796110000BCC5 /* Model.swift in Sources */,
 				060782C8250CEE5D00A87020 /* FavoritesViewController.swift in Sources */,
+				0DFA6AAE2A352A920078FCDC /* User.swift in Sources */,
 				0D1BEA7F294A74FD0061699F /* SignInViewController.swift in Sources */,
 				0DD7BE172993B6C800710935 /* ProfileCoordinator.swift in Sources */,
 				0DA2CB8028A5BCFE00FE86FF /* AuthModel.swift in Sources */,

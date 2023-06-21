@@ -15,6 +15,8 @@ final class SignInViewController: UIViewController {
     var onShowNext: (() -> Void)?
     var inspectorDelegate: LoginDelegate?
     
+    let manager = RealmManager()
+    
     private lazy var loginInput: CustomTextField = {
         let input = CustomTextField(
             placeholder: "loginInputPlaceholder".localized,
@@ -79,13 +81,10 @@ final class SignInViewController: UIViewController {
     }
     
     private func signInButtonTapped() {
-        
-        if let login = loginInput.text, let password = passwordInput.text, let delegate = inspectorDelegate {
+        if let login = loginInput.text, let password = passwordInput.text {
             if !login.isEmpty || !password.isEmpty {
-                if let user = delegate.authorizeUser(login: login, password: password) {
-//                    self.onShowNext2?(user)
+                if manager.checkUser(login: login, password: password) != nil {
                     self.onShowNext?()
-                    print(user)
                 } else {
                     createInvalidDataAlert()
                 }
