@@ -14,7 +14,9 @@ class ProfileViewController: UIViewController {
     // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
-    let user: User
+//    let user: User
+    let userService: UserService
+    var onShowPhotos: (() -> Void)?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -29,8 +31,8 @@ class ProfileViewController: UIViewController {
     }()
     
     // MARK: Lifecycle
-    init(user: User) {
-        self.user = user
+    init(userService: UserService) {
+        self.userService = userService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,11 +42,11 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(user.login)
+//        print(userService.user?.login)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         view.addSubview(tableView)
         setupConstraints()
-        self.navigationItem.title = user.login
+        self.navigationItem.title = userService.user?.login
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +109,7 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row == 0 else { return }
         //        profileViewModel.onTapShowNextModule()
+        self.onShowPhotos?()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

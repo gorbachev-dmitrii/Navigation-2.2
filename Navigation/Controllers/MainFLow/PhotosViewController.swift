@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = UIColor(named: "myWhite")
+        collection.backgroundColor = .white
         collection.dataSource = self
         collection.delegate = self
         collection.register(
@@ -32,7 +32,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
-        view.backgroundColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        view.backgroundColor = .white
         navigationItem.title = "photosVCTitle".localized
         navigationController?.navigationBar.isHidden = false
         setupConstraints()

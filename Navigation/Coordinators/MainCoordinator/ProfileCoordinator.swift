@@ -19,14 +19,20 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        if let user = userService.user {
-            let controller = ProfileViewController(user: user)
-            navigationController.pushViewController(controller, animated: true)
+        let controller = ProfileViewController(userService: userService)
+        navigationController.pushViewController(controller, animated: true)
+        controller.onShowPhotos = {
+            self.toPhotos()
         }
     }
     
     func toEditProfile() {
-        let controller = UIViewController()
+        let controller = EditViewController()
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func toPhotos() {
+        let controller = PhotosViewController()
         navigationController.pushViewController(controller, animated: true)
     }
     
