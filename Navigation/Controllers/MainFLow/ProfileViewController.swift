@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
-    let user: RealmUser
+    let user: User
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     }()
     
     // MARK: Lifecycle
-    init(user: RealmUser) {
+    init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }

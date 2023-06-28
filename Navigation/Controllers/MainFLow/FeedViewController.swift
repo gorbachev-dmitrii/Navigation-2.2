@@ -15,6 +15,8 @@ final class FeedViewController: UIViewController {
     //MARK: Properties
 //    var model: MyModel
     var onShowNext: (() -> Void)?
+    let realmManager = RealmManager()
+    var posts1: [Post] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -41,6 +43,8 @@ final class FeedViewController: UIViewController {
         view.addSubview(tableView)
         setupConstraints()
         self.navigationItem.setHidesBackButton(true, animated: true)
+        posts1 = realmManager.getAllPosts()
+        print(posts1.count)
     }
     
     private func setupConstraints() {
@@ -64,14 +68,16 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return posts1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.post = posts[indexPath.row]
+        cell.post1 = posts1[indexPath.row]
         cell.onAddFavTap = {
             print("tapped")
+//            self.realmManager.updatePost(post: self.posts1[indexPath.row], isSaved: true)
+//            print(posts1[indexPath.row].author)
         }
         return cell
     }

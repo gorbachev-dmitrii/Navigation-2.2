@@ -96,9 +96,17 @@ final class SignUpViewController: UIViewController {
                 manager.createUser(login: login, password: password)
                 self.onShowNext?()
             } else {
-                print("Пустые поля")
+                createEmptyFieldsAlert()
             }
         }
+    }
+    
+    private func createEmptyFieldsAlert() {
+        let alert = UIAlertController(title: "emptyFieldsAlertTitle".localized, message: "emptyFieldsAlertMessage".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "alertAction".localized, style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func setupConstraints() {

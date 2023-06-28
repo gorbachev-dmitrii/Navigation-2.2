@@ -24,6 +24,21 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
+    var post1: Post? {
+        didSet {
+            if let image = post1?.image, let isSaved = post1?.isSaved {
+                postImage.image = UIImage(named: image)
+                if isSaved {
+                    addFavorite.setImage(UIImage(systemName: "bookmark.filled"), for: .normal)
+                }
+            }
+            likesLabel.text = "\(post1?.likes ?? 0)"
+            usernameLabel.text = post1?.author
+            postText.text = post1?.content
+        }
+        
+    }
+    
     var onAddFavTap: (() -> Void)?
     
     private lazy var headerContainer: UIView = {

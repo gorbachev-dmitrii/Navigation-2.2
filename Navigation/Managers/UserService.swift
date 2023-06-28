@@ -9,11 +9,17 @@
 import Foundation
 
 final class UserService {
-    let loginInspector: LoginInspector
-    let user: RealmUser?
+    
+    let user: User?
+    
+//    let loginInspector: LoginInspector
+//    let user: RealmUser?
     
     init() {
-        loginInspector = LoginInspector()
-        user = loginInspector.getUser()
+        let realmManager = RealmManager()
+        user = realmManager.getUser()
+        
+//        loginInspector = LoginInspector()
+//        user = loginInspector.getUser()
     }
 }

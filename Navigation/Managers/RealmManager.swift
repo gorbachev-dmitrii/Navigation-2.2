@@ -28,17 +28,15 @@ final class RealmManager {
         }
     }
     
-    func readUser() -> User? {
-        return realm.objects(User.self)[0]
+    func getUser() -> User? {
+        return realm.objects(User.self).first
     }
     
     func checkUser(login: String, password: String) -> User? {
-        let user = readUser()
+        let user = getUser()
         if user?.login == login && user?.password == password {
-            print("true")
             return user
         } else {
-            print("false")
             return nil
         }
     }
@@ -52,15 +50,58 @@ final class RealmManager {
     
     // MARK: Posts methods
     
-    func getAllPosts() {
-        
+    func getAllPosts() -> [Post] {
+        let a = realm.objects(Post.self)
+        return a.toArray()
     }
     
     func getUserPosts(user: User) {
         
     }
     
-    func updatePost() {
-        
+//    func updatePost(post: Post, isSaved: Bool?) {
+//        print(post.isSaved)
+//        if let isSaved = isSaved {
+//            print("prishlo iz controllera go sohranyat'")
+//            try! realm.write {
+//                post.isSaved = isSaved
+//            }
+//            print(post.isSaved)
+//        }
+//        
+////        if let likes = likes {
+////            try! realm.write {
+////                post.likes += 1
+////            }
+////        }
+//    }
+    
+    // только для теста
+    func saveTestPosts() {
+        let post1 = Post(author: "Netflix", content: "Netflix скоро заговорит по-русски! Будет доступен на русском языке!", image: "netflix", likes: 10, isSaved: false)
+        let post2 = Post(author: "Mobile review", content: "Музыкальный стриминговый сервис Spotify официально пришел в Россию", image: "spotify", likes: 20, isSaved: false)
+        let post3 = Post(author: "test", content: "Недавно Epic Games включила S.T.A.L.K.E.R. 2 в список готовящихся игр, которые создаются на базе движка компании — Unreal Engine 4. Слухи об этом ходили с самого анонса, однако до текущего момента определённости в вопросе не было.", image: "stalker", likes: 30, isSaved: false)
+        try! realm.write {
+            realm.add(post1)
+            realm.add(post2)
+            realm.add(post3)
+        }
     }
+    
+    func removeTestPosts() {
+        try! realm.write {
+            realm.delete(getAllPosts())
+        }
+    }
+    
+    
+    
 }
+
+extension Results {
+    func toArray() -> [Element] {
+      return compactMap {
+        $0
+      }
+    }
+ }
