@@ -201,7 +201,7 @@
 			children = (
 				0DD7BE11296E1C6500710935 /* Unused */,
 				0DA2CB8128A5BD1700FE86FF /* Managers */,
-				0DA2CB7B28A5BC6400FE86FF /* UserModel */,
+				0DA2CB7B28A5BC6400FE86FF /* Models */,
 				C391B34626E3C41C00D7D7DA /* ProfileModule */,
 				C33B2B4826DAA0C900CFD40F /* Coordinators */,
 				C35A0A6326014C5D00F0BB15 /* Controllers */,
@@ -266,14 +266,13 @@
 			path = AuthFlow;
 			sourceTree = "<group>";
 		};
-		0DA2CB7B28A5BC6400FE86FF /* UserModel */ = {
+		0DA2CB7B28A5BC6400FE86FF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
 				0DFA6AAD2A352A920078FCDC /* User.swift */,
 				0DFA6AAF2A43A8F20078FCDC /* Post.swift */,
 			);
-			path = UserModel;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0DA2CB8128A5BD1700FE86FF /* Managers */ = {
@@ -289,6 +288,7 @@
 		0DD7BE11296E1C6500710935 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				0DD7BE0E296E0BE600710935 /* RealmUserModel.swift */,
 				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				C3C92C5C25C8B05500B8A89D /* PostTableViewCell_old.swift */,
 				0D73C67B2A086DFF00AA1C2F /* UserModel.swift */,

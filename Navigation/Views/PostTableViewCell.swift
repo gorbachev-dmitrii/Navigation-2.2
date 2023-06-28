@@ -14,20 +14,24 @@ class PostTableViewCell: UITableViewCell {
     
     var post: Post? {
         didSet {
-            if let image = post?.image, let isSaved = post?.isSaved {
+            if let image = post?.image, let isSaved = post?.isSaved, let isLiked = post?.isLiked {
                 postImage.image = UIImage(named: image)
                 isSaved
                 ? addFavorite.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
                 : addFavorite.setImage(UIImage(systemName: "bookmark"), for: .normal)
+                isLiked
+                ? likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                : likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
             likesLabel.text = "\(post?.likes ?? 0)"
             usernameLabel.text = post?.author
             postText.text = post?.content
+            userImage.image = UIImage(named: "userImage")
         }
-        
     }
     
-    var onAddFavTapped: (() -> Void)?
+    var onFavTapped: (() -> Void)?
+    var onLikeTapped: (() -> Void)?
     
     private lazy var headerContainer: UIView = {
         let view = UIView()
@@ -46,7 +50,7 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var footerContainer: UIView = {
         let view = UIView()
-        view.addSubview(button)
+        view.addSubview(likeButton)
         view.addSubview(likesLabel)
         view.addSubview(addFavorite)
         return view
@@ -80,17 +84,18 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var button: CustomButton = {
-        let button = CustomButton(title: "", titleColor: .clear) {
+    private lazy var likeButton: CustomButton = {
+        let button = CustomButton(title: "", titleColor: .clear) { [weak self] in
             print("aalalalla")
+            self?.onLikeTapped?()
         }
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
+//        button.setImage(UIImage(systemName: "heart"), for: .normal)
         return button
     }()
     
     private lazy var addFavorite: CustomButton = {
-        let button = CustomButton(title: "", titleColor: .clear) {
-            self.onAddFavTapped?()
+        let button = CustomButton(title: "", titleColor: .clear) { [weak self] in
+            self?.onFavTapped?()
         }
         return button
     }()
@@ -155,13 +160,13 @@ class PostTableViewCell: UITableViewCell {
             make.height.equalTo(50)
         }
         
-        button.snp.makeConstraints { make in
+        likeButton.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.centerY.equalToSuperview()
         }
         
         likesLabel.snp.makeConstraints { make in
-            make.leading.equalTo(button.snp.trailing).offset(10)
+            make.leading.equalTo(likeButton.snp.trailing).offset(10)
             make.centerY.equalToSuperview()
         }
         

@@ -15,14 +15,12 @@ final class RealmManager {
     
     init() {
         let config = Realm.Configuration(
-            schemaVersion: 2)
-        // Use this configuration when opening realms
+            schemaVersion: 3)
         Realm.Configuration.defaultConfiguration = config
         realm = try! Realm()
     }
     // MARK: Users methods
     func createUser(login: String, password: String) {
-        // тут надо проверить, если ли уже такой юзер в БД
         try! realm.write {
             realm.add(User(login: login, password: password))
         }
@@ -60,31 +58,29 @@ final class RealmManager {
         return Array(posts)
     }
     
-//    func getFavoritesPosts() -> [Post] {
-//
-//    }
-    
-    func updatePost(post: Post, isSaved: Bool?) {
-        print(post.isSaved)
-        if isSaved != nil {
-            print("prishlo iz controllera go sohranyat'")
-            try! realm.write {
-                post.isSaved.toggle()
-            }
-            print(post.isSaved)
+    func updateIsSaved(post: Post) {
+        try! realm.write {
+            post.isSaved.toggle()
         }
-//        if let likes = likes {
-//            try! realm.write {
-//                post.likes += 1
-//            }
-//        }
+    }
+    
+    func updateLikes(post: Post) {
+        try! realm.write {
+            if post.isLiked {
+                post.likes -= 1
+                post.isLiked.toggle()
+            } else {
+                post.likes += 1
+                post.isLiked.toggle()
+            }
+        }
     }
     
     // только для теста
     func saveTestPosts() {
-        let post1 = Post(author: "Netflix", content: "Netflix скоро заговорит по-русски! Будет доступен на русском языке!", image: "netflix", likes: 10, isSaved: false)
-        let post2 = Post(author: "Mobile review", content: "Музыкальный стриминговый сервис Spotify официально пришел в Россию", image: "spotify", likes: 20, isSaved: false)
-        let post3 = Post(author: "test", content: "Недавно Epic Games включила S.T.A.L.K.E.R. 2 в список готовящихся игр, которые создаются на базе движка компании — Unreal Engine 4. Слухи об этом ходили с самого анонса, однако до текущего момента определённости в вопросе не было.", image: "stalker", likes: 30, isSaved: false)
+        let post1 = Post(author: "Netflix", content: "Netflix скоро заговорит по-русски! Будет доступен на русском языке!", image: "netflix", likes: 10, isSaved: false, isLiked: false)
+        let post2 = Post(author: "Mobile review", content: "Музыкальный стриминговый сервис Spotify официально пришел в Россию", image: "spotify", likes: 20, isSaved: false, isLiked: false)
+        let post3 = Post(author: "test", content: "Недавно Epic Games включила S.T.A.L.K.E.R. 2 в список готовящихся игр, которые создаются на базе движка компании — Unreal Engine 4. Слухи об этом ходили с самого анонса, однако до текущего момента определённости в вопросе не было.", image: "stalker", likes: 30, isSaved: false, isLiked: false)
         try! realm.write {
             realm.add(post1)
             realm.add(post2)
@@ -102,10 +98,10 @@ final class RealmManager {
     
 }
 
-extension Results {
-    func toArray() -> [Element] {
-      return compactMap {
-        $0
-      }
-    }
- }
+//extension Results {
+//    func toArray() -> [Element] {
+//      return compactMap {
+//        $0
+//      }
+//    }
+// }
