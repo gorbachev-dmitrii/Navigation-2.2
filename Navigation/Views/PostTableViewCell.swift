@@ -12,34 +12,22 @@ import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
-    var post: PostData? {
+    var post: Post? {
         didSet {
-            if let image = post?.image, let likes = post?.likes {
+            if let image = post?.image, let isSaved = post?.isSaved {
                 postImage.image = UIImage(named: image)
-                likesLabel.text = "\(likes)"
+                isSaved
+                ? addFavorite.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                : addFavorite.setImage(UIImage(systemName: "bookmark"), for: .normal)
             }
+            likesLabel.text = "\(post?.likes ?? 0)"
             usernameLabel.text = post?.author
-            userImage.image = UIImage(named: "userImage")
-            postText.text = post?.description
-        }
-    }
-    
-    var post1: Post? {
-        didSet {
-            if let image = post1?.image, let isSaved = post1?.isSaved {
-                postImage.image = UIImage(named: image)
-                if isSaved {
-                    addFavorite.setImage(UIImage(systemName: "bookmark.filled"), for: .normal)
-                }
-            }
-            likesLabel.text = "\(post1?.likes ?? 0)"
-            usernameLabel.text = post1?.author
-            postText.text = post1?.content
+            postText.text = post?.content
         }
         
     }
     
-    var onAddFavTap: (() -> Void)?
+    var onAddFavTapped: (() -> Void)?
     
     private lazy var headerContainer: UIView = {
         let view = UIView()
@@ -61,8 +49,6 @@ class PostTableViewCell: UITableViewCell {
         view.addSubview(button)
         view.addSubview(likesLabel)
         view.addSubview(addFavorite)
-        view.layer.borderWidth = 1
-        view.backgroundColor = .red
         return view
     }()
     
@@ -104,9 +90,8 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var addFavorite: CustomButton = {
         let button = CustomButton(title: "", titleColor: .clear) {
-            self.onAddFavTap?()
+            self.onAddFavTapped?()
         }
-        button.setImage(UIImage(systemName: "bookmark"), for: .normal)
         return button
     }()
     

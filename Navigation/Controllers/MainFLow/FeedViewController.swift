@@ -73,11 +73,11 @@ extension FeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.post1 = posts1[indexPath.row]
-        cell.onAddFavTap = {
-            print("tapped")
-//            self.realmManager.updatePost(post: self.posts1[indexPath.row], isSaved: true)
-//            print(posts1[indexPath.row].author)
+        cell.post = posts1[indexPath.row]
+        cell.onAddFavTapped = {
+            self.realmManager.updatePost(post: self.posts1[indexPath.row], isSaved: true)
+            print(self.posts1[indexPath.row].author)
+            self.tableView.reloadData()
         }
         return cell
     }

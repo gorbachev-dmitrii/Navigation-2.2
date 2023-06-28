@@ -280,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				0D07409A28C2AD3A0012429A /* CoreData */,
-				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				0D91D2EB2A07D79100EC62EF /* UserService.swift */,
 				0DFA6AAB2A3527DC0078FCDC /* RealmManager.swift */,
 			);
@@ -290,6 +289,7 @@
 		0DD7BE11296E1C6500710935 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				C3B65B43268B30230058268C /* LoginInspector.swift */,
 				C3C92C5C25C8B05500B8A89D /* PostTableViewCell_old.swift */,
 				0D73C67B2A086DFF00AA1C2F /* UserModel.swift */,
 				C3CE4794269796110000BCC5 /* Model.swift */,

@@ -49,32 +49,36 @@ final class RealmManager {
     }
     
     // MARK: Posts methods
-    
     func getAllPosts() -> [Post] {
-        let a = realm.objects(Post.self)
-        return a.toArray()
+        return Array(realm.objects(Post.self))
     }
     
-    func getUserPosts(user: User) {
-        
+    func getUserPosts(user: User) -> [Post] {
+        let posts = realm.objects(Post.self).where {
+            $0.author == user.login
+        }
+        return Array(posts)
     }
     
-//    func updatePost(post: Post, isSaved: Bool?) {
-//        print(post.isSaved)
-//        if let isSaved = isSaved {
-//            print("prishlo iz controllera go sohranyat'")
-//            try! realm.write {
-//                post.isSaved = isSaved
-//            }
-//            print(post.isSaved)
-//        }
-//        
-////        if let likes = likes {
-////            try! realm.write {
-////                post.likes += 1
-////            }
-////        }
+//    func getFavoritesPosts() -> [Post] {
+//
 //    }
+    
+    func updatePost(post: Post, isSaved: Bool?) {
+        print(post.isSaved)
+        if isSaved != nil {
+            print("prishlo iz controllera go sohranyat'")
+            try! realm.write {
+                post.isSaved.toggle()
+            }
+            print(post.isSaved)
+        }
+//        if let likes = likes {
+//            try! realm.write {
+//                post.likes += 1
+//            }
+//        }
+    }
     
     // только для теста
     func saveTestPosts() {
