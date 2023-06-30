@@ -86,10 +86,8 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var likeButton: CustomButton = {
         let button = CustomButton(title: "", titleColor: .clear) { [weak self] in
-            print("aalalalla")
             self?.onLikeTapped?()
         }
-//        button.setImage(UIImage(systemName: "heart"), for: .normal)
         return button
     }()
     
