@@ -7,20 +7,19 @@
 //
 
 import UIKit
-import StorageService
 import SnapKit
 
 class FavoritesViewController: UIViewController {
     
-    var post: Post?
-    private var favoritePosts = [PostData]()
+    let realmManager = RealmManager()
+    var favPosts: [Post] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PostTableViewCell_old.self, forCellReuseIdentifier: String(describing: PostTableViewCell_old.self))
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         return tableView
         
     }()
@@ -34,23 +33,17 @@ class FavoritesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        reloadCoreDataFilesByFetch()
-        if favoritePosts.count == 0 {
+        favPosts = realmManager.getFavoritePosts()
+        print(favPosts.count)
+        tableView.reloadData()
+        if favPosts.count == 0 {
             createEmptyFavListAlert()
         }
     }
     
-    private func reloadCoreDataFilesByFetch() {
-        self.favoritePosts = CoreDataManager.shared.fetchFavourites()
-        tableView.reloadData()
-    }
-    
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            make.leading.equalTo(self.view.safeAreaLayoutGuide)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.top.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
     
@@ -65,13 +58,13 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoritePosts.count
+        return favPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell: PostTableViewCell_old = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell_old.self), for: indexPath) as! PostTableViewCell_old
+       let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
         cell.selectionStyle = .default
-        cell.post = favoritePosts[indexPath.row]
+        cell.post = favPosts[indexPath.row]
         return cell
     }
     

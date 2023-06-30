@@ -39,7 +39,7 @@
 // SavedPostsViewController
 
 "postAlertTitle" = "Тут пока пусто";
-"postAlertMessage" = "Сохраните пост двойным нажатием";
+"postAlertMessage" = "Сохраните пост из ленты, нажав на значок закладки";
 "postAlertAction" = "Хорошо";
 
 // ProfileViewController

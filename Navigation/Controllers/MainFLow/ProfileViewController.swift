@@ -136,7 +136,7 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard section == 1 else { return }
         if let headerView = view as? UITableViewHeaderFooterView {
-            var label = headerView.textLabel!
+            let label = headerView.textLabel!
             label.textColor = UIColor(named: "CustomOrange")
         }
     }
