@@ -28,11 +28,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                    realm.deleteAll()
 //                }
         
-//        let realm = RealmManager()
+        let realm = RealmManager()
 //        realm.getUserPosts(user: realm.getUser()!)
 //        realm.deleteAllUsers()
 //        realm.removeTestPosts()
-//        realm.saveTestPosts()
+        realm.saveTestPosts()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -7,25 +7,27 @@
 //
 
 import UIKit
-import StorageService
 import SnapKit
 
 class ProfileViewController: UIViewController {
     // MARK: Properties
     private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
-//    let user: User
+    //    let user: User
     let userService: UserService
     var onShowPhotos: (() -> Void)?
+    let realmManager = RealmManager()
+    var userPosts: [Post] = []
+    var posts: [Post] = []
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-        tableView.register(PostTableViewCell_old.self, forCellReuseIdentifier: String(describing: PostTableViewCell_old.self))
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.delegate = self
-//        tableView.backgroundColor = UIColor(named: "CustomMilky")
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -42,16 +44,16 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(userService.user?.login)
         profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         view.addSubview(tableView)
         setupConstraints()
         self.navigationItem.title = userService.user?.login
+        userPosts = realmManager.getUserPosts(user: userService.user!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        navigationController?.navigationBar.isHidden = true
+        //        navigationController?.navigationBar.isHidden = true
     }
     // MARK: Actions
     @objc func statusTextChanged(_ textField: UITextField) {
@@ -73,7 +75,7 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             return 220
         } else {
-            return 40
+            return 20
         }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -87,7 +89,7 @@ extension ProfileViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return posts.count
+            return userPosts.count
         default:
             return 0
         }
@@ -99,16 +101,19 @@ extension ProfileViewController: UITableViewDataSource {
             cell.selectionStyle = .default
             return cell
         } else {
-            let cell: PostTableViewCell_old = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell_old.self), for: indexPath) as! PostTableViewCell_old
-            cell.post = posts[indexPath.row]
+            let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            cell.post = userPosts[indexPath.row]
+            cell.onFavTapped = {
+                self.realmManager.updateIsSaved(post: self.userPosts[indexPath.row])
+                self.tableView.reloadData()
+            }
             cell.selectionStyle = .none
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row == 0 else { return }
-        //        profileViewModel.onTapShowNextModule()
+        guard indexPath.section == 0 else { return }
         self.onShowPhotos?()
     }
     
@@ -117,7 +122,6 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         if section == 0 {
             return profileHeader
         } else {
@@ -125,18 +129,15 @@ extension ProfileViewController: UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
-        switch section {
-        case 0: return "1 section"
-        case 1: return "sectionTitle".localized
-        default: return ""
-        }
+        guard section == 1 else { return nil }
+        return "sectionTitle".localized
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-      if let headerView = view as? UITableViewHeaderFooterView {
-//          headerView.contentView.backgroundColor = .white
-//          headerView.backgroundView?.backgroundColor = .black
-          headerView.textLabel?.textColor = UIColor(named: "CustomOrange")
-      }
-  }
+        guard section == 1 else { return }
+        if let headerView = view as? UITableViewHeaderFooterView {
+            var label = headerView.textLabel!
+            label.textColor = UIColor(named: "CustomOrange")
+        }
+    }
 }

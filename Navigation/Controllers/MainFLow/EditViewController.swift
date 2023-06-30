@@ -9,5 +9,8 @@
 import UIKit
 
 final class EditViewController: UIViewController {
-    
+    private lazy var jobName: CustomTextField = {
+        let textField = CustomTextField(placeholder: "", textColor: .black, bckgColor: .clear, onText: nil)
+        return textField
+    }()
 }
