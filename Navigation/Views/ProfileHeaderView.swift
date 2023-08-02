@@ -10,39 +10,37 @@ import UIKit
 import SnapKit
 
 class ProfileHeaderView: UIView {
-    
+    var onShowEdit: (() -> Void)?
+
     let avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
         imageView.isUserInteractionEnabled = true
         imageView.layer.masksToBounds = false
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.image = UIImage(named: "userImage")
         return imageView
     }()
     
-    let fullNameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .label
         return label
     }()
     
-    let statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .label
         return label
     }()
     
-    let statusTextField: CustomTextField = {
+    private lazy var statusTextField: CustomTextField = {
         let textField = CustomTextField(placeholder: "profileHeaderPlaceholder".localized,
                                         textColor: UIColor(named: "CustomGray")!,
                                         bckgColor: .white, onText: nil)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.placeholder = "profileHeaderPlaceholder".localized
         textField.textColor = .label
@@ -56,6 +54,7 @@ class ProfileHeaderView: UIView {
     private lazy var setStatusButton: CustomButton = {
         let button = CustomButton(title: "profileHeaderSetStatusButton".localized, titleColor: .white) {
             self.changeText()
+            self.onShowEdit?()
         }
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
@@ -81,6 +80,12 @@ class ProfileHeaderView: UIView {
         self.addSubviews(views: [avatarImageView, setStatusButton, statusLabel, statusTextField, fullNameLabel])
         setupSnapConstraints()
         self.backgroundColor = .white
+        let recognizeTap = UITapGestureRecognizer(target: self, action: #selector(tap))
+        self.avatarImageView.addGestureRecognizer(recognizeTap)
+    }
+    
+    @objc func tap() {
+        print("tapped")
     }
     
     required init?(coder: NSCoder) {

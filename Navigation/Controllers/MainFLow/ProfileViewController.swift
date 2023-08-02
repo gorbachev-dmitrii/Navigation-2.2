@@ -16,10 +16,10 @@ class ProfileViewController: UIViewController {
     //    let user: User
     let userService: UserService
     var onShowPhotos: (() -> Void)?
+//    var onShowEdit: (() -> Void)?
+    
     let realmManager = RealmManager()
     var userPosts: [Post] = []
-    var posts: [Post] = []
-    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -44,22 +44,15 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileHeader.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         view.addSubview(tableView)
-        setupConstraints()
         self.navigationItem.title = userService.user?.login
         userPosts = realmManager.getUserPosts(user: userService.user!)
+        setupConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //        navigationController?.navigationBar.isHidden = true
-    }
-    // MARK: Actions
-    @objc func statusTextChanged(_ textField: UITextField) {
-        if let temp = profileHeader.statusTextField.text {
-            statusText = temp
-        }
     }
     // MARK: Constraints
     
