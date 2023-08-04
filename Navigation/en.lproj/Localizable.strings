@@ -45,7 +45,7 @@
 // ProfileViewController
 
 "profileHeaderPlaceholder" = "Set your status";
-"profileHeaderSetStatusButton" = "Set status";
+"profileHeaderSetStatusButton" = "Edit profile";
 "sectionTitle" = "My posts";
 
 "postCellLikes" = "Likes";

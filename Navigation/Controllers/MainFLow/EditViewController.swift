@@ -20,16 +20,32 @@ final class EditViewController: UIViewController {
         return textField
     }()
     
+    private lazy var saveChanges: CustomButton = {
+        let button = CustomButton(title: "", titleColor: .white) {
+            print("save")
+        }
+        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(fullName)
-//        view.addSubview(jobName)
+        view.addSubview(jobName)
+        view.backgroundColor = .white
         setupConstraints()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveChanges)
+
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         fullName.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide).offset(20).inset(20)
+        }
+        
+        jobName.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(fullName)
+            make.top.equalTo(fullName.snp_bottomMargin).offset(20)
         }
     }
 }
