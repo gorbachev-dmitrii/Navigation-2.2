@@ -53,6 +53,8 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //        navigationController?.navigationBar.isHidden = true
+        print(userService.user?.jobName)
+        print(userService.user?.fullname)
     }
     // MARK: Constraints
     

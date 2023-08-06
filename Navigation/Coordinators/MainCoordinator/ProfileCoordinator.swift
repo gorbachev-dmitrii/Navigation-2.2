@@ -30,9 +30,11 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func toEditProfile() {
-        let controller = EditViewController()
+        let controller = EditViewController(userService: userService)
         navigationController.pushViewController(controller, animated: true)
-//        navigationController.popViewController(animated: true)
+        controller.onSaveButtonTapped = {
+            self.start()
+        }
     }
     
     private func toPhotos() {

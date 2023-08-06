@@ -12,6 +12,8 @@ import RealmSwift
 class User: Object {
     @Persisted var login: String = ""
     @Persisted var password: String = ""
+    @Persisted var jobName: String?
+    @Persisted var fullname: String?
     
     convenience init(login: String, password: String) {
         self.init()

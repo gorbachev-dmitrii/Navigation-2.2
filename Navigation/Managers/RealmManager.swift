@@ -15,7 +15,7 @@ final class RealmManager {
     
     init() {
         let config = Realm.Configuration(
-            schemaVersion: 3)
+            schemaVersion: 4)
         Realm.Configuration.defaultConfiguration = config
         realm = try! Realm()
     }
@@ -43,6 +43,13 @@ final class RealmManager {
         try! realm.write {
             let users = realm.objects(User.self)
             realm.delete(users)
+        }
+    }
+    
+    func updateUser(user: User, jobName: String?, fullname: String?) {
+        try! realm.write {
+            user.fullname = fullname
+            user.jobName = jobName
         }
     }
     

@@ -43,7 +43,6 @@ final class FeedViewController: UIViewController {
         setupConstraints()
         self.navigationItem.setHidesBackButton(true, animated: true)
         posts = realmManager.getAllPosts()
-        print(posts.count)
     }
     
     private func setupConstraints() {
