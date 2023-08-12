@@ -11,12 +11,9 @@ import SnapKit
 
 class ProfileViewController: UIViewController {
     // MARK: Properties
-    private var statusText: String = ""
     let profileHeader = ProfileHeaderView()
-    //    let user: User
     let userService: UserService
     var onShowPhotos: (() -> Void)?
-//    var onShowEdit: (() -> Void)?
     
     let realmManager = RealmManager()
     var userPosts: [Post] = []
@@ -46,15 +43,15 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
         self.navigationItem.title = userService.user?.login
-        userPosts = realmManager.getUserPosts(user: userService.user!)
+        userPosts = userService.getUserPosts()
         setupConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //        navigationController?.navigationBar.isHidden = true
-        print(userService.user?.jobName)
-        print(userService.user?.fullname)
+        profileHeader.jobName.text = userService.user?.jobName
+        profileHeader.fullName.text = userService.user?.fullname
     }
     // MARK: Constraints
     

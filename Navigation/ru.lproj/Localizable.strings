@@ -45,7 +45,7 @@
 // ProfileViewController
 
 "profileHeaderPlaceholder" = "Установите статус";
-"profileHeaderSetStatusButton" = "Редактировать";
+"profileHeaderEdit" = "Редактировать";
 "sectionTitle" = "Мои записи";
 
 "loginButton" = "Войти";

@@ -11,9 +11,13 @@ import Foundation
 final class UserService {
     
     let user: User?
-    
+    private let realmManager = RealmManager()
+
     init() {
-        let realmManager = RealmManager()
         user = realmManager.getUser()
+    }
+    
+    func getUserPosts() -> [Post] {
+        realmManager.getUserPosts(user: user!)
     }
 }

@@ -11,8 +11,8 @@ import SnapKit
 
 class ProfileHeaderView: UIView {
     var onShowEdit: (() -> Void)?
-
-    let avatarImageView: UIImageView = {
+    
+    let userAvatar: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 3
         imageView.isUserInteractionEnabled = true
@@ -23,40 +23,34 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var fullNameLabel: UILabel = {
+    lazy var fullName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .label
         return label
     }()
     
-    private lazy var statusLabel: UILabel = {
+    lazy var jobName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .label
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor(named: "CustomGray")
         return label
     }()
     
-    private lazy var statusTextField: CustomTextField = {
-        let textField = CustomTextField(placeholder: "profileHeaderPlaceholder".localized,
-                                        textColor: UIColor(named: "CustomGray")!,
-                                        bckgColor: .white, onText: nil)
-        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.placeholder = "profileHeaderPlaceholder".localized
-        textField.textColor = .label
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
-        return textField
+    lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .leading
+        stack.spacing = 20.0
+        [fullName, jobName].forEach({stack.addArrangedSubview($0)})
+        return stack
     }()
     
-    private lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(title: "profileHeaderSetStatusButton".localized, titleColor: .white) {
-            self.changeText()
+    private lazy var editProfile: CustomButton = {
+        let button = CustomButton(title: "profileHeaderEdit".localized, titleColor: .white) {
             self.onShowEdit?()
         }
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(named: "CustomOrange")
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
@@ -65,23 +59,18 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    func changeText() {
-        statusLabel.text = statusTextField.text
-        statusTextField.text = ""
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        userAvatar.layer.cornerRadius = userAvatar.frame.height / 2
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        self.addSubviews(views: [avatarImageView, setStatusButton, statusLabel, statusTextField, fullNameLabel])
-        setupSnapConstraints()
+        self.addSubviews(views: [userAvatar, editProfile, stackView])
+        setupConstraints()
         self.backgroundColor = .white
         let recognizeTap = UITapGestureRecognizer(target: self, action: #selector(tap))
-        self.avatarImageView.addGestureRecognizer(recognizeTap)
+        self.userAvatar.addGestureRecognizer(recognizeTap)
     }
     
     @objc func tap() {
@@ -92,33 +81,22 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupSnapConstraints() {
-        avatarImageView.snp.makeConstraints { (make) in
+    private func setupConstraints() {
+        userAvatar.snp.makeConstraints { (make) in
             make.leading.top.equalTo(16)
             make.width.equalTo(125)
-            make.height.equalTo(avatarImageView.snp.width)
-        }
-        fullNameLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
-            make.top.equalTo(16)
-            make.trailing.equalTo(-16)
-        }
-        statusLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(fullNameLabel.snp.bottom).offset(16)
-            make.leading.equalTo(fullNameLabel.snp.leading)
-            make.trailing.equalTo(fullNameLabel.snp.trailing)
-        }
-        statusTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(statusLabel.snp.bottom).offset(16)
-            make.leading.equalTo(statusLabel.snp.leading).offset(1)
-            make.trailing.equalTo(-15)
-            make.height.equalTo(40)
+            make.height.equalTo(userAvatar.snp.width)
         }
         
-        setStatusButton.snp.makeConstraints { (make) in
+        editProfile.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.trailing.bottom.equalTo(-16)
             make.height.equalTo(50)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.leading.equalTo(userAvatar.snp.trailing).offset(16)
+            make.centerY.equalTo(userAvatar.snp.centerY)
         }
     }
     
