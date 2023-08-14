@@ -11,8 +11,9 @@ import SnapKit
 
 class ProfileHeaderView: UIView {
     var onShowEdit: (() -> Void)?
+    var onAvatarTapped: (() -> Void)?
     
-    let userAvatar: UIImageView = {
+    lazy var userAvatar: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 3
         imageView.isUserInteractionEnabled = true
@@ -74,7 +75,8 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func tap() {
-        print("tapped")
+//        print("tapped")
+        self.onAvatarTapped?()
     }
     
     required init?(coder: NSCoder) {
@@ -99,5 +101,4 @@ class ProfileHeaderView: UIView {
             make.centerY.equalTo(userAvatar.snp.centerY)
         }
     }
-    
 }

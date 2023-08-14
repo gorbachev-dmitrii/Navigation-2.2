@@ -45,6 +45,16 @@ class ProfileViewController: UIViewController {
         self.navigationItem.title = userService.user?.login
         userPosts = userService.getUserPosts()
         setupConstraints()
+        self.profileHeader.onAvatarTapped = {
+            print("showPicker")
+            ImagePicker.defaultPicker.showPicker(in: self) { imageData in
+                guard let imageData else { return }
+                DispatchQueue.main.async {
+                    self.profileHeader.userAvatar.image = UIImage(data: imageData)
+//                    self.realmManager.updateUserAvatar(user: self.userService.user!, avatar: imageData)
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +140,7 @@ extension ProfileViewController: UITableViewDataSource {
         if let headerView = view as? UITableViewHeaderFooterView {
             let label = headerView.textLabel!
             label.textColor = UIColor(named: "CustomOrange")
+//            headerView.contentView.backgroundColor = UIColor(named: "CustomMilky")
         }
     }
 }

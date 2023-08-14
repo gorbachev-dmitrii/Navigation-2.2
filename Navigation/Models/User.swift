@@ -14,6 +14,7 @@ class User: Object {
     @Persisted var password: String = ""
     @Persisted var jobName: String?
     @Persisted var fullname: String?
+    @Persisted var avatar: Data?
     
     convenience init(login: String, password: String) {
         self.init()

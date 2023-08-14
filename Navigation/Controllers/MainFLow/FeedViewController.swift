@@ -81,6 +81,7 @@ extension FeedViewController: UITableViewDataSource {
             self.realmManager.updateLikes(post: self.posts[indexPath.row])
             self.tableView.reloadData()
         }
+        cell.selectionStyle = .none
         return cell
     }
     

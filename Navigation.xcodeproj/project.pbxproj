@@ -21,6 +21,7 @@
 		0D240A0E28F0DC2D002160A1 /* UIColor + Custom Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */; };
 		0D42F8EA2A017F6500DAE575 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42F8E92A017F6500DAE575 /* AppCoordinator.swift */; };
 		0D42F8EC2A01819100DAE575 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */; };
+		0D4354862A87C8D9005F04C3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4354852A87C8D9005F04C3 /* ImagePicker.swift */; };
 		0D4438B42949300A00D5DCE6 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4438B32949300A00D5DCE6 /* EntryViewController.swift */; };
 		0D6A54A4276FB7450051B19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */; };
 		0D73C6782A08618E00AA1C2F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0D73C6772A08618E00AA1C2F /* Realm */; };
@@ -110,6 +111,7 @@
 		0D240A0D28F0DC2D002160A1 /* UIColor + Custom Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Custom Colors.swift"; sourceTree = "<group>"; };
 		0D42F8E92A017F6500DAE575 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0D42F8EB2A01819100DAE575 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		0D4354852A87C8D9005F04C3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0D4438B32949300A00D5DCE6 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		0D6A54A3276FB7450051B19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D73C67B2A086DFF00AA1C2F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				0D07409A28C2AD3A0012429A /* CoreData */,
 				0D91D2EB2A07D79100EC62EF /* UserService.swift */,
 				0DFA6AAB2A3527DC0078FCDC /* RealmManager.swift */,
+				0D4354852A87C8D9005F04C3 /* ImagePicker.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
+				0D4354862A87C8D9005F04C3 /* ImagePicker.swift in Sources */,
 				C35A0A5925FD68AC00F0BB15 /* UIView + Support Functions.swift in Sources */,
 				C3C92C4E25C3551900B8A89D /* LogInViewController.swift in Sources */,
 				0D4438B42949300A00D5DCE6 /* EntryViewController.swift in Sources */,
