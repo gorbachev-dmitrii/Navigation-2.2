@@ -95,6 +95,8 @@ final class SignUpViewController: UIViewController {
             if !login.isEmpty || !password.isEmpty {
                 manager.createUser(login: login, password: password)
                 self.onShowNext?()
+                manager.saveTestUsers()
+                manager.updateTestUsers()
             } else {
                 createEmptyFieldsAlert()
             }

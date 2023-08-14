@@ -8,10 +8,10 @@
 
 import UIKit
 import SnapKit
-import StorageService
+
 
 class PostTableViewCell: UITableViewCell {
-    
+    let realm = RealmManager()
     var post: Post? {
         didSet {
             if let image = post?.image, let isSaved = post?.isSaved, let isLiked = post?.isLiked {
@@ -24,12 +24,15 @@ class PostTableViewCell: UITableViewCell {
                 : likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
             likesLabel.text = "\(post?.likes ?? 0)"
-            usernameLabel.text = post?.author
+            usernameLabel.text = getUsername(author: post!.author)
             postText.text = post?.content
             userImage.image = UIImage(named: "userImage")
         }
     }
-    
+    func getUsername(author: String) -> String {
+        let user = realm.getUserByLogin(username: author)
+        return user?.fullname ?? post!.author
+    }
     var onFavTapped: (() -> Void)?
     var onLikeTapped: (() -> Void)?
     
